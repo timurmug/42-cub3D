@@ -6,12 +6,10 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/06 10:55:32 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/06 18:35:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "gnl/get_next_line.h"
 #include "cub3d.h"
 
 void create_map(t_list **lines_list, int size)

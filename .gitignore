@@ -6,3 +6,4 @@ libft/libft.a
 a.out.dSYM/
 .DS_Store
 libft/libft.a
+gnl/gnl.a
