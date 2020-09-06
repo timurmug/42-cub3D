@@ -1,0 +1,8 @@
+a.out
+*.o
+objs/
+cub3D
+libft/libft.a
+a.out.dSYM/
+.DS_Store
+libft/libft.a

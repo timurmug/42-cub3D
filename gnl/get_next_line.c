@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 12:18:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/06/02 11:51:34 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/06 10:44:28 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_create_line(char **current_fd, char **line,
 {
 	*p_newline++ = 0;
 	free(tmp);
-	if (!(*line = ft_strdup(*current_fd)))
+	if (!(*line = ft_strdup2(*current_fd)))
 		return (-1);
 	if (!p_newline)
 	{
@@ -39,7 +39,7 @@ static int	ft_get_remainder(char **current_fd,
 		free(tmp);
 		return (-1);
 	}
-	if (*current_fd && (p_end = ft_strchr(*current_fd, '\n')))
+	if (*current_fd && (p_end = ft_strchr2(*current_fd, '\n')))
 		return (ft_create_line(current_fd, line, p_end, tmp));
 	if (*current_fd)
 	{
@@ -49,7 +49,7 @@ static int	ft_get_remainder(char **current_fd,
 		return (0);
 	}
 	free(tmp);
-	*line = ft_strdup("");
+	*line = ft_strdup2("");
 	return (0);
 }
 
@@ -64,7 +64,7 @@ static int	ft_check_line(char **current_fd, char **line, char *tmp,
 		free(tmp);
 		return (-1);
 	}
-	if ((p_end = ft_strchr(*current_fd, '\n')))
+	if ((p_end = ft_strchr2(*current_fd, '\n')))
 		return (ft_create_line(current_fd, line, p_end, tmp));
 	return (2);
 }

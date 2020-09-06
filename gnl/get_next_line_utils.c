@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/20 12:18:24 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/06/02 11:50:51 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/06 10:43:25 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen2(char *str)
 {
 	size_t	i;
 
@@ -22,7 +22,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr2(char *s, int c)
 {
 	char	*s2;
 	char	symbol;
@@ -52,12 +52,12 @@ char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strdup2(char *s)
 {
 	int		length;
 	char	*str;
 
-	length = ft_strlen(s);
+	length = ft_strlen2(s);
 	str = NULL;
 	if (!(str = (char *)malloc(sizeof(char) * (length + 1))))
 		return (NULL);
@@ -77,8 +77,8 @@ char	*ft_strjoin_new(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	if (!s1 || !s2)
-		return (!s1 ? ft_strdup(s2) : ft_strdup(s1));
-	if (!(strjoin = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char))))
+		return (!s1 ? ft_strdup2(s2) : ft_strdup2(s1));
+	if (!(strjoin = malloc((ft_strlen2(s1) + ft_strlen2(s2) + 1) * sizeof(char))))
 		return (NULL);
 	while (s1[j])
 		strjoin[i++] = s1[j++];
