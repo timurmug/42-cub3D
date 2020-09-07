@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/07 13:43:57 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/07 15:22:10 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DIR_LIB = libft
 DIR_GNL = gnl
 DIR_MLX = minilibx_opengl
 
-SRCS_NAME =
+SRCS_NAME = main.c
 SRCS = $(addprefix $(DIR_SRCS)/,$(SRCS_NAME))
 OBJS = $(addprefix $(DIR_OBJS)/,$(SRCS_NAME:.c=.o))
 
@@ -43,17 +43,22 @@ all: $(NAME)
 # 	$(LIBS)
 # 	gcc $(FLAGS_W) main.c $(GNL_A) $(LIBFT_A) && ./a.out maps/example.cub
 
-two:
+two: $(OBJS)
 	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)
 	@make -C $(DIR_MLX)
-	gcc $(FLAGS_W) $(FLAGS_MLX) main.c $(GNL_A) $(LIBFT_A) $(MLX_A) && ./a.out maps/example.cub
+	@ar rc $(NAME) $(OBJS)
+	gcc $(FLAGS_W) $(FLAGS_MLX) $(GNL_A) $(LIBFT_A) $(MLX_A) $(NAME)
+	./a.out maps/1.cub
 
 $(NAME): $(OBJS) $(PRINTF_H)
 	@make -C $(DIR_LIB)
 	@cp $(LIBFT_A) ./$(NAME)
 
+$(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
+	@mkdir -p objs
+	gcc -Wall -Wextra -Werror -Iincludes -o $@ -c $<
 
 norme:
 	norminette ./$(DIR_GNL)/

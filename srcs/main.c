@@ -6,29 +6,58 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/07 13:31:53 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/07 15:19:53 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-void create_window()
+void draw_square(void *mlx, void *wdw, int x, int y, int col)
+{
+	int temp_y;
+	int temp_x;
+
+	temp_y = y;
+	while (temp_y < y + 50)
+	{
+		temp_x = x;
+		while (temp_x < x + 50)
+			mlx_pixel_put(mlx, wdw, temp_x++, temp_y, col);
+		temp_y++;
+	}
+}
+
+void create_window(char **map)
 {
 	void *mlx;
 	void *wdw;
 	int x;
 	int y;
+	int i;
+	int j;
 
 	mlx = NULL;
 	wdw = NULL;
-	y = 100;
 	mlx = mlx_init();
-	wdw = mlx_new_window(mlx, 640, 480, "cub3d");
-	while (y++ < 200)
+	wdw = mlx_new_window(mlx, 1920, 1080, "cub3d");
+	y = 0;
+	i = 9;
+
+	while (map[i])
 	{
-		x = 100;
-		while (x++ < 200)
-			mlx_pixel_put(mlx, wdw, x, y, 0xFFFFFF); 
+		j = 0;
+		x = 0;
+		while (map[i][j])
+		{
+			if (map[i][j++] == '1')
+				draw_square(mlx, wdw, x, y, 0xFFFFFF);
+			else if (map[i][j - 1] == 'N' || map[i][j - 1] == 'S' \
+							|| map[i][j - 1] == 'E' || map[i][j - 1] == 'W')
+				draw_square(mlx, wdw, x, y, 0xC2171D);
+			x += 50;
+		}
+		i++;
+		y += 50;
 	}
 	mlx_loop(mlx);
 }
@@ -51,7 +80,7 @@ void create_map(t_list **lines_list, int size)
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
 
-	create_window();
+	create_window(map);
 }
 
 int	main(	int ac, char **av)
