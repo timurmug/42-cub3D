@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/07 16:51:32 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/07 17:03:31 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(NAME): $(OBJS) $(PRINTF_H)
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	@mkdir -p objs
-	gcc -Wall -Wextra -Werror -Iincludes -o $@ -c $<
+	gcc $(FLAGS_W) -Iincludes -o $@ -c $<
 
 norme:
 	@make fclean
