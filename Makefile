@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/07 15:22:10 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/07 16:51:32 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ DIR_LIB = libft
 DIR_GNL = gnl
 DIR_MLX = minilibx_opengl
 
-SRCS_NAME = main.c
+SRCS_NAME = main.c draw.c
 SRCS = $(addprefix $(DIR_SRCS)/,$(SRCS_NAME))
 OBJS = $(addprefix $(DIR_OBJS)/,$(SRCS_NAME:.c=.o))
 
@@ -61,11 +61,14 @@ $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	gcc -Wall -Wextra -Werror -Iincludes -o $@ -c $<
 
 norme:
+	@make fclean
 	norminette ./$(DIR_GNL)/
 	@echo
 	norminette ./$(DIR_LIB)/
 	@echo
 	norminette ./$(DIR_SRCS)/
+	@echo
+	norminette $(CUBE3D_H)
 
 valg:
 	valgrind --leak-check=full ./a.out
