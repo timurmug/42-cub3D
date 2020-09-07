@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/06 19:03:10 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/07 08:37:06 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,7 @@ LIBFT_A =	libft/libft.a
 GNL_A = gnl/gnl.a
 
 FLAGS_W = -Wall -Wextra -Werror
-FLAGS_B = -D BUFFER_SIZE=32
 
-LIBFT_H = libft/libft.h
-GNL_H = gnl/get_next_line.h
 CUBE3D_H = cub3d.h
 
 DIR_OBJS	= objs
@@ -30,11 +27,6 @@ SRCS_NAME =
 SRCS = $(addprefix $(DIR_SRCS)/,$(SRCS_NAME))
 OBJS = $(addprefix $(DIR_OBJS)/,$(SRCS_NAME:.c=.o))
 
-SRCS_GNL_NAME = get_next_line.c \
-								get_next_line_utils.c
-SRCS_GNL = $(addprefix $(DIR_GNL)/,$(SRCS_GNL_NAME))
-OBJS_GNL = $(addprefix $(DIR_OBJS)/,$(SRCS_GNL_NAME:.c=.o))
-
 BOLD = "\e[1m"
 FRGROUND  = "\e[90m"
 BCGROUND = "\e[103m"
@@ -45,25 +37,17 @@ RESET = "\e[0m"
 all: $(NAME)
 
 first:
-	# $(OBJS_GNL)
-	# ar rc $(GNL_A) $(OBJS_GNL)
-	# cp $(GNL_A) ./$(NAME)
+	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)
-	@cp $(LIBFT_A) ./$(NAME)
-	gcc $(FLAGS_W) $(FLAGS_B) main.c gnl/get_next_line.c gnl/get_next_line_utils.c $(NAME)
+	gcc $(FLAGS_W) main.c $(LIBFT_A) $(GNL_A)
 
 $(NAME): $(OBJS) $(PRINTF_H)
 	@make -C $(DIR_LIB)
 	@cp $(LIBFT_A) ./$(NAME)
 
-
-$(DIR_OBJS)/%.o: $(DIR_GNL)/%.c
-	@mkdir -p objs
-	gcc -Wall -Wextra -Werror -D BUFFER_SIZE=32 -Iincludes -o $@ -c $<
-
 norme:
-	norminette ./includes/
+	norminette ./$(DIR_GNL)/
 	@echo
 	norminette ./$(DIR_LIB)/
 	@echo
@@ -73,13 +57,14 @@ valg:
 	valgrind --leak-check=full ./a.out
 
 clean:
-	rm -f */*.o
 	rm -rf $(DIR_OBJS)
+	@make -C $(DIR_GNL) clean
+	@make -C $(DIR_LIB) clean
 	@echo $(BOLD)$(FRGROUND)$(BCGROUND)cleaned o-files$(RESET)
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(GNL_A)
+	@make -C $(DIR_GNL) fclean
 	@make -C $(DIR_LIB) fclean
 	@echo $(BOLD)$(FRGROUND)$(BCGROUND)cleaned all files$(RESET)
 
