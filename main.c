@@ -6,11 +6,32 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/06 18:35:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/07 13:31:53 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void create_window()
+{
+	void *mlx;
+	void *wdw;
+	int x;
+	int y;
+
+	mlx = NULL;
+	wdw = NULL;
+	y = 100;
+	mlx = mlx_init();
+	wdw = mlx_new_window(mlx, 640, 480, "cub3d");
+	while (y++ < 200)
+	{
+		x = 100;
+		while (x++ < 200)
+			mlx_pixel_put(mlx, wdw, x, y, 0xFFFFFF); 
+	}
+	mlx_loop(mlx);
+}
 
 void create_map(t_list **lines_list, int size)
 {
@@ -26,9 +47,11 @@ void create_map(t_list **lines_list, int size)
 		map[++i] = tmp->content;
 		tmp = tmp->next;
 	}
-	i = -1;
+	i = 10;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
+
+	create_window();
 }
 
 int	main(	int ac, char **av)
