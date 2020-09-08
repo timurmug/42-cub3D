@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/07 17:03:31 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/08 08:28:58 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,9 @@ DIR_LIB = libft
 DIR_GNL = gnl
 DIR_MLX = minilibx_opengl
 
-SRCS_NAME = main.c draw.c
+SRCS_NAME = check.c \
+						draw.c \
+						main.c
 SRCS = $(addprefix $(DIR_SRCS)/,$(SRCS_NAME))
 OBJS = $(addprefix $(DIR_OBJS)/,$(SRCS_NAME:.c=.o))
 
@@ -39,9 +41,12 @@ RESET = "\e[0m"
 
 all: $(NAME)
 
-# one:
-# 	$(LIBS)
-# 	gcc $(FLAGS_W) main.c $(GNL_A) $(LIBFT_A) && ./a.out maps/example.cub
+# one:$(OBJS)
+# 	@make -C $(DIR_GNL)
+# 	@make -C $(DIR_LIB)
+# 	@make bonus -C $(DIR_LIB)
+# 	@ar rc $(NAME) $(OBJS)
+# 	gcc $(FLAGS_W) $(GNL_A) $(LIBFT_A) $(NAME) && ./a.out maps/example.cub
 
 two: $(OBJS)
 	@make -C $(DIR_GNL)

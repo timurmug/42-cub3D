@@ -19,7 +19,7 @@ $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 	gcc -Wall -Wextra -Werror $(NAME) $(GNL_A) $(LIBFT_A)
 	@echo ------------------------------------------------------
-	./a.out ../maps/1.cub
+	./a.out ../maps/1.cub | cat -e
 
 %.o: %.c
 	gcc -c -Wall -Wextra -Werror -o $@ $<

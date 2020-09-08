@@ -38,6 +38,27 @@ void		remove_empty_lines(t_list **lines_list)
 	}
 }
 
+void		remove_whitespaces(t_list **lines_list)
+{
+	t_list			*elem;
+	int				i;
+	char			**splitted;
+
+	elem = *lines_list;
+	while (elem)
+	{
+		splitted = ft_split(elem->content, ' ');
+		i = 1;
+		elem->content = splitted[0];
+		while (splitted[i])
+		{
+			elem->content = ft_strjoin(elem->content, " ");
+			elem->content = ft_strjoin(elem->content, splitted[i++]);
+		}
+		elem = elem->next;
+	}
+}
+
 void		create_map(t_list **lines_list, int size)
 {
 	char		**map;
@@ -48,6 +69,7 @@ void		create_map(t_list **lines_list, int size)
 	i = -1;
 	tmp = *lines_list;
 	remove_empty_lines(&tmp);
+	remove_whitespaces(&tmp);
 	while (tmp)
 	{
 		map[++i] = tmp->content;
