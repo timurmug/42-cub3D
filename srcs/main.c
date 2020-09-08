@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 08:38:23 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:05:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	create_window(char **map)
 {
 	t_sets	sets;
 
+	// получает разрешение экрана компа
+	// mlx_get_screen_size(sets.mlx, &width_screen, &height_screen);
 	sets.mlx = NULL;
 	sets.wdw = NULL;
 	sets.mlx = mlx_init();
@@ -61,7 +63,7 @@ void	create_map(t_list **lines_list, int size)
 	i = 10;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
-	check_map();
+	create_window(map);
 }
 
 int		main(int ac, char **av)

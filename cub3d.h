@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 08:26:43 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/08 16:53:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,36 @@
 # include "minilibx_opengl/mlx.h"
 # include <fcntl.h>
 
-# define R_X 5120
-# define R_Y 2880
+# define TEXTURE_ERR "Error\nWrong path to texture"
+# define PARAMS_NUM_ERR "Error\nWrong number of params"
+# define PARAM_TYPE_ERR "Error\nWrong type of parameter"
 
 typedef struct	s_sets
 {
 	void		*mlx;
 	void		*wdw;
+	int			r_x;
+	int			r_y;
+	void		*noth_texture;
+	void		*south_texture;
+	void		*west_texture;
+	void		*east_texture;
+	void		*sprite_texture;
+	void		*floor_color;
+	void		*ceilling_color;
+
 }				t_sets;
 
 void			draw_square(t_sets sets, int x, int y, int col);
 void			draw_2dmap(char **map, t_sets sets);
 int				check_map();
+int				check_identifier(char **s, t_sets *sets);
+size_t			ft_strstrlen(char **splitted);
+int				check_r(char **s, t_sets *sets);
+int				check_no(char **s, t_sets *sets);
+int				check_so(char **s, t_sets *sets);
+int				check_we(char **s, t_sets *sets);
+int				check_ea(char **s, t_sets *sets);
+
 
 #endif

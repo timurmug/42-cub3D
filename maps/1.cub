@@ -1,12 +1,12 @@
 
-
 R 1920 1080
-      NO                          ./textures/1.xmp
-SO ./textures/2.xmp
+NO                          ../textures/cat.xpm
+SO     ../textures/cat.xpm
 
 
-        WE ./textures/3.xmp
-EA ./textures/4.xmp
+WE ../textures/cat.xpm
+EA           ../textures/cat.xpm
+
 
 S ./textures/5.xmp
 F 220,100,0
