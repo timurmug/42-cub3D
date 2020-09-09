@@ -6,7 +6,7 @@
 /*   By: student <student@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/30 11:04:51 by student           #+#    #+#             */
-/*   Updated: 2020/06/11 09:18:21 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 09:01:52 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
 void (*del)(void *));
+
+int				ft_strcmp(char *s1, char *s2);
 
 #endif

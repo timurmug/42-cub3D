@@ -15,7 +15,7 @@ t_sets		set_sets_default(void)
 	t_sets sets;
 
 	sets.mlx = NULL;
-	sets.mlx = mlx_init();
+	// sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -57,10 +57,25 @@ void		remove_empty_lines(t_list **lines_list)
 	}
 }
 
+int			spaces_sides_paramsline(char *str, int count)
+{
+	if (str[0] == ' ' && count < 8)
+	{
+		ft_putendl_fd(SPACES_BEGIN_LINE, 1);
+		return (0);
+	}
+	else if (str[ft_strlen(str) - 1] == ' ' && count < 8)
+	{
+		ft_putendl_fd(SPACES_END_LINE, 1);
+		return (0);
+	}
+	return (1);
+}
+
 int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 {
 	t_list			*elem;
-	int				i;
+	// int				i;
 	char			**splitted;
 	int				count;
 
@@ -68,7 +83,7 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 	count = 0;
 	while (elem)
 	{
-		if (((char *)elem->content)[0] == ' ' && count < 8)
+		if (!spaces_sides_paramsline((char *)elem->content, count))
 			return (0);
 		else if (count < 8)
 		{
@@ -76,13 +91,13 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 			count += check_identifier(splitted, sets);
 			if (count < 0)
 				return (0);
-			i = 1;
-			elem->content = splitted[0];
-			while (splitted[i])
-			{
-				elem->content = ft_strjoin(elem->content, " ");
-				elem->content = ft_strjoin(elem->content, splitted[i++]);
-			}
+			// i = 1;
+			// elem->content = splitted[0];
+			// while (splitted[i])
+			// {
+			// 	elem->content = ft_strjoin(elem->content, " ");
+			// 	elem->content = ft_strjoin(elem->content, splitted[i++]);
+			// }
 		}
 		elem = elem->next;
 	}
@@ -100,9 +115,9 @@ void		create_map(t_list **lines_list, int size)
 	i = -1;
 	tmp = *lines_list;
 	sets = set_sets_default();
-	remove_empty_lines(&tmp);
-	if (!remove_whitespaces(&tmp, &sets))
-		return ;
+	// remove_empty_lines(&tmp);
+	// if (!remove_whitespaces(&tmp, &sets))
+	// 	return ;
 	while (tmp)
 	{
 		map[++i] = tmp->content;
@@ -111,6 +126,29 @@ void		create_map(t_list **lines_list, int size)
 	i = -1;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
+
+	(void)sets;
+}
+
+int			check_file_format(char *filename)
+{
+	char			**splitted;
+	size_t			size;
+	int				fd;
+
+	splitted = ft_split(filename, '.');
+	size = ft_strstrlen(splitted);
+	if (ft_strcmp(splitted[size - 1], "cub"))
+	{
+		ft_putendl_fd(FILE_TYPE_ERR, 1);
+		return (-1);
+	}
+	if ((fd = open(filename, O_RDONLY)) < 0)
+	{
+		ft_putendl_fd(FILE_OPEN_ERR, 1);
+		return (-1);
+	}
+	return (fd);
 }
 
 int			main(int ac, char **av)
@@ -119,11 +157,12 @@ int			main(int ac, char **av)
 	char		*line;
 	t_list		*lines_list;
 
-	fd = open(av[1], O_RDONLY);
-	line = NULL;
-	lines_list = NULL;
 	if (ac == 2)
 	{
+		if ((fd = check_file_format(av[1])) < 0)
+			return (0);
+		line = NULL;
+		lines_list = NULL;
 		while (get_next_line(fd, &line))
 			ft_lstadd_back(&lines_list, ft_lstnew(line));
 		ft_lstadd_back(&lines_list, ft_lstnew(line));

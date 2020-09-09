@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 16:53:44 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 09:00:51 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 int	check_identifier(char **s, t_sets *sets)
 {
-	if (!ft_strncmp(s[0], "R", 1))
+	if (!ft_strcmp(s[0], "R"))
 		return (check_r(s, sets));
-	else if (!ft_strncmp(s[0], "NO", 2))
+	else if (!ft_strcmp(s[0], "NO"))
 		return (check_no(s, sets));
-	else if (!ft_strncmp(s[0], "SO", 2))
+	else if (!ft_strcmp(s[0], "SO"))
 		return (check_so(s, sets));
-	else if (!ft_strncmp(s[0], "WE", 2))
+	else if (!ft_strcmp(s[0], "WE"))
 		return (check_we(s, sets));
-	else if (!ft_strncmp(s[0], "EA", 2))
+	else if (!ft_strcmp(s[0], "EA"))
 		return (check_ea(s, sets));
-	else if (!ft_strncmp(s[0], "S", 1))
+	else if (!ft_strcmp(s[0], "S"))
 		return (1);
-	else if (!ft_strncmp(s[0], "F", 1))
+	else if (!ft_strcmp(s[0], "F"))
 		return (1);
-	else if (!ft_strncmp(s[0], "C", 1))
+	else if (!ft_strcmp(s[0], "C"))
 		return (1);
 	else
 		return (-50);

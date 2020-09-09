@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 16:53:34 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 09:23:06 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "minilibx_opengl/mlx.h"
 # include <fcntl.h>
 
+# define FILE_TYPE_ERR "Error\nType of file is not .cub"
+# define FILE_OPEN_ERR "Error\nError with opening the file"
+# define SPACES_BEGIN_LINE "Error\nSpaces at the beginning of the params line"
+# define SPACES_END_LINE "Error\nSpaces in the end of the params line"
 # define TEXTURE_ERR "Error\nWrong path to texture"
 # define PARAMS_NUM_ERR "Error\nWrong number of params"
 # define PARAM_TYPE_ERR "Error\nWrong type of parameter"
@@ -48,6 +52,5 @@ int				check_no(char **s, t_sets *sets);
 int				check_so(char **s, t_sets *sets);
 int				check_we(char **s, t_sets *sets);
 int				check_ea(char **s, t_sets *sets);
-
 
 #endif

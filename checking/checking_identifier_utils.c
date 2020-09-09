@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 16:52:00 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 17:31:50 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 08:06:26 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,80 +42,80 @@ int	check_r(char **s, t_sets *sets)
 
 int	check_no(char **s, t_sets *sets)
 {
-	int		width;
-	int		height;
+	// int		width;
+	// int		height;
 
 	if (ft_strstrlen(s) != 2)
 	{
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	sets->noth_texture = mlx_xpm_file_to_image(sets->mlx, \
-		s[1], &width, &height);
-	if (!(sets->noth_texture))
-	{
-		ft_putendl_fd(TEXTURE_ERR, 1);
-		return (-50);
-	}
+	(void)sets;
+	// sets->noth_texture = mlx_xpm_file_to_image(sets->mlx, s[1], &width, &height);
+	// if (!(sets->noth_texture))
+	// {
+	// 	ft_putendl_fd(TEXTURE_ERR, 1);
+	// 	return (-50);
+	// }
 	return (1);
 }
 
 int	check_so(char **s, t_sets *sets)
 {
-	int		width;
-	int		height;
+	// int		width;
+	// int		height;
 
 	if (ft_strstrlen(s) != 2)
 	{
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	sets->south_texture = mlx_xpm_file_to_image(sets->mlx, \
-		s[1], &width, &height);
-	if (!(sets->south_texture))
-	{
-		ft_putendl_fd(TEXTURE_ERR, 1);
-		return (-50);
-	}
+	(void)sets;
+	// sets->south_texture = mlx_xpm_file_to_image(sets->mlx,	s[1], &width, &height);
+	// if (!(sets->south_texture))
+	// {
+	// 	ft_putendl_fd(TEXTURE_ERR, 1);
+	// 	return (-50);
+	// }
 	return (1);
 }
 
 int	check_we(char **s, t_sets *sets)
 {
-	int		width;
-	int		height;
+	// int		width;
+	// int		height;
 
 	if (ft_strstrlen(s) != 2)
 	{
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	sets->west_texture = mlx_xpm_file_to_image(sets->mlx, \
-		s[1], &width, &height);
-	if (!(sets->west_texture))
-	{
-		ft_putendl_fd(TEXTURE_ERR, 1);
-		return (-50);
-	}
+	(void)sets;
+	// sets->west_texture = mlx_xpm_file_to_image(sets->mlx, s[1], &width, &height);
+	// if (!(sets->west_texture))
+	// {
+	// 	ft_putendl_fd(TEXTURE_ERR, 1);
+	// 	return (-50);
+	// }
 	return (1);
 }
 
 int	check_ea(char **s, t_sets *sets)
 {
-	int		width;
-	int		height;
+	// int		width;
+	// int		height;
 
 	if (ft_strstrlen(s) != 2)
 	{
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	sets->east_texture = mlx_xpm_file_to_image(sets->mlx, \
-		s[1], &width, &height);
-	if (!(sets->east_texture))
-	{
-		ft_putendl_fd(TEXTURE_ERR, 1);
-		return (-50);
-	}
+	(void)sets;
+	// sets->east_texture = mlx_xpm_file_to_image(sets->mlx, s[1], &width, &height);
+	// if (!(sets->east_texture))
+	// {
+	// 	ft_putendl_fd(TEXTURE_ERR, 1);
+	// 	return (-50);
+	// }
 	return (1);
 }
