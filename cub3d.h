@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/09 09:23:06 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 17:37:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 # include "libft/libft.h"
 # include "gnl/get_next_line.h"
-# include "minilibx_opengl/mlx.h"
+# include "minilibx/mlx.h"
 # include <fcntl.h>
 
 # define FILE_TYPE_ERR "Error\nType of file is not .cub"
 # define FILE_OPEN_ERR "Error\nError with opening the file"
 # define SPACES_BEGIN_LINE "Error\nSpaces at the beginning of the params line"
 # define SPACES_END_LINE "Error\nSpaces in the end of the params line"
+# define EMPTY_LINE_WITH_SPACES "Error\nEmpty line with spaces"
 # define TEXTURE_ERR "Error\nWrong path to texture"
 # define PARAMS_NUM_ERR "Error\nWrong number of params"
 # define PARAM_TYPE_ERR "Error\nWrong type of parameter"
@@ -39,7 +40,6 @@ typedef struct	s_sets
 	void		*sprite_texture;
 	void		*floor_color;
 	void		*ceilling_color;
-
 }				t_sets;
 
 void			draw_square(t_sets sets, int x, int y, int col);

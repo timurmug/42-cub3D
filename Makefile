@@ -6,14 +6,14 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/08 08:28:58 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/09 17:37:13 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 LIBFT_A =	libft/libft.a
 GNL_A = gnl/gnl.a
-MLX_A = minilibx_opengl/libmlx.a
+MLX_LIB = libmlx.dylib
 
 FLAGS_W = -Wall -Wextra -Werror
 FLAGS_MLX = -framework OpenGL -framework Appkit
@@ -24,7 +24,7 @@ DIR_OBJS	= objs
 DIR_SRCS = srcs
 DIR_LIB = libft
 DIR_GNL = gnl
-DIR_MLX = minilibx_opengl
+DIR_MLX = minilibx
 
 SRCS_NAME = check.c \
 						draw.c \
@@ -54,7 +54,7 @@ two: $(OBJS)
 	@make bonus -C $(DIR_LIB)
 	@make -C $(DIR_MLX)
 	@ar rc $(NAME) $(OBJS)
-	gcc $(FLAGS_W) $(FLAGS_MLX) $(GNL_A) $(LIBFT_A) $(MLX_A) $(NAME)
+	gcc $(FLAGS_W) $(FLAGS_MLX) $(GNL_A) $(LIBFT_A) $(MLX_LIB) $(NAME)
 	./a.out maps/1.cub
 
 $(NAME): $(OBJS) $(PRINTF_H)

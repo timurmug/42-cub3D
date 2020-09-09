@@ -9,3 +9,6 @@ libft/libft.a
 gnl/gnl.a
 minilibx_opengl/libmlx.a
 checking/check.a
+libmlx.dylib
+*.swiftdoc
+*.swiftmodule

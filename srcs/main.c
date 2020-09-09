@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 16:05:09 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/09 17:34:51 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	create_window(char **map)
 	sets.mlx = NULL;
 	sets.wdw = NULL;
 	sets.mlx = mlx_init();
-	sets.wdw = mlx_new_window(sets.mlx, 1920, 1080, "cub3d");
+	sets.wdw = mlx_new_window(sets.mlx, 2560, 1440, "cub3d");
 	draw_2dmap(map, sets);
 	mlx_key_hook(sets.wdw, key_press, &sets);
 	mlx_loop(sets.mlx);
@@ -60,7 +60,7 @@ void	create_map(t_list **lines_list, int size)
 		map[++i] = tmp->content;
 		tmp = tmp->next;
 	}
-	i = 10;
+	i = 18;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
 	create_window(map);

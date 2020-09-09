@@ -10,12 +10,30 @@ size_t		ft_strstrlen(char **splitted)
 	return (i);
 }
 
+void	ft_list_reverse(t_list **begin_list)
+{
+	t_list *prev;
+	t_list *current;
+	t_list *next;
+
+	prev = NULL;
+	current = *begin_list;
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*begin_list = prev;
+}
+
 t_sets		set_sets_default(void)
 {
 	t_sets sets;
 
 	sets.mlx = NULL;
-	// sets.mlx = mlx_init();
+	sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -57,17 +75,25 @@ void		remove_empty_lines(t_list **lines_list)
 	}
 }
 
-int			spaces_sides_paramsline(char *str, int count)
+int			check_spaces_paramsline(char *str, int count, int size)
 {
-	if (str[0] == ' ' && count < 8)
+	if (size == 0 && str[0] == ' ')
 	{
-		ft_putendl_fd(SPACES_BEGIN_LINE, 1);
+		ft_putendl_fd(EMPTY_LINE_WITH_SPACES, 1);
 		return (0);
 	}
-	else if (str[ft_strlen(str) - 1] == ' ' && count < 8)
+	if (count < 8 && size != 0)
 	{
-		ft_putendl_fd(SPACES_END_LINE, 1);
-		return (0);
+		if (str[0] == ' ')
+		{
+			ft_putendl_fd(SPACES_BEGIN_LINE, 1);
+			return (0);
+		}
+		else if (str[ft_strlen(str) - 1] == ' ')
+		{
+			ft_putendl_fd(SPACES_END_LINE, 1);
+			return (0);
+		}
 	}
 	return (1);
 }
@@ -78,26 +104,28 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 	// int				i;
 	char			**splitted;
 	int				count;
+	int				size;
 
 	elem = *lines_list;
 	count = 0;
 	while (elem)
 	{
-		if (!spaces_sides_paramsline((char *)elem->content, count))
+		splitted = ft_split(elem->content, ' ');
+		size = ft_strstrlen(splitted);
+		if (!check_spaces_paramsline((char *)elem->content, count, size))
 			return (0);
-		else if (count < 8)
+		else if (count < 8 && size != 0)
 		{
-			splitted = ft_split(elem->content, ' ');
 			count += check_identifier(splitted, sets);
 			if (count < 0)
 				return (0);
-			// i = 1;
-			// elem->content = splitted[0];
-			// while (splitted[i])
-			// {
-			// 	elem->content = ft_strjoin(elem->content, " ");
-			// 	elem->content = ft_strjoin(elem->content, splitted[i++]);
-			// }
+		// 	// i = 1;
+		// 	// elem->content = splitted[0];
+		// 	// while (splitted[i])
+		// 	// {
+		// 	// 	elem->content = ft_strjoin(elem->content, " ");
+		// 	// 	elem->content = ft_strjoin(elem->content, splitted[i++]);
+		// 	// }
 		}
 		elem = elem->next;
 	}
@@ -116,8 +144,8 @@ void		create_map(t_list **lines_list, int size)
 	tmp = *lines_list;
 	sets = set_sets_default();
 	// remove_empty_lines(&tmp);
-	// if (!remove_whitespaces(&tmp, &sets))
-	// 	return ;
+	if (!remove_whitespaces(&tmp, &sets))
+		return ;
 	while (tmp)
 	{
 		map[++i] = tmp->content;
@@ -126,8 +154,6 @@ void		create_map(t_list **lines_list, int size)
 	i = -1;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
-
-	(void)sets;
 }
 
 int			check_file_format(char *filename)
