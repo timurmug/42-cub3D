@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/10 15:21:39 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/10 17:56:24 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef struct	s_sets
 	void		*west_texture;
 	void		*east_texture;
 	void		*sprite_texture;
-	int			floor_r;
-	int			floor_g;
-	int			floor_b;
+	int			floor_colors[3];
+	// int			floor_r;
+	// int			floor_g;
+	// int			floor_b;
 	int			ceilling_r;
 	int			ceilling_g;
 	int			ceilling_b;
@@ -52,10 +53,13 @@ void			draw_2dmap(char **map, t_sets sets);
 int				check_map();
 int				parse_identifier(char **s, t_sets *sets);
 size_t			ft_strstrlen(char **splitted);
+
+int				get_texture(char **s, t_sets *sets, void **texture);
 int				check_no(char **s, t_sets *sets);
 int				check_so(char **s, t_sets *sets);
 int				check_we(char **s, t_sets *sets);
 int				check_ea(char **s, t_sets *sets);
 int				check_s(char **s, t_sets *sets);
-
+int				check_f(char **s, t_sets *sets);
+int				ft_str_is_num(char *str);
 #endif

@@ -14,7 +14,8 @@ DIR_MLX = ../minilibx
 
 SRCS = checking_map.c \
 		checking_identifier.c \
-		checking_identifier_utils.c
+		checking_identifier_utils.c \
+		check_color.c
 OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean fclean re bonus

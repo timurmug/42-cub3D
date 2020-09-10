@@ -42,9 +42,12 @@ t_sets		set_sets_default(void)
 	sets.west_texture = NULL;
 	sets.east_texture = NULL;
 	sets.sprite_texture = NULL;
-	sets.floor_r = -1;
-	sets.floor_g = -1;
-	sets.floor_b = -1;
+	sets.floor_colors[0] = 0;
+	sets.floor_colors[1] = 0;
+	sets.floor_colors[2] = 0;
+	// sets.floor_r = -1;
+	// sets.floor_g = -1;
+	// sets.floor_b = -1;
 	sets.ceilling_r = -1;
 	sets.ceilling_g = -1;
 	sets.ceilling_b = -1;
