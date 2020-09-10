@@ -101,7 +101,6 @@ int			check_spaces_paramsline(char *str, int count, int size)
 int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 {
 	t_list			*elem;
-	// int				i;
 	char			**splitted;
 	int				count;
 	int				size;
@@ -119,13 +118,6 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 			count += check_identifier(splitted, sets);
 			if (count < 0)
 				return (0);
-		// 	// i = 1;
-		// 	// elem->content = splitted[0];
-		// 	// while (splitted[i])
-		// 	// {
-		// 	// 	elem->content = ft_strjoin(elem->content, " ");
-		// 	// 	elem->content = ft_strjoin(elem->content, splitted[i++]);
-		// 	// }
 		}
 		elem = elem->next;
 	}

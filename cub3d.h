@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/09 17:37:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/10 11:16:18 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void			draw_2dmap(char **map, t_sets sets);
 int				check_map();
 int				check_identifier(char **s, t_sets *sets);
 size_t			ft_strstrlen(char **splitted);
-int				check_r(char **s, t_sets *sets);
 int				check_no(char **s, t_sets *sets);
 int				check_so(char **s, t_sets *sets);
 int				check_we(char **s, t_sets *sets);
 int				check_ea(char **s, t_sets *sets);
+int				check_s(char **s, t_sets *sets);
 
 #endif
