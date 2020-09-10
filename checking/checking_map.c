@@ -42,8 +42,12 @@ t_sets		set_sets_default(void)
 	sets.west_texture = NULL;
 	sets.east_texture = NULL;
 	sets.sprite_texture = NULL;
-	sets.floor_color = NULL;
-	sets.ceilling_color = NULL;
+	sets.floor_r = -1;
+	sets.floor_g = -1;
+	sets.floor_b = -1;
+	sets.ceilling_r = -1;
+	sets.ceilling_g = -1;
+	sets.ceilling_b = -1;
 	return (sets);
 }
 
@@ -115,7 +119,7 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 			return (0);
 		else if (count < 8 && size != 0)
 		{
-			count += check_identifier(splitted, sets);
+			count += parse_identifier(splitted, sets);
 			if (count < 0)
 				return (0);
 		}

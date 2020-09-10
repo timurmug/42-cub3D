@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/10 11:16:18 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/10 15:21:39 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define TEXTURE_ERR "Error\nWrong path to texture"
 # define PARAMS_NUM_ERR "Error\nWrong number of params"
 # define PARAM_TYPE_ERR "Error\nWrong type of parameter"
+# define COLOR_PARAM_ERR "Error\nColor param is incorrect"
 
 typedef struct	s_sets
 {
@@ -38,14 +39,18 @@ typedef struct	s_sets
 	void		*west_texture;
 	void		*east_texture;
 	void		*sprite_texture;
-	void		*floor_color;
-	void		*ceilling_color;
+	int			floor_r;
+	int			floor_g;
+	int			floor_b;
+	int			ceilling_r;
+	int			ceilling_g;
+	int			ceilling_b;
 }				t_sets;
 
 void			draw_square(t_sets sets, int x, int y, int col);
 void			draw_2dmap(char **map, t_sets sets);
 int				check_map();
-int				check_identifier(char **s, t_sets *sets);
+int				parse_identifier(char **s, t_sets *sets);
 size_t			ft_strstrlen(char **splitted);
 int				check_no(char **s, t_sets *sets);
 int				check_so(char **s, t_sets *sets);
