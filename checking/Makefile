@@ -15,7 +15,8 @@ DIR_MLX = ../minilibx
 SRCS = checking_map.c \
 		checking_identifier.c \
 		checking_identifier_utils.c \
-		check_color.c
+		check_color.c \
+		print_sets.c
 OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean fclean re bonus
@@ -24,10 +25,10 @@ all: $(OBJS)
 	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)
-	@make -C $(DIR_MLX)
+	# @make -C $(DIR_MLX)
 	ar rc $(CUB_A) $(OBJS)
-	gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
-	# gcc -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
+	# gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
+	gcc -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
 	@echo ------------------------------------------------------
 	# ./$(NAME) ../maps/1.cub
 	./$(NAME) ../maps/1.cub | cat -e

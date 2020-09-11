@@ -33,7 +33,7 @@ t_sets		set_sets_default(void)
 	t_sets sets;
 
 	sets.mlx = NULL;
-	sets.mlx = mlx_init();
+	// sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -42,12 +42,12 @@ t_sets		set_sets_default(void)
 	sets.west_texture = NULL;
 	sets.east_texture = NULL;
 	sets.sprite_texture = NULL;
-	sets.floor_colors[0] = 0;
-	sets.floor_colors[1] = 0;
-	sets.floor_colors[2] = 0;
-	// sets.floor_r = -1;
-	// sets.floor_g = -1;
-	// sets.floor_b = -1;
+	// sets.floor_colors[0] = 0;
+	// sets.floor_colors[1] = 0;
+	// sets.floor_colors[2] = 0;
+	sets.floor_r = -1;
+	sets.floor_g = -1;
+	sets.floor_b = -1;
 	sets.ceilling_r = -1;
 	sets.ceilling_g = -1;
 	sets.ceilling_b = -1;
@@ -153,6 +153,7 @@ void		create_map(t_list **lines_list, int size)
 	i = -1;
 	while (map[++i])
 		ft_putendl_fd(map[i], 1);
+	print_sets(sets);
 }
 
 int			check_file_format(char *filename)

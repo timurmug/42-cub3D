@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/10 17:31:43 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/11 16:10:58 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int ft_str_is_num(char *str)
 
 int	check_r(char **s, t_sets *sets)
 {
-	int	x;
+	// int	x;
 	int	temp_x;
-	int y;
+	// int y;
 	int temp_y;
 
 	if (ft_strstrlen(s) != 3)
@@ -47,11 +47,15 @@ int	check_r(char **s, t_sets *sets)
 		ft_putendl_fd(PARAM_TYPE_ERR, 1);
 		return (-50);
 	}
-	mlx_get_screen_size(sets->mlx, &x, &y);
-	(temp_x < x) ? x = temp_x : 1 - 1;
-	(temp_y < y) ? y = temp_y : 1 - 1;
-	sets->r_x = x;
-	sets->r_y = y;
+	// mlx_get_screen_size(sets->mlx, &x, &y);
+	// (temp_x < x) ? x = temp_x : 1 - 1;
+	// (temp_y < y) ? y = temp_y : 1 - 1;
+	// sets->r_x = x;
+	// sets->r_y = y;
+
+	sets->r_x = temp_x;
+	sets->r_y = temp_y;
+	(void)sets;
 	return (1);
 }
 
