@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/11 16:10:58 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 11:32:53 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,11 @@ int	parse_identifier(char **s, t_sets *sets)
 		return (get_texture(s, sets, &(sets->sprite_texture)));
 		// return (check_s(s, sets));
 	else if (!ft_strcmp(s[0], "F"))
-		return (check_f(s, sets));
+		return (check_color(s, sets, 1));
+		// return (check_f(s, sets));
 	else if (!ft_strcmp(s[0], "C"))
-		return (1);
+		return (check_color(s, sets, 0));
+		// return (1);
 	else
 		return (-50);
 }

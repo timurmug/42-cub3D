@@ -54,33 +54,33 @@ t_sets		set_sets_default(void)
 	return (sets);
 }
 
-void		remove_empty_lines(t_list **lines_list)
-{
-	t_list			*elem;
-	t_list			*tmp;
-	char			**splitted;
-
-	elem = *lines_list;
-	while (elem && elem->next)
-	{
-		splitted = ft_split(elem->next->content, ' ');
-		if (ft_strstrlen(splitted) == 0)
-		{
-			tmp = elem->next;
-			elem->next = elem->next->next;
-			free(tmp);
-		}
-		else
-			elem = elem->next;
-	}
-	elem = *lines_list;
-	splitted = ft_split(elem->content, ' ');
-	if (ft_strstrlen(splitted) == 0)
-	{
-		*lines_list = elem->next;
-		free(elem);
-	}
-}
+// void		remove_empty_lines(t_list **lines_list)
+// {
+// 	t_list			*elem;
+// 	t_list			*tmp;
+// 	char			**splitted;
+//
+// 	elem = *lines_list;
+// 	while (elem && elem->next)
+// 	{
+// 		splitted = ft_split(elem->next->content, ' ');
+// 		if (ft_strstrlen(splitted) == 0)
+// 		{
+// 			tmp = elem->next;
+// 			elem->next = elem->next->next;
+// 			free(tmp);
+// 		}
+// 		else
+// 			elem = elem->next;
+// 	}
+// 	elem = *lines_list;
+// 	splitted = ft_split(elem->content, ' ');
+// 	if (ft_strstrlen(splitted) == 0)
+// 	{
+// 		*lines_list = elem->next;
+// 		free(elem);
+// 	}
+// }
 
 int			check_spaces_paramsline(char *str, int count, int size)
 {
@@ -116,7 +116,11 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 	count = 0;
 	while (elem)
 	{
-		splitted = ft_split(elem->content, ' ');
+		if (!(splitted = ft_split(elem->content, ' ')))
+		{
+			ft_putendl_fd(SMTH_ERR, 1);
+			return (0);
+		}
 		size = ft_strstrlen(splitted);
 		if (!check_spaces_paramsline((char *)elem->content, count, size))
 			return (0);
@@ -162,7 +166,11 @@ int			check_file_format(char *filename)
 	size_t			size;
 	int				fd;
 
-	splitted = ft_split(filename, '.');
+	if (!(splitted = ft_split(filename, '.')))
+	{
+		ft_putendl_fd(FILE_ERR, 1);
+		return (-1);
+	}
 	size = ft_strstrlen(splitted);
 	if (ft_strcmp(splitted[size - 1], "cub"))
 	{

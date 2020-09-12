@@ -16,7 +16,12 @@ SRCS = checking_map.c \
 		checking_identifier.c \
 		checking_identifier_utils.c \
 		check_color.c \
-		print_sets.c
+		print_sets.c \
+		check_color2.c \
+		check_color3.c \
+		check_color4.c \
+		check_color5.c \
+		save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean fclean re bonus
