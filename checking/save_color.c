@@ -6,17 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 10:13:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 11:35:15 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 12:34:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	color_error(void)
-{
-	ft_putendl_fd(COLOR_PARAM_ERR, 1);
-	return (-50);
-}
 
 int	save_floor_color(char *s1, char *s2, char *s3, t_sets *sets)
 {

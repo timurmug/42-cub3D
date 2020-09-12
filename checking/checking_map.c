@@ -10,30 +10,12 @@ size_t		ft_strstrlen(char **splitted)
 	return (i);
 }
 
-void	ft_list_reverse(t_list **begin_list)
-{
-	t_list *prev;
-	t_list *current;
-	t_list *next;
-
-	prev = NULL;
-	current = *begin_list;
-	while (current)
-	{
-		next = current->next;
-		current->next = prev;
-		prev = current;
-		current = next;
-	}
-	*begin_list = prev;
-}
-
 t_sets		set_sets_default(void)
 {
 	t_sets sets;
 
-	sets.mlx = NULL;
-	// sets.mlx = mlx_init();
+	// sets.mlx = NULL;
+	sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -42,15 +24,13 @@ t_sets		set_sets_default(void)
 	sets.west_texture = NULL;
 	sets.east_texture = NULL;
 	sets.sprite_texture = NULL;
-	// sets.floor_colors[0] = 0;
-	// sets.floor_colors[1] = 0;
-	// sets.floor_colors[2] = 0;
 	sets.floor_r = -1;
 	sets.floor_g = -1;
 	sets.floor_b = -1;
 	sets.ceilling_r = -1;
 	sets.ceilling_g = -1;
 	sets.ceilling_b = -1;
+	sets.map = NULL;
 	return (sets);
 }
 
@@ -105,7 +85,7 @@ int			check_spaces_paramsline(char *str, int count, int size)
 	return (1);
 }
 
-int			remove_whitespaces(t_list **lines_list, t_sets *sets)
+int			get_data(t_list **lines_list, t_sets *sets)
 {
 	t_list			*elem;
 	char			**splitted;
@@ -122,13 +102,20 @@ int			remove_whitespaces(t_list **lines_list, t_sets *sets)
 			return (0);
 		}
 		size = ft_strstrlen(splitted);
-		if (!check_spaces_paramsline((char *)elem->content, count, size))
+		if (!check_spaces_paramsline((char *)elem->content, count, size) && count < 8)
 			return (0);
 		else if (count < 8 && size != 0)
 		{
 			count += parse_identifier(splitted, sets);
 			if (count < 0)
 				return (0);
+		}
+		else if (count >= 8)
+		{
+			if (!parse_map(sets, elem))
+				return (0);
+			else
+				return (1);
 		}
 		elem = elem->next;
 	}
@@ -147,42 +134,17 @@ void		create_map(t_list **lines_list, int size)
 	tmp = *lines_list;
 	sets = set_sets_default();
 	// remove_empty_lines(&tmp);
-	if (!remove_whitespaces(&tmp, &sets))
+	if (!get_data(&tmp, &sets))
 		return ;
-	while (tmp)
-	{
-		map[++i] = tmp->content;
-		tmp = tmp->next;
-	}
-	i = -1;
-	while (map[++i])
-		ft_putendl_fd(map[i], 1);
+	// while (tmp)
+	// {
+	// 	map[++i] = tmp->content;
+	// 	tmp = tmp->next;
+	// }
+	// i = -1;
+	// while (map[++i])
+	// 	ft_putendl_fd(map[i], 1);
 	print_sets(sets);
-}
-
-int			check_file_format(char *filename)
-{
-	char			**splitted;
-	size_t			size;
-	int				fd;
-
-	if (!(splitted = ft_split(filename, '.')))
-	{
-		ft_putendl_fd(FILE_ERR, 1);
-		return (-1);
-	}
-	size = ft_strstrlen(splitted);
-	if (ft_strcmp(splitted[size - 1], "cub"))
-	{
-		ft_putendl_fd(FILE_TYPE_ERR, 1);
-		return (-1);
-	}
-	if ((fd = open(filename, O_RDONLY)) < 0)
-	{
-		ft_putendl_fd(FILE_OPEN_ERR, 1);
-		return (-1);
-	}
-	return (fd);
 }
 
 int			main(int ac, char **av)

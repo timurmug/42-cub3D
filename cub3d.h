@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 11:35:30 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 13:30:04 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@
 # define TEXTURE_ERR "Error\nWrong path to texture"
 # define PARAMS_NUM_ERR "Error\nWrong number of params"
 # define PARAM_TYPE_ERR "Error\nWrong type of parameter"
+# define DOUBLE_TYPE_ERR "Error\nThe parameter is repeated"
 # define COLOR_PARAM_ERR "Error\nColor param is incorrect"
 # define SMTH_ERR "Error\nSmth is wrong"
+# define LINE_ERROR "Error\nLine is incorrect"
 
 typedef struct	s_sets
 {
@@ -47,6 +49,7 @@ typedef struct	s_sets
 	int			ceilling_r;
 	int			ceilling_g;
 	int			ceilling_b;
+	t_list		*map;
 }				t_sets;
 
 void			draw_square(t_sets sets, int x, int y, int col);
@@ -54,6 +57,8 @@ void			draw_2dmap(char **map, t_sets sets);
 int				check_map();
 int				parse_identifier(char **s, t_sets *sets);
 size_t			ft_strstrlen(char **splitted);
+
+int				check_file_format(char *filename);
 
 int				get_texture(char **s, t_sets *sets, void **texture);
 int				check_no(char **s, t_sets *sets);
@@ -69,9 +74,14 @@ int				check_color4(char **s, t_sets *sets, int is_floor);
 int				check_color5(char **s, t_sets *sets, int is_floor);
 int				save_floor_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets);
-int				color_error(void);
 int				comma_issingle(char *s);
 int				check_num(char *str);
+
+int				parse_map(t_sets *sets, t_list *map_list);
+
+int				color_error(void);
+int				type_repeated_err(void);
+int				param_type_err(void);
 
 
 int				ft_str_is_num(char *str);

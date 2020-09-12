@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:31:09 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 11:34:32 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 12:34:20 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	check_color(char **s, t_sets *sets, int is_floor)
 {
 	int	size;
 
+	if (is_floor && sets->floor_r != -1)
+		return (type_repeated_err());
+	else if (!is_floor && sets->ceilling_r != -1)
+		return (type_repeated_err());
 	size = ft_strstrlen(s);
 	if (size == 2)
 		return (check_color2(s, sets, is_floor));

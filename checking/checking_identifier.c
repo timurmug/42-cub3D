@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 11:32:53 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 12:37:04 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int ft_str_is_num(char *str)
 
 int	check_r(char **s, t_sets *sets)
 {
-	// int	x;
+	int	x;
 	int	temp_x;
-	// int y;
+	int y;
 	int temp_y;
 
+	if (sets->r_x != -1)
+		return (type_repeated_err());
 	if (ft_strstrlen(s) != 3)
 	{
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
@@ -43,19 +45,16 @@ int	check_r(char **s, t_sets *sets)
 	temp_x = ft_atoi(s[1]);
 	temp_y = ft_atoi(s[2]);
 	if (temp_x <= 0 || temp_y <= 0)
-	{
-		ft_putendl_fd(PARAM_TYPE_ERR, 1);
-		return (-50);
-	}
-	// mlx_get_screen_size(sets->mlx, &x, &y);
-	// (temp_x < x) ? x = temp_x : 1 - 1;
-	// (temp_y < y) ? y = temp_y : 1 - 1;
-	// sets->r_x = x;
-	// sets->r_y = y;
-
-	sets->r_x = temp_x;
-	sets->r_y = temp_y;
-	(void)sets;
+		return (param_type_err());
+	mlx_get_screen_size(sets->mlx, &x, &y);
+	(temp_x < x) ? x = temp_x : 1 - 1;
+	(temp_y < y) ? y = temp_y : 1 - 1;
+	sets->r_x = x;
+	sets->r_y = y;
+	//
+	// sets->r_x = temp_x;
+	// sets->r_y = temp_y;
+	// (void)sets;
 	return (1);
 }
 
@@ -85,5 +84,8 @@ int	parse_identifier(char **s, t_sets *sets)
 		return (check_color(s, sets, 0));
 		// return (1);
 	else
+	{
+		ft_putendl_fd(LINE_ERROR, 1);
 		return (-50);
+	}
 }
