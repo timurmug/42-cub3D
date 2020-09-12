@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 13:30:04 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/12 17:18:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define COLOR_PARAM_ERR "Error\nColor param is incorrect"
 # define SMTH_ERR "Error\nSmth is wrong"
 # define LINE_ERROR "Error\nLine is incorrect"
+# define PLAYER_ERROR "Error\nSmth is wrong with player position"
 
 typedef struct	s_sets
 {
@@ -50,6 +51,8 @@ typedef struct	s_sets
 	int			ceilling_g;
 	int			ceilling_b;
 	t_list		*map;
+	int			player_x;
+	int			player_y;
 }				t_sets;
 
 void			draw_square(t_sets sets, int x, int y, int col);
@@ -77,7 +80,7 @@ int				save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				comma_issingle(char *s);
 int				check_num(char *str);
 
-int				parse_map(t_sets *sets, t_list *map_list);
+int				parse_map(t_sets *sets, t_list *map_list, char **map);
 
 int				color_error(void);
 int				type_repeated_err(void);
@@ -85,6 +88,7 @@ int				param_type_err(void);
 
 
 int				ft_str_is_num(char *str);
+void			free_strstr(char **splitted);
 
 // удалить
 void print_sets(t_sets sets);

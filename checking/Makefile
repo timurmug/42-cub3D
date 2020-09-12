@@ -24,6 +24,7 @@ SRCS = checking_map.c \
 		check_color5.c \
 		errors.c \
 		parse_map.c \
+		free.c \
 		save_color.c
 OBJS = $(SRCS:%.c=%.o)
 

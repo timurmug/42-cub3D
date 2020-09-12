@@ -31,6 +31,8 @@ t_sets		set_sets_default(void)
 	sets.ceilling_g = -1;
 	sets.ceilling_b = -1;
 	sets.map = NULL;
+	sets.player_x = -1;
+	sets.player_y = -1;
 	return (sets);
 }
 
@@ -85,7 +87,7 @@ int			check_spaces_paramsline(char *str, int count, int size)
 	return (1);
 }
 
-int			get_data(t_list **lines_list, t_sets *sets)
+int			get_data(t_list **lines_list, t_sets *sets, char **map)
 {
 	t_list			*elem;
 	char			**splitted;
@@ -112,7 +114,7 @@ int			get_data(t_list **lines_list, t_sets *sets)
 		}
 		else if (count >= 8)
 		{
-			if (!parse_map(sets, elem))
+			if (!parse_map(sets, elem, map))
 				return (0);
 			else
 				return (1);
@@ -125,17 +127,20 @@ int			get_data(t_list **lines_list, t_sets *sets)
 void		create_map(t_list **lines_list, int size)
 {
 	char		**map;
-	int			i;
-	t_list		*tmp;
+	// int			i;
+	// t_list		*tmp;
 	t_sets		sets;
 
 	map = ft_calloc(size + 1, sizeof(char *));
-	i = -1;
-	tmp = *lines_list;
+	// i = -1;
+	// tmp = *lines_list;
 	sets = set_sets_default();
 	// remove_empty_lines(&tmp);
-	if (!get_data(&tmp, &sets))
+	if (!get_data(lines_list, &sets, map))
+	{
+		free(map);
 		return ;
+	}
 	// while (tmp)
 	// {
 	// 	map[++i] = tmp->content;
