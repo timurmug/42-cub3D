@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 17:18:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/13 17:46:46 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define SMTH_ERR "Error\nSmth is wrong"
 # define LINE_ERROR "Error\nLine is incorrect"
 # define PLAYER_ERROR "Error\nSmth is wrong with player position"
+# define FLOOR_ERROR "Error\nSmth is wrong with floor position"
+# define SPRITE_ERROR "Error\nSmth is wrong with sprite position"
+# define MAP_NOT_CLOSED_ERROR "Error\nMap is not closed"
 
 typedef struct	s_sets
 {
@@ -81,6 +84,10 @@ int				comma_issingle(char *s);
 int				check_num(char *str);
 
 int				parse_map(t_sets *sets, t_list *map_list, char **map);
+int				check_floors(char **m, char **map);
+void			player_xy(t_list *tmp, t_sets *sets);
+int				check_player(t_list *tmp);
+int				check_line_map(char *s);
 
 int				color_error(void);
 int				type_repeated_err(void);
@@ -88,8 +95,13 @@ int				param_type_err(void);
 
 
 int				ft_str_is_num(char *str);
-void			free_strstr(char **splitted);
+void			ft_free_strstr(char **splitted);
+size_t			ft_strstrlen(char **splitted);
+char			**ft_strstrdup(char **s);
+
 
 // удалить
 void print_sets(t_sets sets);
+void print_strstr(char **strstr);
+
 #endif

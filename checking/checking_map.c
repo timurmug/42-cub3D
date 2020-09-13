@@ -1,15 +1,5 @@
 #include "../cub3d.h"
 
-size_t		ft_strstrlen(char **splitted)
-{
-	size_t	i;
-
-	i = 0;
-	while (splitted[i])
-		i++;
-	return (i);
-}
-
 t_sets		set_sets_default(void)
 {
 	t_sets sets;
@@ -104,7 +94,7 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 			return (0);
 		}
 		size = ft_strstrlen(splitted);
-		if (!check_spaces_paramsline((char *)elem->content, count, size) && count < 8)
+		if (count < 8 && !check_spaces_paramsline((char *)elem->content, count, size))
 			return (0);
 		else if (count < 8 && size != 0)
 		{
@@ -113,12 +103,7 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 				return (0);
 		}
 		else if (count >= 8)
-		{
-			if (!parse_map(sets, elem, map))
-				return (0);
-			else
-				return (1);
-		}
+			return (parse_map(sets, elem, map));
 		elem = elem->next;
 	}
 	return (1);
@@ -169,5 +154,10 @@ int			main(int ac, char **av)
 		ft_lstadd_back(&lines_list, ft_lstnew(line));
 		create_map(&lines_list, ft_lstsize(lines_list));
 	}
+	// while(1)
+	// {
+	// 	int i = 0;
+	// 	i++;
+	// }
 	return (0);
 }

@@ -14,3 +14,15 @@ void print_sets(t_sets sets)
 	printf("F: |%d| |%d| |%d|\n", sets.floor_r, sets.floor_g, sets.floor_b);
 	printf("C: |%d| |%d| |%d|\n", sets.ceilling_r, sets.ceilling_g, sets.ceilling_b);
 }
+
+void print_strstr(char **strstr)
+{
+	int i;
+
+	i = 0;
+	while (strstr[i])
+	{
+		ft_putendl_fd(strstr[i], 1);
+		i++;
+	}
+}

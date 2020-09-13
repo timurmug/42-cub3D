@@ -24,8 +24,12 @@ SRCS = checking_map.c \
 		check_color5.c \
 		errors.c \
 		parse_map.c \
-		free.c \
-		save_color.c
+		parse_map_utils.c \
+		check_map_floors.c \
+		ft_free_strstr.c \
+		ft_strstrdup.c \
+		ft_strstrlen.c \
+		save_color.c 
 OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean fclean re bonus
