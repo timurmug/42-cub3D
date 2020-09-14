@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_map.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:17:27 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:44:39 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 20:35:48 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_sets		set_sets_default(void)
 	return (sets);
 }
 
-int			check_spaces_paramsline(char *str, int count, int size)
+int			check_space_pline(char *str, int count, int size)
 {
 	if (size == 0 && str[0] == ' ')
 	{
@@ -61,29 +61,23 @@ int			check_spaces_paramsline(char *str, int count, int size)
 	return (1);
 }
 
-// int			get_data2(t_list *elem, char **map, t_sets)
-// {
-// 	if (count < 8 && !check_spaces_paramsline((char *)elem->content, count, size))
-// 	{
-// 		ft_free_strstr(splitted);
-// 		return (0);
-// 	}
-// 	else if (count < 8 && size != 0)
-// 	{
-// 		count += parse_identifier(splitted, sets);
-// 		ft_free_strstr(splitted);
-// 		if (count < 0)
-// 			return (0);
-// 	}
-// 	else if (count >= 8)
-// 	{
-// 		ft_free_strstr(splitted);
-// 		return (parse_map(sets, elem, map));
-// 	}
-// 	else
-// 		ft_free_strstr(splitted);
-// 	return (1);
-// }
+int			get_data1(void)
+{
+	ft_putendl_fd(SMTH_ERR, 1);
+	return (0);
+}
+
+int			get_data2(char **splitted)
+{
+	ft_free_strstr(splitted);
+	return (0);
+}
+
+int			get_data3(char **splitted, t_sets *sets, t_list *elem, char **map)
+{
+	ft_free_strstr(splitted);
+	return (check_map(sets, elem, map));
+}
 
 int			get_data(t_list **lines_list, t_sets *sets, char **map)
 {
@@ -97,18 +91,10 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 	while (elem)
 	{
 		if (!(splitted = ft_split(elem->content, ' ')))
-		{
-			ft_putendl_fd(SMTH_ERR, 1);
-			return (0);
-		}
+			return (get_data1());
 		size = ft_strstrlen(splitted);
-		// if (!(get_data2()))
-		// 	return (0);
-		if (count < 8 && !check_spaces_paramsline((char *)elem->content, count, size))
-		{
-			ft_free_strstr(splitted);
-			return (0);
-		}
+		if (count < 8 && !check_space_pline((char *)elem->content, count, size))
+			return (get_data2(splitted));
 		else if (count < 8 && size != 0)
 		{
 			count += parse_identifier(splitted, sets);
@@ -117,10 +103,7 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 				return (0);
 		}
 		else if (count >= 8)
-		{
-			ft_free_strstr(splitted);
-			return (check_map(sets, elem, map));
-		}
+			return (get_data3(splitted, sets, elem, map));
 		else
 			ft_free_strstr(splitted);
 		elem = elem->next;
