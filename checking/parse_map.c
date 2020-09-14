@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 13:09:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/13 18:11:04 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:22:04 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	flood_fill(char **map, int y, int x)
 
 	if (x < 0 || y < 0 ||
 		y >= (int)ft_strstrlen(map) ||
-		x >= (int)ft_strlen(map[y])  ||
+		x >= (int)ft_strlen(map[y]) ||
 		map[y][x] == ' ' || \
 		map[y][x] == 0 || map[y] == 0)
 		return (0);
@@ -36,90 +36,95 @@ int	flood_fill(char **map, int y, int x)
 	return (s[0] && s[1] && s[2] && s[3] && s[4] && s[5] && s[6] && s[7]);
 }
 
-int	check_sprites(char **map) // попробовать проверку как у пола примерно. должны быть соседи 0 или 1
+int	check_sprites2(char **m, size_t i, size_t max_i)
 {
-	// int		i;
-	// int		j;
-	// char	**tmp_map;
-	//
-	//
-	// i = 0;
-	// while (map[i])
-	// {
-	// 	j = 0;
-	// 	while (map[i][j])
-	// 	{
-	// 		if (map[i][j] == '2')
-	// 		{
-	// 			if (!(tmp_map = ft_strstrdup(map)))
-	// 			{
-	// 				ft_putendl_fd(SMTH_ERR, 1);
-	// 				return (0);
-	// 			}
-	// 			ft_putnbr_fd(i, 1);
-	// 			ft_putchar_fd(' ', 1);
-	// 			ft_putnbr_fd(j, 1);
-	// 			ft_putendl_fd("", 1);
-	//
-	// 			if (!flood_fill(tmp_map, i, j))
-	// 			{
-	// 				ft_putendl_fd(SPRITE_ERROR, 1);
-	// 				ft_free_strstr(tmp_map);
-	// 				ft_free_strstr(map);
-	// 				return (0);
-	// 			}
-	// 		}
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// return (1);
+	size_t	j;
+	size_t	max_j;
+
+	max_j = ft_strlen(m[i]) - 1;
+	j = 0;
+	while (m[i][j])
+	{
+		if (m[i][j] == '2')
+		{
+			if (j == 0 || j == max_j || i == 0 || i == max_i)
+				return (0);
+			else if (m[i - 1][j - 1] == ' ' || m[i - 1][j] == ' '\
+			|| m[i - 1][j + 1] == ' ' || m[i][j - 1] == ' ' \
+			|| m[i][j + 1] == ' ' || m[i + 1][j - 1] == ' ' \
+			|| m[i + 1][j] == ' ' || m[i + 1][j + 1] == ' ')
+				return (0);
+			else if (m[i + 1][0] == '\0' || m[i - 1][0] == '\n' \
+			|| m[i + 1][0] == '\0' || m[i - 1][0] == '\0')
+				return (0);
+		}
+		j++;
+	}
+	return (1);
+}
+
+int	check_sprites(char **m, char **map)
+{
+	size_t	i;
+	size_t	max_i;
+
+	i = 0;
+	max_i = ft_strstrlen(m) - 1;
+	while (m[i])
+	{
+		if (!(check_sprites2(m, i, max_i)))
+		{
+			ft_putendl_fd(SPRITE_ERROR, 1);
+			ft_free_strstr(m);
+			ft_free_strstr(map);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	parse_map2(t_sets *sets, t_list *map_list, char **map)
+{
+	char		**tmp_map;
+
+	if (!(check_f_s(map, '0')) || !(check_f_s(map, '2')))
+		return (0);
+	if (!(tmp_map = ft_strstrdup(map)))
+	{
+		ft_putendl_fd(SMTH_ERR, 1);
+		return (0);
+	}
+	player_xy(map_list, sets);
+	if (!flood_fill(tmp_map, sets->player_y, sets->player_x))
+	{
+		ft_putendl_fd(MAP_NOT_CLOSED_ERROR, 1);
+		ft_free_strstr(tmp_map);
+		return (0);
+	}
+	ft_free_strstr(tmp_map);
+	return (1);
 }
 
 int	parse_map(t_sets *sets, t_list *map_list, char **map)
 {
-	t_list *tmp_list;
-	int		i;
-	// int		j;
-	char	**tmp_map;
+	t_list		*tmp_list;
+	int			i;
 
 	i = 0;
 	tmp_list = map_list;
 	sets->map = map_list;
 	if (!check_player(map_list))
 		return (0);
-	// tmp_map = ft_calloc(ft_lstsize(map_list) + 1, sizeof(char *));
 	while (tmp_list)
 	{
 		if (!check_line_map(tmp_list->content))
 		{
-			// free_strstr(tmp_map);
-			ft_free_strstr(map);
 			return (0);
 		}
 		map[i] = tmp_list->content;
-		// tmp_map[i] = ft_strdup(map[i]);
 		i++;
 		tmp_list = tmp_list->next;
 	}
-	if (!(tmp_map = ft_strstrdup(map)))
-	{
-		ft_putendl_fd(SMTH_ERR, 1);
-		return (0);
-	}
-	if (!check_floors(tmp_map, map))
-		return (0);
-	player_xy(map_list, sets);
-	if (!flood_fill(tmp_map, sets->player_y, sets->player_x))
-	{
-		ft_putendl_fd(MAP_NOT_CLOSED_ERROR, 1);
-		ft_free_strstr(tmp_map);
-		ft_free_strstr(map);
-		return (0);
-	}
-	if (!(check_sprites(map)))
-		return (0);
-	print_strstr(tmp_map);
-	ft_free_strstr(map);
-	return (1);
+	return (parse_map2(sets, map_list, map));
 }

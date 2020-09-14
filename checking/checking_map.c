@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checking_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/14 11:17:27 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 11:41:01 by qtamaril         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 t_sets		set_sets_default(void)
 {
 	t_sets sets;
 
-	// sets.mlx = NULL;
-	sets.mlx = mlx_init();
+	sets.mlx = NULL;
+	// sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -25,34 +37,6 @@ t_sets		set_sets_default(void)
 	sets.player_y = -1;
 	return (sets);
 }
-
-// void		remove_empty_lines(t_list **lines_list)
-// {
-// 	t_list			*elem;
-// 	t_list			*tmp;
-// 	char			**splitted;
-//
-// 	elem = *lines_list;
-// 	while (elem && elem->next)
-// 	{
-// 		splitted = ft_split(elem->next->content, ' ');
-// 		if (ft_strstrlen(splitted) == 0)
-// 		{
-// 			tmp = elem->next;
-// 			elem->next = elem->next->next;
-// 			free(tmp);
-// 		}
-// 		else
-// 			elem = elem->next;
-// 	}
-// 	elem = *lines_list;
-// 	splitted = ft_split(elem->content, ' ');
-// 	if (ft_strstrlen(splitted) == 0)
-// 	{
-// 		*lines_list = elem->next;
-// 		free(elem);
-// 	}
-// }
 
 int			check_spaces_paramsline(char *str, int count, int size)
 {
@@ -77,6 +61,30 @@ int			check_spaces_paramsline(char *str, int count, int size)
 	return (1);
 }
 
+// int			get_data2(t_list *elem, char **map, t_sets)
+// {
+// 	if (count < 8 && !check_spaces_paramsline((char *)elem->content, count, size))
+// 	{
+// 		ft_free_strstr(splitted);
+// 		return (0);
+// 	}
+// 	else if (count < 8 && size != 0)
+// 	{
+// 		count += parse_identifier(splitted, sets);
+// 		ft_free_strstr(splitted);
+// 		if (count < 0)
+// 			return (0);
+// 	}
+// 	else if (count >= 8)
+// 	{
+// 		ft_free_strstr(splitted);
+// 		return (parse_map(sets, elem, map));
+// 	}
+// 	else
+// 		ft_free_strstr(splitted);
+// 	return (1);
+// }
+
 int			get_data(t_list **lines_list, t_sets *sets, char **map)
 {
 	t_list			*elem;
@@ -94,16 +102,27 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 			return (0);
 		}
 		size = ft_strstrlen(splitted);
+		// if (!(get_data2()))
+		// 	return (0);
 		if (count < 8 && !check_spaces_paramsline((char *)elem->content, count, size))
+		{
+			ft_free_strstr(splitted);
 			return (0);
+		}
 		else if (count < 8 && size != 0)
 		{
 			count += parse_identifier(splitted, sets);
+			ft_free_strstr(splitted);
 			if (count < 0)
 				return (0);
 		}
 		else if (count >= 8)
+		{
+			ft_free_strstr(splitted);
 			return (parse_map(sets, elem, map));
+		}
+		else
+			ft_free_strstr(splitted);
 		elem = elem->next;
 	}
 	return (1);
@@ -112,29 +131,20 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 void		create_map(t_list **lines_list, int size)
 {
 	char		**map;
-	// int			i;
-	// t_list		*tmp;
 	t_sets		sets;
 
 	map = ft_calloc(size + 1, sizeof(char *));
-	// i = -1;
-	// tmp = *lines_list;
 	sets = set_sets_default();
-	// remove_empty_lines(&tmp);
+	(void)lines_list;
+	(void)size;
 	if (!get_data(lines_list, &sets, map))
 	{
 		free(map);
 		return ;
 	}
-	// while (tmp)
-	// {
-	// 	map[++i] = tmp->content;
-	// 	tmp = tmp->next;
-	// }
-	// i = -1;
-	// while (map[++i])
-	// 	ft_putendl_fd(map[i], 1);
+	print_strstr(map);
 	print_sets(sets);
+	free(map);
 }
 
 int			main(int ac, char **av)
@@ -150,10 +160,13 @@ int			main(int ac, char **av)
 		line = NULL;
 		lines_list = NULL;
 		while (get_next_line(fd, &line))
+		{
 			ft_lstadd_back(&lines_list, ft_lstnew(line));
+		}
 		ft_lstadd_back(&lines_list, ft_lstnew(line));
 		create_map(&lines_list, ft_lstsize(lines_list));
 	}
+	ft_list_clear(&lines_list);
 	// while(1)
 	// {
 	// 	int i = 0;

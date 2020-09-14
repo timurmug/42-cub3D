@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:31:09 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 12:34:20 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:10:43 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,7 @@ int	check_color(char **s, t_sets *sets, int is_floor)
 	else if (size == 5)
 		return (check_color5(s, sets, is_floor));
 	else if (size == 6)
-	{
-		if (!ft_strcmp(s[2], ",") && !ft_strcmp(s[4], ","))
-		{
-			if (is_floor)
-				return (save_floor_color(s[1], s[3], s[5], sets));
-			else
-				return (save_ceilling_color(s[1], s[3], s[5], sets));
-		}
-		else
-			return (color_error());
-	}
+		return (check_color6(s, sets, is_floor));
 	else
 		return (color_error());
 }

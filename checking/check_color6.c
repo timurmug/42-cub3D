@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_strstr.c                                   :+:      :+:    :+:   */
+/*   check_color6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/12 15:39:40 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 10:33:57 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/14 11:09:53 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 11:11:51 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_free_strstr(char **splitted)
+int	check_color6(char **s, t_sets *sets, int is_floor)
 {
-	size_t	i;
-
-	i = 0;
-	while (splitted[i])
+	if (!ft_strcmp(s[2], ",") && !ft_strcmp(s[4], ","))
 	{
-		free(splitted[i]);
-		i++;
+		if (is_floor)
+			return (save_floor_color(s[1], s[3], s[5], sets));
+		else
+			return (save_ceilling_color(s[1], s[3], s[5], sets));
 	}
-	free(splitted);
-	splitted = NULL;
+	else
+		return (color_error());
 }

@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 12:37:04 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:16:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int ft_str_is_num(char *str)
+int	ft_str_is_num(char *str)
 {
 	int j;
 
@@ -28,9 +28,9 @@ int ft_str_is_num(char *str)
 
 int	check_r(char **s, t_sets *sets)
 {
-	int	x;
+	// int	x;
+	// int y;
 	int	temp_x;
-	int y;
 	int temp_y;
 
 	if (sets->r_x != -1)
@@ -46,14 +46,14 @@ int	check_r(char **s, t_sets *sets)
 	temp_y = ft_atoi(s[2]);
 	if (temp_x <= 0 || temp_y <= 0)
 		return (param_type_err());
-	mlx_get_screen_size(sets->mlx, &x, &y);
-	(temp_x < x) ? x = temp_x : 1 - 1;
-	(temp_y < y) ? y = temp_y : 1 - 1;
-	sets->r_x = x;
-	sets->r_y = y;
+	// mlx_get_screen_size(sets->mlx, &x, &y);
+	// (temp_x < x) ? x = temp_x : 1 - 1;
+	// (temp_y < y) ? y = temp_y : 1 - 1;
+	// sets->r_x = x;
+	// sets->r_y = y;
 	//
-	// sets->r_x = temp_x;
-	// sets->r_y = temp_y;
+	sets->r_x = temp_x;
+	sets->r_y = temp_y;
 	// (void)sets;
 	return (1);
 }
@@ -64,25 +64,18 @@ int	parse_identifier(char **s, t_sets *sets)
 		return (check_r(s, sets));
 	else if (!ft_strcmp(s[0], "NO"))
 		return (get_texture(s, sets, &(sets->noth_texture)));
-		// return (check_no(s, sets));
 	else if (!ft_strcmp(s[0], "SO"))
 		return (get_texture(s, sets, &(sets->south_texture)));
-		// return (check_so(s, sets));
 	else if (!ft_strcmp(s[0], "WE"))
 		return (get_texture(s, sets, &(sets->west_texture)));
-		// return (check_we(s, sets));
 	else if (!ft_strcmp(s[0], "EA"))
 		return (get_texture(s, sets, &(sets->east_texture)));
-		// return (check_ea(s, sets));
 	else if (!ft_strcmp(s[0], "S"))
 		return (get_texture(s, sets, &(sets->sprite_texture)));
-		// return (check_s(s, sets));
 	else if (!ft_strcmp(s[0], "F"))
 		return (check_color(s, sets, 1));
-		// return (check_f(s, sets));
 	else if (!ft_strcmp(s[0], "C"))
 		return (check_color(s, sets, 0));
-		// return (1);
 	else
 	{
 		ft_putendl_fd(LINE_ERROR, 1);

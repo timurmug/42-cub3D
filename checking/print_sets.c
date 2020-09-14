@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "../cub3d.h"
 
-void print_sets(t_sets sets)
+void	print_sets(t_sets sets)
 {
 	printf("%s\n", "-----------------------------");
 	printf("R: |%d| |%d|\n", sets.r_x, sets.r_y);
@@ -15,7 +15,7 @@ void print_sets(t_sets sets)
 	printf("C: |%d| |%d| |%d|\n", sets.ceilling_r, sets.ceilling_g, sets.ceilling_b);
 }
 
-void print_strstr(char **strstr)
+void	print_strstr(char **strstr)
 {
 	int i;
 

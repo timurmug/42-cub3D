@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_strstr.c                                   :+:      :+:    :+:   */
+/*   ft_list_clear.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/12 15:39:40 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 10:33:57 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/14 09:45:54 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 10:17:03 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	ft_free_strstr(char **splitted)
+void	ft_list_clear(t_list **begin_list)
 {
-	size_t	i;
+	t_list	*tmp;
+	t_list	*list;
 
-	i = 0;
-	while (splitted[i])
+	list = *begin_list;
+	tmp = NULL;
+	while (list)
 	{
-		free(splitted[i]);
-		i++;
+		if (list->next)
+			tmp = list->next;
+		else
+			tmp = NULL;
+		free(list->content);
+		free(list);
+		list = tmp;
 	}
-	free(splitted);
-	splitted = NULL;
 }

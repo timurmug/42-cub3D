@@ -22,14 +22,16 @@ SRCS = checking_map.c \
 		check_color3.c \
 		check_color4.c \
 		check_color5.c \
+		check_color6.c \
 		errors.c \
 		parse_map.c \
 		parse_map_utils.c \
-		check_map_floors.c \
+		check_floors_sprites.c \
 		ft_free_strstr.c \
 		ft_strstrdup.c \
 		ft_strstrlen.c \
-		save_color.c 
+		ft_list_clear.c \
+		save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
 .PHONY: all clean fclean re bonus
@@ -38,14 +40,16 @@ all: $(OBJS)
 	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)
-	@make -C $(DIR_MLX)
+	# @make -C $(DIR_MLX)
 	ar rc $(CUB_A) $(OBJS)
-	gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
-	# gcc -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
+	# gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
+	gcc -g -std=c99 -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
 	@echo ------------------------------------------------------
 	# ./$(NAME) ../maps/1.cub
 	./$(NAME) ../maps/1.cub | cat -e
 
+valg:
+	valgrind --leak-check=full ./$(NAME) ../maps/1.cub
 
 %.o: %.c
 	gcc -c -Wall -Wextra -Werror -Imlx -o $@ $<

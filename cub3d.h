@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/13 17:46:46 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:41:38 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int				check_color2(char **s, t_sets *sets, int is_floor);
 int				check_color3(char **s, t_sets *sets, int is_floor);
 int				check_color4(char **s, t_sets *sets, int is_floor);
 int				check_color5(char **s, t_sets *sets, int is_floor);
+int				check_color6(char **s, t_sets *sets, int is_floor);
 int				save_floor_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				comma_issingle(char *s);
@@ -85,6 +86,7 @@ int				check_num(char *str);
 
 int				parse_map(t_sets *sets, t_list *map_list, char **map);
 int				check_floors(char **m, char **map);
+int				check_f_s(char **m, char fs);
 void			player_xy(t_list *tmp, t_sets *sets);
 int				check_player(t_list *tmp);
 int				check_line_map(char *s);
@@ -98,7 +100,7 @@ int				ft_str_is_num(char *str);
 void			ft_free_strstr(char **splitted);
 size_t			ft_strstrlen(char **splitted);
 char			**ft_strstrdup(char **s);
-
+void			ft_list_clear(t_list **begin_list);
 
 // удалить
 void print_sets(t_sets sets);

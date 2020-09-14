@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_map_utils.c                               :+:      :+:    :+:   */
+/*   parse_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:51:22 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/13 16:51:37 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:17:16 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void player_xy(t_list *tmp, t_sets *sets)
+void	player_xy(t_list *tmp, t_sets *sets)
 {
 	char	*s;
 	int		y;
@@ -38,7 +38,7 @@ void player_xy(t_list *tmp, t_sets *sets)
 	}
 }
 
-int	check_player(t_list *tmp)
+int		check_player(t_list *tmp)
 {
 	int		count;
 	int		i;
@@ -67,7 +67,7 @@ int	check_player(t_list *tmp)
 	}
 }
 
-int	check_line_map(char *s)
+int		check_line_map(char *s)
 {
 	int i;
 
