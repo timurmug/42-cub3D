@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 12:34:05 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:15:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:38:58 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	type_repeated_err(void)
 {

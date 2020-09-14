@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   ft_free_strstr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/08 07:42:21 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/08 08:25:18 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/12 15:39:40 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 12:39:01 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int check_map()
+#include "../../includes/cub3d.h"
+
+void	ft_free_strstr(char **splitted)
 {
-	return (1);
+	size_t	i;
+
+	i = 0;
+	while (splitted[i])
+	{
+		free(splitted[i]);
+		i++;
+	}
+	free(splitted);
+	splitted = NULL;
 }

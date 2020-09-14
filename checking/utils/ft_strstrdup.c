@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_clear.c                                    :+:      :+:    :+:   */
+/*   ft_strstrdup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 09:45:54 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 10:17:03 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/13 17:05:29 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 12:39:06 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
-void	ft_list_clear(t_list **begin_list)
+char	**ft_strstrdup(char **s)
 {
-	t_list	*tmp;
-	t_list	*list;
+	int		length;
+	char	**strstr;
+	int		i;
 
-	list = *begin_list;
-	tmp = NULL;
-	while (list)
+	i = 0;
+	length = ft_strstrlen(s);
+	if (!(strstr = ft_calloc(length + 1, sizeof(char *))))
+		return (NULL);
+	while (i < length)
 	{
-		if (list->next)
-			tmp = list->next;
-		else
-			tmp = NULL;
-		free(list->content);
-		free(list);
-		list = tmp;
+		strstr[i] = ft_strdup(s[i]);
+		i++;
 	}
+	return (strstr);
 }

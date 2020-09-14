@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/10 17:31:09 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:10:43 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:34:39 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../../includes/cub3d.h"
 
 int	comma_issingle(char *s)
 {

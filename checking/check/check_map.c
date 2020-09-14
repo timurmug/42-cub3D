@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 13:09:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:22:04 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:44:27 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	flood_fill(char **map, int y, int x)
 {
@@ -84,7 +84,7 @@ int	check_sprites(char **m, char **map)
 	return (1);
 }
 
-int	parse_map2(t_sets *sets, t_list *map_list, char **map)
+int	check_map2(t_sets *sets, t_list *map_list, char **map)
 {
 	char		**tmp_map;
 
@@ -106,7 +106,7 @@ int	parse_map2(t_sets *sets, t_list *map_list, char **map)
 	return (1);
 }
 
-int	parse_map(t_sets *sets, t_list *map_list, char **map)
+int	check_map(t_sets *sets, t_list *map_list, char **map)
 {
 	t_list		*tmp_list;
 	int			i;
@@ -126,5 +126,5 @@ int	parse_map(t_sets *sets, t_list *map_list, char **map)
 		i++;
 		tmp_list = tmp_list->next;
 	}
-	return (parse_map2(sets, map_list, map));
+	return (check_map2(sets, map_list, map));
 }

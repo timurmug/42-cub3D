@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 10:54:08 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 11:31:45 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:34:42 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../../includes/cub3d.h"
 
 int	commas_correct(char *s)
 {

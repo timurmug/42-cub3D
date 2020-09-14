@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:49:03 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:14:50 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:37:03 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	check_f_s2(char **m, size_t i, size_t max_i, char fs)
 {

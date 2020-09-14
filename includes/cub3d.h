@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstrlen.c                                     :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/13 17:29:19 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/13 17:29:34 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 11:54:35 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-size_t		ft_strstrlen(char **splitted)
-{
-	size_t	i;
+# include "../libft/libft.h"
+# include "../gnl/get_next_line.h"
+# include "../minilibx/mlx.h"
+# include <fcntl.h>
+# include "errors.h"
+# include "structs.h"
+# include "funcs.h"
 
-	i = 0;
-	while (splitted[i])
-		i++;
-	return (i);
-}
+#endif

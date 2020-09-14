@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:17:27 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:41:01 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:44:39 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 t_sets		set_sets_default(void)
 {
@@ -119,7 +119,7 @@ int			get_data(t_list **lines_list, t_sets *sets, char **map)
 		else if (count >= 8)
 		{
 			ft_free_strstr(splitted);
-			return (parse_map(sets, elem, map));
+			return (check_map(sets, elem, map));
 		}
 		else
 			ft_free_strstr(splitted);

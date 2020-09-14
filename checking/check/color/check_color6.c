@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstrdup.c                                     :+:      :+:    :+:   */
+/*   check_color6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/13 17:05:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/13 17:39:23 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/14 11:09:53 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/14 12:34:51 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../../includes/cub3d.h"
 
-char	**ft_strstrdup(char **s)
+int	check_color6(char **s, t_sets *sets, int is_floor)
 {
-	int		length;
-	char	**strstr;
-	int		i;
-
-	i = 0;
-	length = ft_strstrlen(s);
-	if (!(strstr = ft_calloc(length + 1, sizeof(char *))))
-		return (NULL);
-	while (i < length)
+	if (!ft_strcmp(s[2], ",") && !ft_strcmp(s[4], ","))
 	{
-		strstr[i] = ft_strdup(s[i]);
-		i++;
+		if (is_floor)
+			return (save_floor_color(s[1], s[3], s[5], sets));
+		else
+			return (save_ceilling_color(s[1], s[3], s[5], sets));
 	}
-	return (strstr);
+	else
+		return (color_error());
 }

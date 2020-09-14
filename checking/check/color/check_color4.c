@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 10:19:27 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 10:34:53 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 12:34:46 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../../../includes/cub3d.h"
 
 int	check_color4_3(char **s, t_sets *sets, int is_floor)
 {

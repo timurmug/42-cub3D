@@ -6,11 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 10:13:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/12 12:34:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/14 11:49:41 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 int	save_floor_color(char *s1, char *s2, char *s3, t_sets *sets)
 {

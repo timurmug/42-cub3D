@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include "../cub3d.h"
+#include "../includes/cub3d.h"
 
 void	print_sets(t_sets sets)
 {
