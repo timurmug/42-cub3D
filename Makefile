@@ -6,20 +6,20 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/15 11:00:50 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/15 12:02:00 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-CUB_A = cub.a
-LIBFT_A =	libft/libft.a
+CUB_A = srcs/cub.a
+LIB_A =	libft/libft.a
 GNL_A = gnl/gnl.a
-MLX_LIB = libmlx.dylib
+MLX_LIB = minilibx/libmlx.dylib
 # MLX_LIB = libmlx.dylib
 
 FLAGS_W = -Wall -Wextra -Werror
-FLAGS_MLX = -framework OpenGL -framework Appkit
+FLAGS_MLX = -Lmlx -lmlx -framework OpenGL -framework Appkit
 
 DIR_SRCS = srcs
 DIR_LIB = libft
@@ -48,54 +48,27 @@ SRCS_UTILS = srcs/utils/errors.c \
 OBJS_UTILS = $(SRCS_UTILS:%.c=%.o)
 
 SRCS = srcs/main.c \
+		srcs/draw.c \
 		srcs/get_data.c \
 		srcs/print_sets.c \
 		srcs/save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
-# SRCS_NAME = check.c \
-# 						draw.c \
-# 						main.c
-# SRCS = $(addprefix $(DIR_SRCS)/,$(SRCS_NAME))
-# OBJS = $(addprefix $(DIR_OBJS)/,$(SRCS_NAME:.c=.o))
-
 .PHONY: all clean fclean re valg norme
 
 all: $(NAME)
 
-# one:$(OBJS)
-# 	@make -C $(DIR_GNL)
-# 	@make -C $(DIR_LIB)
-# 	@make bonus -C $(DIR_LIB)
-# 	@ar rc $(NAME) $(OBJS)
-# 	gcc $(FLAGS_W) $(GNL_A) $(LIBFT_A) $(NAME) && ./a.out maps/example.cub
-
-# two: $(OBJS)
-# 	@make -C $(DIR_GNL)
-# 	@make -C $(DIR_LIB)
-# 	@make bonus -C $(DIR_LIB)
-# 	@make -C $(DIR_MLX)
-# 	@ar rc $(NAME) $(OBJS)
-# 	gcc $(FLAGS_W) $(FLAGS_MLX) $(GNL_A) $(LIBFT_A) $(MLX_LIB) $(NAME)
-# 	./a.out maps/1.cub
-
 $(NAME): $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
-	# @make -C $(DIR_GNL)
-	# @make -C $(DIR_LIB)
-	# @make bonus -C $(DIR_LIB)
+	@make -C $(DIR_GNL)
+	@make -C $(DIR_LIB)
+	@make bonus -C $(DIR_LIB)
 	@make -C $(DIR_MLX)
-	# @cp $(MLX_LIB) $(DIR_LIB)/$(MLX_LIB)
-	# ar rc $(CUB_A) $(OBJS) $(OBJS_CHECK)  $(OBJS_UTILS)
-	# @cp $(CUB_A) $(DIR_SRCS)/$(CUB_A)
-	# gcc $(FLAGS_W) $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
-	# @echo ------------------------------------------------------
-	# # ./$(NAME) ../maps/1.cub
-	# ./$(NAME) ../maps/1.cub | cat -e
-
-
-	# $(OBJS) $(PRINTF_H)
-	# @make -C $(DIR_LIB)
-	# @cp $(LIBFT_A) ./$(NAME)
+	cp $(MLX_LIB) libmlx.dylib
+	ar rc $(CUB_A) $(OBJS) $(OBJS_CHECK)  $(OBJS_UTILS)
+	gcc $(FLAGS_W) $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIB_A) $(MLX_LIB) -o $(NAME)
+	@echo ------------------------------------------------------
+	# ./$(NAME) ../maps/1.cub
+	./$(NAME) maps/1.cub | cat -e
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	@mkdir -p objs
@@ -114,23 +87,20 @@ norme:
 	@echo
 	norminette includes/
 
-valg:
-	valgrind --leak-check=full ./a.out
-
 %.o: %.c
 	gcc -c -Wall -Wextra -Werror -Imlx -o $@ $<
 
 clean:
-	rm -rf $(DIR_OBJS)
+	rm -rf $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
 	@make -C $(DIR_GNL) clean
 	@make -C $(DIR_LIB) clean
 	@make -C $(DIR_MLX) clean
-	@echo $(BOLD)$(FRGROUND)$(BCGROUND)cleaned o-files$(RESET)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(CUB_A)
 	@make -C $(DIR_GNL) fclean
 	@make -C $(DIR_LIB) fclean
-	@echo $(BOLD)$(FRGROUND)$(BCGROUND)cleaned all files$(RESET)
+	rm -f libmlx.dylib
 
 re: fclean all

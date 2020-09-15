@@ -13,3 +13,4 @@ libmlx.dylib
 *.swiftdoc
 *.swiftmodule
 srcs/check.a
+cub.a
