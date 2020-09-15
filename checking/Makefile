@@ -34,6 +34,7 @@ SRCS_UTILS = utils/errors.c \
 OBJS_UTILS = $(SRCS_UTILS:%.c=%.o)
 
 SRCS = main.c \
+		get_data.c \
 		print_sets.c \
 		save_color.c
 OBJS = $(SRCS:%.c=%.o)
@@ -46,8 +47,8 @@ all: $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
 	@make bonus -C $(DIR_LIB)
 	# @make -C $(DIR_MLX)
 	ar rc $(CUB_A) $(OBJS) $(OBJS_CHECK)  $(OBJS_UTILS)
-	# gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
-	gcc -g -std=c99 -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
+	gcc -Wall -Wextra -Werror $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIBFT_A) $(MLX_LIB) -o $(NAME)
+	# gcc -g -std=c99 -Wall -Wextra -Werror $(CUB_A) $(GNL_A) $(LIBFT_A) -o $(NAME)
 	@echo ------------------------------------------------------
 	# ./$(NAME) ../maps/1.cub
 	./$(NAME) ../maps/1.cub | cat -e

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checking_identifier.c                              :+:      :+:    :+:   */
+/*   check_identifier.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:37:09 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 10:39:02 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,31 +54,34 @@ int	check_r(char **s, t_sets *sets)
 	//
 	sets->r_x = temp_x;
 	sets->r_y = temp_y;
-	// (void)sets;
 	return (1);
 }
 
 int	parse_identifier(char **s, t_sets *sets)
 {
+	int res;
+
 	if (!ft_strcmp(s[0], "R"))
-		return (check_r(s, sets));
+		res = check_r(s, sets);
 	else if (!ft_strcmp(s[0], "NO"))
-		return (get_texture(s, sets, &(sets->noth_texture)));
+		res = get_texture(s, sets, &(sets->noth_texture));
 	else if (!ft_strcmp(s[0], "SO"))
-		return (get_texture(s, sets, &(sets->south_texture)));
+		res = get_texture(s, sets, &(sets->south_texture));
 	else if (!ft_strcmp(s[0], "WE"))
-		return (get_texture(s, sets, &(sets->west_texture)));
+		res = get_texture(s, sets, &(sets->west_texture));
 	else if (!ft_strcmp(s[0], "EA"))
-		return (get_texture(s, sets, &(sets->east_texture)));
+		res = get_texture(s, sets, &(sets->east_texture));
 	else if (!ft_strcmp(s[0], "S"))
-		return (get_texture(s, sets, &(sets->sprite_texture)));
+		res = get_texture(s, sets, &(sets->sprite_texture));
 	else if (!ft_strcmp(s[0], "F"))
-		return (check_color(s, sets, 1));
+		res = check_color(s, sets, 1);
 	else if (!ft_strcmp(s[0], "C"))
-		return (check_color(s, sets, 0));
+		res = check_color(s, sets, 0);
 	else
 	{
 		ft_putendl_fd(LINE_ERROR, 1);
-		return (-50);
+		res = -50;
 	}
+	ft_free_strstr(s);
+	return (res);
 }
