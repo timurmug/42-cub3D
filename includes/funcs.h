@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:44:00 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 11:00:05 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void			ft_free_strstr(char **splitted);
 size_t			ft_strstrlen(char **splitted);
 char			**ft_strstrdup(char **s);
 void			ft_list_clear(t_list **begin_list);
+
+int				get_data(t_list **lines_list, t_sets *sets, \
+	char **map, int count);
 
 // удалить
 void			print_sets(t_sets sets);

@@ -12,3 +12,4 @@ checking/check.a
 libmlx.dylib
 *.swiftdoc
 *.swiftmodule
+srcs/check.a
