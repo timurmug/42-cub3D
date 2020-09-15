@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 12:01:40 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 15:49:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ void			ft_list_clear(t_list **begin_list);
 char			**ft_strstrdup(char **s);
 size_t			ft_strstrlen(char **splitted);
 
-void			draw_2dmap(char **map, t_sets sets);
+void			draw_2dmap(t_sets *sets);
+void			create_window(t_sets sets);
 int				get_data(t_list **lines_list, t_sets *sets, \
 	char **map, int count);
 
 int				save_floor_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets);
+
+void			create_window(t_sets sets);
 
 // удалить
 void			print_sets(t_sets sets);

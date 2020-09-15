@@ -6,11 +6,24 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:51:22 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:44:19 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 15:21:06 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int		plr_dir(char c)
+{
+	if (c == 'N')
+		return (90);
+	else if (c == 'S')
+		return (270);
+	else if (c == 'E')
+		return (0);
+	else if (c == 'W')
+		return (180);
+	return (-400);
+}
 
 void	player_xy(t_list *tmp, t_sets *sets)
 {
@@ -27,8 +40,9 @@ void	player_xy(t_list *tmp, t_sets *sets)
 		{
 			if (s[i] == 'N' || s[i] == 'S' || s[i] == 'E' || s[i] == 'W')
 			{
-				sets->player_x = i;
-				sets->player_y = y;
+				sets->plr_x = i;
+				sets->plr_y = y;
+				sets->plr_d = plr_dir(s[i]);
 				return ;
 			}
 			i++;

@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 10:39:02 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 14:38:57 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_str_is_num(char *str)
 
 int	check_r(char **s, t_sets *sets)
 {
-	// int	x;
-	// int y;
+	int	x;
+	int y;
 	int	temp_x;
 	int temp_y;
 
@@ -46,14 +46,14 @@ int	check_r(char **s, t_sets *sets)
 	temp_y = ft_atoi(s[2]);
 	if (temp_x <= 0 || temp_y <= 0)
 		return (param_type_err());
-	// mlx_get_screen_size(sets->mlx, &x, &y);
-	// (temp_x < x) ? x = temp_x : 1 - 1;
-	// (temp_y < y) ? y = temp_y : 1 - 1;
-	// sets->r_x = x;
-	// sets->r_y = y;
+	mlx_get_screen_size(sets->mlx, &x, &y);
+	(temp_x < x) ? x = temp_x : 1 - 1;
+	(temp_y < y) ? y = temp_y : 1 - 1;
+	sets->r_x = x;
+	sets->r_y = y;
 	//
-	sets->r_x = temp_x;
-	sets->r_y = temp_y;
+	// sets->r_x = temp_x;
+	// sets->r_y = temp_y;
 	return (1);
 }
 

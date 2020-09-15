@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:54:22 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 15:05:44 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ typedef struct	s_sets
 	int			ceilling_r;
 	int			ceilling_g;
 	int			ceilling_b;
-	t_list		*map;
-	int			player_x;
-	int			player_y;
+	char		**map;
+	float		plr_x;
+	float		plr_y;
+	float		plr_d;
 }				t_sets;
 
 #endif

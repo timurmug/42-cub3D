@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 11:45:06 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 15:48:45 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_sets		set_sets_default(void)
 {
 	t_sets sets;
 
-	sets.mlx = NULL;
-	// sets.mlx = mlx_init();
+	// sets.mlx = NULL;
+	sets.mlx = mlx_init();
 	sets.wdw = NULL;
 	sets.r_x = -1;
 	sets.r_y = -1;
@@ -33,49 +33,10 @@ t_sets		set_sets_default(void)
 	sets.ceilling_g = -1;
 	sets.ceilling_b = -1;
 	sets.map = NULL;
-	sets.player_x = -1;
-	sets.player_y = -1;
+	sets.plr_x = -1;
+	sets.plr_y = -1;
+	sets.plr_d = -400;
 	return (sets);
-}
-
-void		ft_sets_free(t_sets sets)
-{
-	(void)sets;
-	// ft_free_strstr(sets.mlx);
-}
-
-int		key_press(int key, t_sets *sets)
-{
-	if (key == 53)
-		mlx_destroy_window(sets->mlx, sets->wdw);
-	else if (key == 123)
-		ft_putendl_fd("left", 1);
-	else if (key == 124)
-		ft_putendl_fd("rigth", 1);
-	else if (key == 13)
-		ft_putendl_fd("W", 1);
-	else if (key == 1)
-		ft_putendl_fd("S", 1);
-	else if (key == 0)
-		ft_putendl_fd("A", 1);
-	else if (key == 2)
-		ft_putendl_fd("D", 1);
-	return (0);
-}
-
-void	create_window(char **map, t_sets sets)
-{
-	// получает разрешение экрана компа
-	// mlx_get_screen_size(sets.mlx, &width_screen, &height_screen);
-	// sets.mlx = NULL;
-	// sets.wdw = NULL;
-
-	sets.mlx = mlx_init();
-	sets.wdw = mlx_new_window(sets.mlx, 360, 640, "cub3d");
-	(void)map;
-	draw_2dmap(map, sets);
-	mlx_key_hook(sets.wdw, key_press, &sets);
-	mlx_loop(sets.mlx);
 }
 
 void		create_map(t_list **lines_list, int size)
@@ -94,9 +55,9 @@ void		create_map(t_list **lines_list, int size)
 	}
 	print_strstr(map);
 	print_sets(sets);
-	create_window(map, sets);
+	sets.map = map;
+	create_window(sets);
 	free(map);
-	// ft_sets_free(sets);
 }
 
 

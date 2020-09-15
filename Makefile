@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/15 12:02:00 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/15 14:35:53 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRCS = srcs/main.c \
 		srcs/save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
-.PHONY: all clean fclean re valg norme
+.PHONY: all clean fclean re valg norme run
 
 all: $(NAME)
 
@@ -73,6 +73,9 @@ $(NAME): $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	@mkdir -p objs
 	gcc $(FLAGS_W) -Iincludes -o $@ -c $<
+
+run:
+	./$(NAME) maps/1.cub | cat -e
 
 valg:
 	valgrind --leak-check=full ./$(NAME) ../maps/1.cub

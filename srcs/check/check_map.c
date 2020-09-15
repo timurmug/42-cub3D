@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 13:09:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:44:27 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/15 15:19:55 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	check_map2(t_sets *sets, t_list *map_list, char **map)
 		return (0);
 	}
 	player_xy(map_list, sets);
-	if (!flood_fill(tmp_map, sets->player_y, sets->player_x))
+	if (!flood_fill(tmp_map, sets->plr_y, sets->plr_x))
 	{
 		ft_putendl_fd(MAP_NOT_CLOSED_ERROR, 1);
 		ft_free_strstr(tmp_map);
@@ -113,7 +113,7 @@ int	check_map(t_sets *sets, t_list *map_list, char **map)
 
 	i = 0;
 	tmp_list = map_list;
-	sets->map = map_list;
+	// sets->map = map_list;
 	if (!check_player(map_list))
 		return (0);
 	while (tmp_list)
