@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 14:01:40 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 17:41:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,52 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 	}
 }
 
-void	draw_line(t_sets *s)
+// #include <stdio.h>
+void	draw_column(t_sets *s, double curr_xy[2], double degree)
 {
-	float	step_xy[2];
-	float	curr_xy[2];
-	float	start_end[2];
+	double	ray;
+	double	height;
+	// double	dist_pane;
+
+	// ray = fabs((s->plr_x - e_x) / cos(degree));
+	ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
+	// dist_pane = s->r_x / 2 / tan(M_PI / 6);
+	// h = 64 * ray * dist_pane;
+
+	height = CELL / ray * ((double)s->plr_x / 2 / tanf(FOV_RAD / 2));
+
+	// printf("degree: |%lf| ray |%lf| h |%lf|\n", degree, ray, height);
+
+	// (void)degree;
+	double temp_x = ray * sin(degree);
+	double temp_y = ray * cos(degree);
+	draw_square(s, s->r_x / 2 - temp_x, s->r_y / 2 - temp_y, 0xC2171D);
+
+
+	// draw_square(s, s->r_x / 2, s->r_y / 2, 0xC2171D);
+
+	// while (height)
+	// {
+	// 	mlx_pixel_put(s->mlx, s->wdw, s->r_x / 2, height, 0xC2171D);
+	// 	height--;
+	// }
+
+
+	// ray = fabs(s->plr_x - e_x) / cos(degree);
+	// h = ray * tan(degree);
+}
+
+void	draw_lines(t_sets *s)
+{
+	double	step_xy[2];
+	double	curr_xy[2];
+	double	start_end[2];
 
 	start_end[0] = s->plr_d - M_PI / 6;
 	start_end[1] = s->plr_d + M_PI / 6;
+	// start_end[1] = M_PI / 3 /320
 	while (start_end[0] < start_end[1])
+	// while (start_end[1])
 	{
 		step_xy[0] = cos(start_end[0]);
 		step_xy[1] = -sin(start_end[0]);
@@ -45,39 +82,41 @@ void	draw_line(t_sets *s)
 		s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '1' && \
 		s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '2')
 		{
-			mlx_pixel_put(s->mlx, s->wdw, curr_xy[0], curr_xy[1], 0xC2171D);
+			// mlx_pixel_put(s->mlx, s->wdw, curr_xy[0], curr_xy[1], 0xC2171D);
 			curr_xy[0] += step_xy[0];
 			curr_xy[1] += step_xy[1];
 		}
-		start_end[0] += M_PI / 720;
+		draw_column(s, curr_xy, start_end[0]);
+		// start_end[0] += M_PI_2 / 640;
+		start_end[0] += M_PI / 3 / s->r_x;
 	}
 }
 
 void	draw_2dmap(t_sets *s)
 {
-	int		x;
-	int		y;
-	int		i;
-	int		j;
-
-	y = 0;
-	i = 0;
-	while (s->map[i])
-	{
-		j = 0;
-		x = 0;
-		while (s->map[i][j])
-		{
-			if (s->map[i][j++] == '1')
-				draw_square(s, x, y, 0xFFFFFF);
-			else if (s->map[i][j - 1] == '2')
-				draw_square(s, x, y, 0x6AA84F);
-			x += SCALE;
-		}
-		i++;
-		y += SCALE;
-	}
-	draw_line(s);
+	// int		x;
+	// int		y;
+	// int		i;
+	// int		j;
+	//
+	// y = 0;
+	// i = 0;
+	// while (s->map[i])
+	// {
+	// 	j = 0;
+	// 	x = 0;
+	// 	while (s->map[i][j])
+	// 	{
+	// 		if (s->map[i][j++] == '1')
+	// 			draw_square(s, x, y, 0xFFFFFF);
+	// 		else if (s->map[i][j - 1] == '2')
+	// 			draw_square(s, x, y, 0x6AA84F);
+	// 		x += SCALE;
+	// 	}
+	// 	i++;
+	// 	y += SCALE;
+	// }
+	draw_lines(s);
 }
 
 void	change_dir(t_sets *sets, int isleft)

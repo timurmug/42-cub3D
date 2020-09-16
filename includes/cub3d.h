@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 13:46:41 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 17:16:52 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@
 # define D_BUTTON 2
 
 # define SCALE 32
+# define CELL 64
+# define FOV_RAD (M_PI / 2)
 
 #endif
