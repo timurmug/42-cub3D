@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 09:08:47 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 11:06:18 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,13 @@
 # include "errors.h"
 # include "structs.h"
 # include "funcs.h"
+
+# define LEFT_BUTTON 123
+# define RIGHT_BUTTON 124
+# define ESC_BUTTON 53
+# define W_BUTTON 13
+# define A_BUTTON 0
+# define S_BUTTON 1
+# define D_BUTTON 2
 
 #endif

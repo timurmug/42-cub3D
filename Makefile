@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/15 14:35:53 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/16 09:25:16 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,11 @@ CUB_A = srcs/cub.a
 LIB_A =	libft/libft.a
 GNL_A = gnl/gnl.a
 MLX_LIB = minilibx/libmlx.dylib
-# MLX_LIB = libmlx.dylib
+
+INCLUDES = includes/cub3d.h \
+			includes/errors.h \
+			includes/funcs.h \
+			includes/structs.h
 
 FLAGS_W = -Wall -Wextra -Werror
 FLAGS_MLX = -Lmlx -lmlx -framework OpenGL -framework Appkit
@@ -58,7 +62,7 @@ OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
+$(NAME): $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS) $(INCLUDES)
 	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)

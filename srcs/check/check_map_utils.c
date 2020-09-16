@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:51:22 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 09:10:57 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 09:43:59 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double	plr_dir(char c)
 		return (0);
 	else if (c == 'W')
 		return (M_PI);
-		// return (180);
+		return (180);
 	return (-400);
 }
 
