@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 11:06:18 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 13:46:41 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@
 # define A_BUTTON 0
 # define S_BUTTON 1
 # define D_BUTTON 2
+
+# define SCALE 32
 
 #endif

@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/16 09:25:16 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/16 12:40:46 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OBJS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS) $(INCLUDES)
+$(NAME): $(INCLUDES) $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
 	@make -C $(DIR_GNL)
 	@make -C $(DIR_LIB)
 	@make bonus -C $(DIR_LIB)

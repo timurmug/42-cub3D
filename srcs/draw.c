@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 11:13:28 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 13:47:04 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,61 +18,36 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 	int temp_x;
 
 	temp_y = y;
-	while (temp_y < y + 32)
+	while (temp_y < y + SCALE)
 	{
 		temp_x = x;
-		while (temp_x < x + 32)
+		while (temp_x < x + SCALE)
 			mlx_pixel_put(sets->mlx, sets->wdw, temp_x++, temp_y, col);
 		temp_y++;
 	}
 }
 
-void	draw_line_vert(t_sets *s, int dec)
-{
-	int	map_x;
-	int	map_y;
-	int	temp_y;
-
-	temp_y = s->plr_y;
-	map_x = s->plr_x / 32;
-	map_y = temp_y / 32;
-	while (s->map[map_y][map_x] && s->map[map_y][map_x] != '1' \
-	&& s->map[map_y][map_x] != '2')
-	{
-		mlx_pixel_put(s->mlx, s->wdw, s->plr_x, temp_y, 0xC2171D);
-		temp_y += dec;
-		map_y = temp_y / 32;
-	}
-}
-
-void	draw_line_hor(t_sets *s, int dec)
-{
-	int	map_x;
-	int	map_y;
-	int	temp_x;
-
-	temp_x = s->plr_x;
-	map_x = temp_x/ 32;
-	map_y = s->plr_y / 32;
-	while (s->map[map_y][map_x] && s->map[map_y][map_x] != '1' \
-	&& s->map[map_y][map_x] != '2')
-	{
-		mlx_pixel_put(s->mlx, s->wdw, temp_x, s->plr_y, 0xC2171D);
-		temp_x += dec;
-		map_x = temp_x / 32;
-	}
-}
-
 void	draw_line(t_sets *s)
 {
-	if (s->plr_d == M_PI / 2)
-		draw_line_vert(s, -1);
-	else if (s->plr_d == 3 * M_PI / 2)
-		draw_line_vert(s, 1);
-	else if (s->plr_d == M_PI)
-		draw_line_hor(s, -1);
-	else if (s->plr_d == 0)
-		draw_line_hor(s, 1);
+	float	step_x;
+	float	step_y;
+	float	current_x;
+	float	current_y;
+
+	step_x = cos(s->plr_d);
+	step_y = -sin(s->plr_d);
+	current_x = s->plr_x;
+	current_y = s->plr_y;
+	while (s->map[(int)current_y / SCALE][(int)current_x / SCALE] &&\
+	s->map[(int)current_y / SCALE][(int)current_x / SCALE] != '1' && \
+	s->map[(int)current_y / SCALE][(int)current_x / SCALE] != '2')
+	{
+		mlx_pixel_put(s->mlx, s->wdw, current_x, current_y, 0xC2171D);
+		current_x += step_x;
+		current_y += step_y;
+		// temp_x += dec;
+		// map_x = temp_x / 32;
+	}
 }
 
 void	draw_2dmap(t_sets *s)
@@ -94,10 +69,10 @@ void	draw_2dmap(t_sets *s)
 				draw_square(s, x, y, 0xFFFFFF);
 			else if (s->map[i][j - 1] == '2')
 				draw_square(s, x, y, 0x6AA84F);
-			x += 32;
+			x += SCALE;
 		}
 		i++;
-		y += 32;
+		y += SCALE;
 	}
 	draw_line(s);
 }
@@ -105,13 +80,47 @@ void	draw_2dmap(t_sets *s)
 void	change_dir(t_sets *sets, int isleft)
 {
 	if (isleft)
-		sets->plr_d += M_PI / 2;
+		sets->plr_d += M_PI / 180 * 5;
 	else
-		sets->plr_d -= M_PI / 2;
+		sets->plr_d -= M_PI / 180 * 5;
 	if (sets->plr_d < 0)
 		sets->plr_d += 2 * M_PI;
 	else if (sets->plr_d >= 2 * M_PI)
 		sets->plr_d -= 2 * M_PI;
+}
+
+void	change_x(t_sets *sets, int isright)
+{
+	int map_x;
+	int map_y;
+	int dec;
+
+	if (isright)
+		dec = 6;
+	else
+		dec = -6;
+	map_x = (sets->plr_x + dec) / SCALE;
+	map_y = sets->plr_y / SCALE;
+	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1' \
+	&& sets->map[map_y][map_x] != '2')
+		sets->plr_x += dec;
+}
+
+void	change_y(t_sets *sets, int isdown)
+{
+	int map_x;
+	int map_y;
+	int dec;
+
+	if (isdown)
+		dec = 6;
+	else
+		dec = -6;
+	map_x = sets->plr_x / 32;
+	map_y = (sets->plr_y + dec) / 32;
+	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1' \
+	&& sets->map[map_y][map_x] != '2')
+		sets->plr_y += dec;
 }
 
 int		key_press(int key, t_sets *sets)
@@ -121,37 +130,17 @@ int		key_press(int key, t_sets *sets)
 		exit(0);
 		// mlx_destroy_window(sets->mlx, sets->wdw);
 	else if (key == LEFT_BUTTON)
-	{
 		change_dir(sets, 1);
-		ft_putendl_fd("left", 1);
-	}
 	else if (key == RIGHT_BUTTON)
-	{
 		change_dir(sets, 0);
-		ft_putendl_fd("rigth", 1);
-	}
 	else if (key == W_BUTTON)
-	{
-		sets->plr_y -= 1;
-		ft_putendl_fd("W", 1);
-	}
+		change_y(sets, 0);
 	else if (key == S_BUTTON)
-	{
-		sets->plr_y += 1;
-		ft_putendl_fd("S", 1);
-	}
+		change_y(sets, 1);
 	else if (key == A_BUTTON)
-	{
-		sets->plr_x -= 1;
-		ft_putendl_fd("A", 1);
-	}
+		change_x(sets, 0);
 	else if (key == D_BUTTON)
-	{
-		// sets->plr_x += 0.1;
-		sets->plr_x += 1;
-		ft_putnbr_fd(sets->plr_x, 1);
-		ft_putendl_fd("D", 1);
-	}
+		change_x(sets, 1);
 	draw_2dmap(sets);
 	return (0);
 }
