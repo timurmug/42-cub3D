@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:54:35 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 09:08:47 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../gnl/get_next_line.h"
 # include "../minilibx/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 # include "errors.h"
 # include "structs.h"
 # include "funcs.h"

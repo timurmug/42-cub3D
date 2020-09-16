@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 18:28:31 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 09:15:24 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 	}
 }
 
-void	draw_line(t_sets *s, float coords[])
+void	draw_line(t_sets *s, double coords[], int count)
 {
 	int last_y;
 
-	last_y = coords[1] - 50;
+	last_y = coords[1] - count;
 	// if s[y]
 	while (last_y != coords[1])
 		mlx_pixel_put(s->mlx, s->wdw, coords[0], coords[1]--, 0xC2171D);
@@ -39,28 +39,32 @@ void	draw_line(t_sets *s, float coords[])
 
 void	draw_dir(t_sets *s, int x, int y)
 {
-	float coords[2];
+	double	coords[2];
+	double	dec_y;
 
 	coords[0] = x * 50 + 50 / 2;
 	coords[1] = y * 50 + 50 / 2;
 	// mlx_pixel_put(s->mlx, s->wdw, coor_x, coor_y, 0xC2171D);
-	draw_line(s, coords);
-	y--;
-	// draw_line(s, coords);
-	// y--;
-	// draw_line(s, coords);
-	// y--;
+	return ;
+	if (s->plr_d == M_PI / 2)
+		dec_y = - 1;
+	else if (s->plr_d == 3 * M_PI / 2)
+		dec_y = 1;
+	if (s->map[y][x] != '2' && s->map[y][x] != '1')
+	{
+		draw_line(s, coords, 25);
+		y += dec_y;
+	}
 	while (s->map[y][x] && s->map[y][x] == '0')
 	{
-		mlx_pixel_put(s->mlx, s->wdw, coords[0], coords[1], 0xC2171D);
-		draw_line(s, coords);
-
+		draw_line(s, coords, 50);
+		y += dec_y;
 		// ft_putnbr_fd(x, 1);
 		// ft_putchar_fd(' ', 1);
 		// ft_putnbr_fd(y, 1);
 		// ft_putendl_fd("", 1);
 		// coords[1] -= 50;
-		y--;
+		// y--;
 	}
 }
 
@@ -107,12 +111,14 @@ int		key_press(int key, t_sets *sets)
 	else if (key == 13)
 	{
 		// sets->player_y += sin(sets->player_d)
-		sets->plr_y -= 0.1;
+		// sets->plr_y -= 0.1;
+		sets->plr_y -= 1;
 		ft_putendl_fd("W", 1);
 	}
 	else if (key == 1)
 	{
-		sets->plr_y += 0.1;
+		// sets->plr_y += 0.1;
+		sets->plr_y += 1;
 		ft_putendl_fd("S", 1);
 	}
 	else if (key == 0)

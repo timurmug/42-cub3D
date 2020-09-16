@@ -6,22 +6,25 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:51:22 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 15:21:06 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 09:10:57 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int		plr_dir(char c)
+double	plr_dir(char c)
 {
 	if (c == 'N')
-		return (90);
+		return (M_PI / 2);
+		// return (90);
 	else if (c == 'S')
-		return (270);
+		return (3 * M_PI / 2);
+		// return (270);
 	else if (c == 'E')
 		return (0);
 	else if (c == 'W')
-		return (180);
+		return (M_PI);
+		// return (180);
 	return (-400);
 }
 
