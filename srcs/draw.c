@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 13:47:04 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/16 14:01:40 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,27 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 
 void	draw_line(t_sets *s)
 {
-	float	step_x;
-	float	step_y;
-	float	current_x;
-	float	current_y;
+	float	step_xy[2];
+	float	curr_xy[2];
+	float	start_end[2];
 
-	step_x = cos(s->plr_d);
-	step_y = -sin(s->plr_d);
-	current_x = s->plr_x;
-	current_y = s->plr_y;
-	while (s->map[(int)current_y / SCALE][(int)current_x / SCALE] &&\
-	s->map[(int)current_y / SCALE][(int)current_x / SCALE] != '1' && \
-	s->map[(int)current_y / SCALE][(int)current_x / SCALE] != '2')
+	start_end[0] = s->plr_d - M_PI / 6;
+	start_end[1] = s->plr_d + M_PI / 6;
+	while (start_end[0] < start_end[1])
 	{
-		mlx_pixel_put(s->mlx, s->wdw, current_x, current_y, 0xC2171D);
-		current_x += step_x;
-		current_y += step_y;
-		// temp_x += dec;
-		// map_x = temp_x / 32;
+		step_xy[0] = cos(start_end[0]);
+		step_xy[1] = -sin(start_end[0]);
+		curr_xy[0] = s->plr_x;
+		curr_xy[1] = s->plr_y;
+		while (s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] &&\
+		s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '1' && \
+		s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '2')
+		{
+			mlx_pixel_put(s->mlx, s->wdw, curr_xy[0], curr_xy[1], 0xC2171D);
+			curr_xy[0] += step_xy[0];
+			curr_xy[1] += step_xy[1];
+		}
+		start_end[0] += M_PI / 720;
 	}
 }
 
