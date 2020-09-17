@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:16:08 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 12:19:39 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:40:55 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 	{
 		temp_x = x;
 		while (temp_x < x + SCALE)
-			mlx_pixel_put(sets->mlx, sets->wdw, temp_x++, temp_y, col);
+			mlx_pixel_put(sets->wdw.mlx, sets->wdw.wdw, temp_x++, temp_y, col);
+			// mlx_pixel_put(sets->mlx, sets->wdw, temp_x++, temp_y, col);
 		temp_y++;
 	}
 }

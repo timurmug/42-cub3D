@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 16:52:00 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 10:41:17 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:30:44 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	get_texture(char **s, t_sets *sets, void **texture)
 		return (-50);
 	}
 	(void)sets;
-	// *texture = mlx_xpm_file_to_image(sets->mlx, s[1], &w, &h);
-	// if (!(*texture))
+	// if (!(*texture = mlx_xpm_file_to_image(sets->mlx, s[1], &w, &h)))
 	// {
 	// 	ft_putendl_fd(TEXTURE_ERR, 1);
 	// 	return (-50);

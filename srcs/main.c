@@ -6,21 +6,32 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 13:47:13 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:42:52 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+t_wdw		set_wdw_default(void)
+{
+	t_wdw win;
+
+	win.mlx = mlx_init();
+	win.wdw = NULL;
+	win.img = NULL;
+	win.addr = NULL;
+	win.bpp = -1;
+	win.size_line = -1;
+	win.endian = -1;
+	win.r_x = -1;
+	win.r_y = -1;
+	return (win);
+}
 t_sets		set_sets_default(void)
 {
 	t_sets sets;
 
-	// sets.mlx = NULL;
-	sets.mlx = mlx_init();
-	sets.wdw = NULL;
-	sets.r_x = -1;
-	sets.r_y = -1;
+	sets.wdw = set_wdw_default();
 	sets.noth_texture = NULL;
 	sets.south_texture = NULL;
 	sets.west_texture = NULL;

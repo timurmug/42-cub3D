@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/15 14:38:57 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:39:49 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_r(char **s, t_sets *sets)
 	int	temp_x;
 	int temp_y;
 
-	if (sets->r_x != -1)
+	if (sets->wdw.r_x != -1)
 		return (type_repeated_err());
 	if (ft_strstrlen(s) != 3)
 	{
@@ -46,11 +46,12 @@ int	check_r(char **s, t_sets *sets)
 	temp_y = ft_atoi(s[2]);
 	if (temp_x <= 0 || temp_y <= 0)
 		return (param_type_err());
-	mlx_get_screen_size(sets->mlx, &x, &y);
+	mlx_get_screen_size(sets->wdw.mlx, &x, &y);
+	// mlx_get_screen_size(sets->mlx, &x, &y);
 	(temp_x < x) ? x = temp_x : 1 - 1;
 	(temp_y < y) ? y = temp_y : 1 - 1;
-	sets->r_x = x;
-	sets->r_y = y;
+	sets->wdw.r_x = x;
+	sets->wdw.r_y = y;
 	//
 	// sets->r_x = temp_x;
 	// sets->r_y = temp_y;

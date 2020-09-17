@@ -6,19 +6,29 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 12:44:01 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:42:31 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct	s_sets
+typedef struct	s_wdw
 {
 	void		*mlx;
 	void		*wdw;
+	void		*img;
+	char		*addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
 	int			r_x;
 	int			r_y;
+}				t_wdw;
+
+typedef struct	s_sets
+{
+	t_wdw		wdw;
 	void		*noth_texture;
 	void		*south_texture;
 	void		*west_texture;

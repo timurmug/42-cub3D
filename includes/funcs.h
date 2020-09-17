@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 12:33:27 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 14:27:11 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void			ft_list_clear(t_list **begin_list);
 char			**ft_strstrdup(char **s);
 size_t			ft_strstrlen(char **splitted);
 
-int				key_exit(t_sets *sets);
-int				key_press(int key, t_sets *sets);
+int				cross_pressed(t_sets *sets);
+int				button_pressed(int key, t_sets *sets);
 void			draw_2dmap(t_sets *sets);
 void			calc_map(t_sets *s);
 void			create_window(t_sets sets);
