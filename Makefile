@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/16 12:40:46 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/17 12:32:08 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,10 @@ SRCS_UTILS = srcs/utils/errors.c \
 			srcs/utils/ft_strstrlen.c
 OBJS_UTILS = $(SRCS_UTILS:%.c=%.o)
 
-SRCS = srcs/main.c \
-		srcs/draw.c \
+SRCS = srcs/engine/buttons.c \
+		srcs/engine/draw.c \
+		srcs/engine/draw_2dmap.c \
+		srcs/main.c \
 		srcs/get_data.c \
 		srcs/print_sets.c \
 		srcs/save_color.c
@@ -95,7 +97,7 @@ norme:
 	norminette includes/
 
 %.o: %.c
-	gcc -c -Wall -Wextra -Werror -Imlx -o $@ $<
+	gcc -c $(FLAGS_W) -Imlx -o $@ $<
 
 clean:
 	rm -rf $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)

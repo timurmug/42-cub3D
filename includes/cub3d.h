@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 17:16:52 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/17 08:55:16 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define SCALE 32
 # define CELL 64
-# define FOV_RAD (M_PI / 2)
+# define FOV (M_PI / 3)
+# define FOV_HALF (M_PI / 6)
 
 #endif
