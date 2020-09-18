@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/18 10:41:27 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 11:12:33 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ typedef struct	s_wdw
 	int			bpp;
 	int			size_line;
 	int			endian;
+	void		*img_temp;
+	char		*addr_temp;
+	int			bpp_temp;
+	int			size_line_temp;
+	int			endian_temp;
 	int			r_x;
 	int			r_y;
 }				t_wdw;

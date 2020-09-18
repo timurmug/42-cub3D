@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 15:25:52 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 12:34:44 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		cross_pressed(t_sets *sets)
 int		button_pressed(int key, t_sets *sets)
 {
 	mlx_clear_window(sets->wdw.mlx, sets->wdw.wdw);
+
 	if (key == ESC_BUTTON)
 	{
 		// mlx_destroy_window(sets->mlx, sets->wdw);
