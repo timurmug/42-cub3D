@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 08:55:16 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 15:37:11 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 # define CELL 64
 # define FOV (M_PI / 3)
 # define FOV_HALF (M_PI / 6)
+# define MOV_SPEED 10
 
 #endif
