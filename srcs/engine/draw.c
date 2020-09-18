@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/18 12:54:02 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 13:42:33 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,19 @@ void	draw_column(t_sets *s, double curr_xy[2], int wall_x)
 	// ray *= cos();
 	height = CELL / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
 	wall_y = (s->wdw.r_y / 2 - height / 2);
+	ft_putnbr_fd(wall_y, 1);
+	ft_putstr_fd(" ", 1);
+	ft_putnbr_fd(height, 1);
+	ft_putendl_fd("", 1);
+	// (void)wall_x;
 	// draw_ceiling_floor(s, wall_x, wall_y, 1);
+	if (height >= s->wdw.r_y)
+		height = s->wdw.r_y;
+	if (wall_y < 0)
+		wall_y = 0;
 	while (height > 0)
 	{
-		if (height > 0 && height < s->wdw.r_y)
+		if (wall_y < s->wdw.r_y)
 		{
 			pixel_put(s, wall_x, wall_y, 0x999999);
 			wall_y++;
