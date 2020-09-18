@@ -6,21 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 15:20:38 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:41:46 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-// void	pixel_put(t_sets *s, int x, int y, int color)
-// {
-// 	char	*dst;
-//
-// 	dst = s->wdw.addr + (x * (s->wdw.bpp) +  y * s->wdw.size_line);
-// 	*(int *)dst = color;
-// }
-
-void	my_mlx_pixel_put(t_sets *s, int x, int y, int color)
+void	pixel_put(t_sets *s, int x, int y, int color)
 {
     char    *dst;
 
@@ -28,23 +20,39 @@ void	my_mlx_pixel_put(t_sets *s, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
+void	draw_ceiling_floor(t_sets *s, int x, double wall_y, int isceil)
+{
+	double temp_y;
+
+	if (isceil)
+	{
+		temp_y = 0;
+		while (temp_y < wall_y)
+			pixel_put(s, x, temp_y++, s->ceiling_col);
+	}
+	else
+		while (wall_y <= s->wdw.r_y)
+			pixel_put(s, x, wall_y++, s->floor_col);
+}
+
+
 void	draw_column(t_sets *s, double curr_xy[2], int x)
 {
 	double	ray;
 	double	height;
-	double	temp;
+	double	wall_y;
 
 	ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
 	height = CELL / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
-	temp = (s->wdw.r_y / 2 - height / 2);
+	wall_y = (s->wdw.r_y / 2 - height / 2);
+	draw_ceiling_floor(s, x, wall_y, 1);
 	while (height > 0)
 	{
-		// mlx_pixel_put(s->wdw.mlx, s->wdw .wdw, x, temp, 0x999999);
-		// pixel_put(s, x, temp, 0x999999);
-		my_mlx_pixel_put(s, x, temp, 0x999999);
-		temp++;
+		pixel_put(s, x, wall_y, 0x999999);
+		wall_y++;
 		height--;
 	}
+	draw_ceiling_floor(s, x, wall_y, 0);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img, 0, 0);
 }
 
@@ -80,22 +88,18 @@ void	calc_map(t_sets *s)
 
 void	create_window(t_sets sets)
 {
-	sets.wdw.wdw = mlx_new_window(sets.wdw.mlx, \
-		sets.wdw.r_x, sets.wdw.r_y, "cub3d");
+	if (!sets.wdw.mlx)
+		return mlx_err();
+	if (!(sets.wdw.wdw = mlx_new_window(sets.wdw.mlx, \
+		sets.wdw.r_x, sets.wdw.r_y, "cub3d")))
+		return mlx_err();
 	if (!(sets.wdw.img = mlx_new_image(sets.wdw.mlx, \
-		sets.wdw.r_x, sets.wdw.r_y)))
-	{
-		ft_putendl_fd(SMTH_ERR, 1);
-		return ;
-	}
-	// mlx_put_image_to_window(sets.wdw.mlx, \
-	// 	sets.wdw.wdw, sets.wdw.img, 0, 0);
+		sets.wdw.r_x, sets.wdw.r_y + 1)))
+		return mlx_err();
 	sets.wdw.addr = mlx_get_data_addr(sets.wdw.img, \
 		&sets.wdw.bpp, &sets.wdw.size_line, &sets.wdw.endian);
 	calc_map(&sets);
-	// mlx_key_hook(sets.wdw, key_press, &sets);
 	mlx_hook(sets.wdw.wdw, 2, 1L<<0, button_pressed, &sets);
 	mlx_hook(sets.wdw.wdw, 17, 1L<<0, cross_pressed, &sets);
-
 	mlx_loop(sets.wdw.mlx);
 }

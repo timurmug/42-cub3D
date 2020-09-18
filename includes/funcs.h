@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 14:27:11 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 09:17:26 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int				check_map(t_sets *sets, t_list *map_list, char **map);
 int				type_repeated_err(void);
 int				color_error(void);
 int				param_type_err(void);
+void			mlx_err(void);
 void			ft_free_strstr(char **splitted);
 void			ft_list_clear(t_list **begin_list);
 char			**ft_strstrdup(char **s);

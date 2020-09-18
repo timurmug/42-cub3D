@@ -1,18 +1,18 @@
 
 
-C 225 , 30 , 0
+C 177 , 201 , 255
 R 1920  1080
-NO                          ../textures/cat.xpm
-SO     ../textures/cat.xpm
+NO                          textures/cat.xpm
+SO     textures/cat.xpm
 
 
 
-WE ../textures/cat.xpm
-EA           ../textures/cat.xpm
+WE textures/cat.xpm
+EA           textures/cat.xpm
 
 
-S      ../textures/cat.xpm
-F 255, 241,5
+S      textures/cat.xpm
+F 139, 69, 19
 
         1111111111111111111111111
         1000000000110000000000001

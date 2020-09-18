@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 14:42:52 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:41:20 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,8 @@ t_sets		set_sets_default(void)
 	sets.west_texture = NULL;
 	sets.east_texture = NULL;
 	sets.sprite_texture = NULL;
-	sets.floor_r = -1;
-	sets.floor_g = -1;
-	sets.floor_b = -1;
-	sets.ceilling_r = -1;
-	sets.ceilling_g = -1;
-	sets.ceilling_b = -1;
+	sets.floor_col = -1;
+	sets.ceiling_col = -1;
 	sets.map = NULL;
 	sets.plr_x = -1;
 	sets.plr_y = -1;

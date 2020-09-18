@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 16:52:00 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 14:30:44 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 08:35:38 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	get_texture(char **s, t_sets *sets, void **texture)
 {
-	// int		w;
-	// int		h;
+	int		w;
+	int		h;
 
 	if (*texture != NULL)
 		return (type_repeated_err());
@@ -24,11 +24,11 @@ int	get_texture(char **s, t_sets *sets, void **texture)
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	(void)sets;
-	// if (!(*texture = mlx_xpm_file_to_image(sets->mlx, s[1], &w, &h)))
-	// {
-	// 	ft_putendl_fd(TEXTURE_ERR, 1);
-	// 	return (-50);
-	// }
+	// (void)sets;
+	if (!(*texture = mlx_xpm_file_to_image(sets->wdw.mlx, s[1], &w, &h)))
+	{
+		ft_putendl_fd(TEXTURE_ERR, 1);
+		return (-50);
+	}
 	return (1);
 }

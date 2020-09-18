@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:45:16 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:45:49 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 09:17:00 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 # define FLOOR_ERROR "Error\nSmth is wrong with floor position"
 # define SPRITE_ERROR "Error\nSmth is wrong with sprite position"
 # define MAP_NOT_CLOSED_ERROR "Error\nMap is not closed"
+# define MLX_ERROR "Error\nONE OF MLX FUNCS RETURNING NULL"
 
 #endif

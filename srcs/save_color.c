@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 10:13:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 11:49:41 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:41:12 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 int	save_floor_color(char *s1, char *s2, char *s3, t_sets *sets)
 {
-	int r1;
-	int g1;
-	int b1;
+	int r;
+	int g;
+	int b;
 
 	if (!ft_str_is_num(s1) \
 	|| !ft_str_is_num(s2) || !ft_str_is_num(s3))
 		return (-50);
-	r1 = ft_atoi(s1);
-	g1 = ft_atoi(s2);
-	b1 = ft_atoi(s3);
-	if (r1 <= 255 && g1 <= 255 && b1 <= 255)
-	{
-		sets->floor_r = r1;
-		sets->floor_g = g1;
-		sets->floor_b = b1;
-	}
+	r = ft_atoi(s1);
+	g = ft_atoi(s2);
+	b = ft_atoi(s3);
+	if (r <= 255 && g <= 255 && b <= 255)
+		sets->floor_col = ((r&0x0ff)<<16)|((g&0x0ff)<<8)|(b&0x0ff);
 	else
 		return (color_error());
 	return (1);
@@ -37,22 +33,18 @@ int	save_floor_color(char *s1, char *s2, char *s3, t_sets *sets)
 
 int	save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets)
 {
-	int r1;
-	int g1;
-	int b1;
+	int r;
+	int g;
+	int b;
 
 	if (!ft_str_is_num(s1) \
 	|| !ft_str_is_num(s2) || !ft_str_is_num(s3))
 		return (-50);
-	r1 = ft_atoi(s1);
-	g1 = ft_atoi(s2);
-	b1 = ft_atoi(s3);
-	if (r1 <= 255 && g1 <= 255 && b1 <= 255)
-	{
-		sets->ceilling_r = r1;
-		sets->ceilling_g = g1;
-		sets->ceilling_b = b1;
-	}
+	r = ft_atoi(s1);
+	g = ft_atoi(s2);
+	b = ft_atoi(s3);
+	if (r <= 255 && g <= 255 && b <= 255)
+		sets->ceiling_col = ((r&0x0ff)<<16)|((g&0x0ff)<<8)|(b&0x0ff);
 	else
 		return (color_error());
 	return (1);

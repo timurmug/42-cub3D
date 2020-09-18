@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 14:42:31 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/18 10:41:27 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,8 @@ typedef struct	s_sets
 	void		*west_texture;
 	void		*east_texture;
 	void		*sprite_texture;
-	int			floor_r;
-	int			floor_g;
-	int			floor_b;
-	int			ceilling_r;
-	int			ceilling_g;
-	int			ceilling_b;
+	int			floor_col;
+	int			ceiling_col;
 	char		**map;
 	double		plr_x;
 	double		plr_y;
