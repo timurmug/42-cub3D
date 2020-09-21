@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/21 09:22:48 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/21 16:23:32 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,8 @@ SRCS_UTILS = srcs/utils/errors.c \
 OBJS_UTILS = $(SRCS_UTILS:%.c=%.o)
 
 SRCS = srcs/engine/buttons.c \
+		srcs/engine/distance_to_wall_h.c \
+		srcs/engine/distance_to_wall_v.c \
 		srcs/engine/draw.c \
 		srcs/engine/draw_2dmap.c \
 		srcs/main.c \

@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 16:52:00 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 09:44:21 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/21 12:01:11 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ int	get_texture(char **str, t_sets *s, t_txtr *txtr)
 		ft_putendl_fd(TEXTURE_ERR, 1);
 		return (-50);
 	}
+	txtr->img_data.addr = mlx_get_data_addr(txtr->img_data.img, \
+		&txtr->img_data.bpp, &txtr->img_data.size_line, &txtr->img_data.endian);
 	return (1);
 }

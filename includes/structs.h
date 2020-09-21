@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 11:26:56 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/21 11:30:05 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ typedef struct	s_wdw
 	void		*mlx;
 	void		*wdw;
 	t_img		img_data;
-	// void		*img;
-	// char		*addr;
-	// int			bpp;
-	// int			size_line;
-	// int			endian;
 	int			r_x;
 	int			r_y;
 }				t_wdw;
