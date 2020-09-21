@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/18 15:41:48 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/21 09:43:08 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int				check_color6(char **s, t_sets *sets, int is_floor);
 
 int				check_file_format(char *filename);
 int				check_f_s(char **m, char fs);
-int				get_texture(char **s, t_sets *sets, void **texture);
+// int				get_texture(char **s, t_sets *sets, void **texture);
+int				get_texture(char **str, t_sets *s, t_txtr *txtr);
 int				parse_identifier(char **s, t_sets *sets);
 int				ft_str_is_num(char *str);
 void			player_xy(t_list *tmp, t_sets *sets);
@@ -54,6 +55,9 @@ int				save_floor_color(char *s1, char *s2, char *s3, t_sets *sets);
 int				save_ceilling_color(char *s1, char *s2, char *s3, t_sets *sets);
 
 void			create_window(t_sets sets);
+
+t_sets			sets_default(void);
+
 
 // удалить
 void			print_sets(t_sets sets);

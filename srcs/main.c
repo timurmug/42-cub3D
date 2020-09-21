@@ -6,45 +6,11 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/18 15:11:59 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/21 09:22:21 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-t_wdw		set_wdw_default(void)
-{
-	t_wdw win;
-
-	win.mlx = mlx_init();
-	win.wdw = NULL;
-	win.img = NULL;
-	win.addr = NULL;
-	win.bpp = -1;
-	win.size_line = -1;
-	win.endian = -1;
-	win.r_x = -1;
-	win.r_y = -1;
-	return (win);
-}
-t_sets		set_sets_default(void)
-{
-	t_sets sets;
-
-	sets.wdw = set_wdw_default();
-	sets.noth_texture = NULL;
-	sets.south_texture = NULL;
-	sets.west_texture = NULL;
-	sets.east_texture = NULL;
-	sets.sprite_texture = NULL;
-	sets.floor_col = -1;
-	sets.ceiling_col = -1;
-	sets.map = NULL;
-	sets.plr_x = -1;
-	sets.plr_y = -1;
-	sets.plr_d = -400;
-	return (sets);
-}
 
 void		create_map(t_list **lines_list, int size)
 {
@@ -53,7 +19,7 @@ void		create_map(t_list **lines_list, int size)
 	int			count;
 
 	map = ft_calloc(size + 1, sizeof(char *));
-	sets = set_sets_default();
+	sets = sets_default();
 	count = 0;
 	if (!get_data(lines_list, &sets, map, count))
 	{

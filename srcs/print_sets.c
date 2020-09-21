@@ -6,11 +6,11 @@ void	print_sets(t_sets sets)
 {
 	printf("%s\n", "-----------------------------");
 	printf("R: |%d| |%d|\n", sets.wdw.r_x, sets.wdw.r_y);
-	printf("NO: |%p|\n", sets.noth_texture);
-	printf("SO: |%p|\n", sets.south_texture);
-	printf("WE: |%p|\n", sets.west_texture);
-	printf("EA: |%p|\n", sets.east_texture);
-	printf("S: |%p|\n", sets.sprite_texture);
+	printf("NO: |%p|\n", sets.n_txtr.img_data.img);
+	printf("SO: |%p|\n", sets.s_txtr.img_data.img);
+	printf("WE: |%p|\n", sets.w_txtr.img_data.img);
+	printf("EA: |%p|\n", sets.e_txtr.img_data.img);
+	printf("S: |%p|\n", sets.sprt_txtr.img_data.img);
 	printf("F: |%d| \n", sets.floor_col);
 	printf("C: |%d| \n", sets.ceiling_col);
 }

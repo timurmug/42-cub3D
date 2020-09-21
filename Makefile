@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/17 12:32:08 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/21 09:22:48 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS = srcs/engine/buttons.c \
 		srcs/engine/draw_2dmap.c \
 		srcs/main.c \
 		srcs/get_data.c \
+		srcs/set_default.c \
 		srcs/print_sets.c \
 		srcs/save_color.c
 OBJS = $(SRCS:%.c=%.o)

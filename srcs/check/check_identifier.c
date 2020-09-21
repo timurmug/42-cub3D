@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/17 14:39:49 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/21 11:27:22 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,20 @@ int	parse_identifier(char **s, t_sets *sets)
 	if (!ft_strcmp(s[0], "R"))
 		res = check_r(s, sets);
 	else if (!ft_strcmp(s[0], "NO"))
-		res = get_texture(s, sets, &(sets->noth_texture));
+		// res = get_texture(s, sets, sets->noth_texture);
+		res = get_texture(s, sets, &(sets->n_txtr));
 	else if (!ft_strcmp(s[0], "SO"))
-		res = get_texture(s, sets, &(sets->south_texture));
+		// res = get_texture(s, sets, sets->south_texture);
+		res = get_texture(s, sets, &(sets->s_txtr));
 	else if (!ft_strcmp(s[0], "WE"))
-		res = get_texture(s, sets, &(sets->west_texture));
+		// res = get_texture(s, sets, sets->west_texture);
+		res = get_texture(s, sets, &(sets->w_txtr));
 	else if (!ft_strcmp(s[0], "EA"))
-		res = get_texture(s, sets, &(sets->east_texture));
+		// res = get_texture(s, sets, sets->east_texture);
+		res = get_texture(s, sets, &(sets->e_txtr));
 	else if (!ft_strcmp(s[0], "S"))
-		res = get_texture(s, sets, &(sets->sprite_texture));
+		// res = get_texture(s, sets, sets->sprite_texture);
+		res = get_texture(s, sets, &(sets->sprt_txtr));
 	else if (!ft_strcmp(s[0], "F"))
 		res = check_color(s, sets, 1);
 	else if (!ft_strcmp(s[0], "C"))
