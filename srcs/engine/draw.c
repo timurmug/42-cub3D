@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/22 11:48:06 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 15:19:41 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,15 @@ int		get_new_image(t_sets *s)
 	return (1);
 }
 
-#include <stdio.h>
+double	correct_angle(double angle)
+{
+	if (angle < 0)
+		angle += 2 * M_PI;
+	else if (angle >= 2 * M_PI)
+		angle -= 2 * M_PI;
+	return (angle);
+}
+
 void	calc_map(t_sets *s)
 {
 	// double	step_xy[2];
@@ -182,19 +190,12 @@ void	calc_map(t_sets *s)
 		// draw_column(s, curr_xy, wall_x, start_end[0]);
 
 
-		double ray1 = distance_to_wall_h(s, start_end[0]);
-		double ray2 = distance_to_wall_v(s, start_end[0]);
-		// printf("%d ", ray1);
-		// printf("%d\n", ray2);
-		// (void)ray1;
-		// (void)ray2;
+		double ray1 = distance_to_wall_h(s, correct_angle(start_end[0]));
+		double ray2 = distance_to_wall_v(s, correct_angle(start_end[0]));
 		if (ray1 < ray2)
 			draw_column2(s, wall_x, start_end[0], ray1, 0x004DFF);
 		else
 			draw_column2(s, wall_x, start_end[0], ray2, 0x999999);
-
-
-
 		wall_x++;
 		// wall_x *= (s->wdw.img_data.bpp / 8);
 		start_end[0] -= (FOV / s->wdw.r_x);

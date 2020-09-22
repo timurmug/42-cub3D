@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:21:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/22 11:15:15 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 15:20:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 double		get_step_x_vertical(double angle)
 {
-	if (angle < (M_PI / 2) || angle > (3 * M_PI / 2))
-		return (SCALE);
+	if ((angle <= M_PI / 2) || (angle >= 3 * M_PI / 2 && angle < 2 * M_PI))
+		return (CELL);
 	else
-		return (-SCALE);
+		return (-CELL);
 }
 
 double		get_x_vertical(double position, double angle)
@@ -25,7 +25,10 @@ double		get_x_vertical(double position, double angle)
 	float	x;
 
 	x = (double)((int)(position / SCALE) * SCALE);
-	x += (angle < (M_PI / 2) || angle > (3 * M_PI / 2)) ? SCALE : -.01f;
+	if ((angle <= M_PI / 2) || (angle >= 3 * M_PI / 2 && angle < 2 * M_PI))
+		x += SCALE;
+	else
+		x -= .01f;
 	return ((double)x);
 }
 

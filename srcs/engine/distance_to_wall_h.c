@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:22:09 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/22 11:41:15 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 15:20:17 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,28 @@ double		get_x_horizontal(t_sets *s, double y, double angle)
 	return (s->plr_x + (s->plr_y - y) * (1 / tanf(angle)));
 }
 
-double	get_y_horizontal(t_sets *s, double angle)
+double	get_y_horizontal(double position, double angle)
 {
 	float	y;
 
-	y = (float)((int)(s->plr_y / SCALE) * SCALE);
-	y += (angle < M_PI) ? -.01f : SCALE;
+	y = (double)((int)(position / SCALE) * SCALE);
+	y += (angle <= M_PI && angle >= 0) ? -.01f : SCALE;
 	return ((double)y);
 }
 
-// int		get_max_y(t_sets *s)
-// {
-// 	int	y;
-// 	int	max;
-// 	int	len;
-//
-// 	y = 0;
-// 	max = 0;
-// 	while (s->map[y])
-// 	{
-// 		len = ft_strlen(s->map[y++]);
-// 		if (len > max)
-// 			max = len;
-// 	}
-// 	return (max);
-// }
-
 double	distance_to_wall_h(t_sets *s, double angle)
 {
-	const double	step_y = (angle < M_PI) ? -SCALE : SCALE;
+	const double	step_y = (angle <= M_PI && angle >= 0) ? -SCALE : SCALE;
 	const double	step_x = -step_y * (1 / tanf(angle));
 	double			current_x;
 	double			current_y;
 	int				map_x;
 	int				map_y;
-	// int				max_x;
 
-	current_y = get_y_horizontal(s, angle);
+	current_y = get_y_horizontal(s->plr_y, angle);
 	current_x = get_x_horizontal(s, current_y, angle);
 	map_x = (int)(current_x / SCALE);
 	map_y = (int)(current_y / SCALE);
-
-	// while (s->map[map_y][map_x] &&\
-	// s->map[map_y][map_x] != '1' && \
-	// s->map[map_y][map_x] != '2')
-	// max_x = get_max_y(s);
-	// ft_putnbr_fd(max_x, 1);
-	// ft_putchar_fd('\n', 1);
-	// return (1);
-	// while (map_x > 0 && map_x < max_x)
 	while (map_x > 0 && map_x < (int)ft_strlen(s->map[map_y]))
 	{
 		if (s->map[map_y][map_x] == '1' || s->map[map_y][map_x] == '2')
