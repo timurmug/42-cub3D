@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/22 15:19:41 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 18:19:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,94 +46,95 @@ void	draw_ceiling_floor(t_sets *s, int x, double wall_y, int isceil)
 			pixel_put(s, x, wall_y++, s->floor_col);
 }
 
-// void	draw_column(t_sets *s, double curr_xy[2], int wall_x, double degree)
-// {
-// 	double	ray;
-// 	double	height;
-// 	double	wall_y;
-//
-// 	ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
-// 	// ray *= cos(s->plr_d - degree);
-//
-// 	if (degree > s->plr_d)
-// 		ray *= cos(degree - s->plr_d);
-// 	else
-// 		ray *= cos(s->plr_d - degree);
-//
-// 	height = SCALE / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
-// 	wall_y = (s->wdw.r_y / 2 - height / 2);
-// 	draw_ceiling_floor(s, wall_x, wall_y, 1);
-// 	if (height >= s->wdw.r_y)
-// 		height = s->wdw.r_y;
-// 	if (wall_y < 0)
-// 		wall_y = 0;
-//
-// 	// int	index;
-// 	// int	index_texture;
-// 	// t_txtr txtr = s->w_txtr;
-// 	// txtr.step = 1.0 * txtr.img_data.height / height;
-// 	// // ft_putnbr_fd(txtr.step, 1);
-// 	// // printf("%lf\n", txtr.step);
-// 	// txtr.x *= (txtr.img_data.bpp / 8);
-// 	// wall_x *= s->wdw.img_data.bpp / 8;
-// 	// // printf("%d\n", wall_x);
-// 	//
-// 	// double txtr_position = (wall_y - s->wdw.r_y / 2 + height / 2) * txtr.step;
-// 	// printf("%lf\n", txtr_position);
-//
-//
-// 	while (height-- > 0)
-// 	{
-// 		// txtr.y = (int)txtr_position & (txtr.img_data.height - 1);
-// 		// index_texture = txtr.y * txtr.img_data.size_line + txtr.x;
-// 		// index = wall_y * s->wdw.img_data.size_line + wall_x;
-// 		// if (index > 0 && index < s->wdw.img_data.size_line * s->wdw.r_y)
-// 		// 	put_pixel_img(s->wdw.img_data, txtr.img_data, index, index_texture);
-// 		// txtr_position += txtr.step;
-// 		// wall_y++;
-//
-// 		if (wall_y < s->wdw.r_y)
-// 		{
-// 			pixel_put(s, wall_x, wall_y, 0x999999);
-// 			wall_y++;
-// 		}
-// 	}
-// 	draw_ceiling_floor(s, wall_x, wall_y, 0);
-//
-// 	// (void)txtr_position;
-// }
-
-void	draw_column2(t_sets *s, int wall_x, double degree, double ray, int color)
+void	draw_column(t_sets *s, double curr_xy[2], int wall_x, double degree)
 {
-	// double	ray;
+	double	ray;
 	double	height;
 	double	wall_y;
 
-	// (void)degree;
-	// ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
-	// if (degree > s->plr_d)
-	// 	ray *= cos(degree - s->plr_d);
-	// else
-	// 	ray *= cos(s->plr_d - degree);
-	ray *= cos(s->plr_d - degree);
+	ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
+	// ray *= cos(s->plr_d - degree);
 
-	height = (SCALE) / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
+	if (degree > s->plr_d)
+		ray *= cos(degree - s->plr_d);
+	else
+		ray *= cos(s->plr_d - degree);
+
+	height = CELL / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
 	wall_y = (s->wdw.r_y / 2 - height / 2);
 	draw_ceiling_floor(s, wall_x, wall_y, 1);
 	if (height >= s->wdw.r_y)
 		height = s->wdw.r_y;
 	if (wall_y < 0)
 		wall_y = 0;
-	while (height > 0)
+
+	// int	index;
+	// int	index_texture;
+	// t_txtr txtr = s->w_txtr;
+	// txtr.step = 1.0 * txtr.img_data.height / height;
+	// // ft_putnbr_fd(txtr.step, 1);
+	// // printf("%lf\n", txtr.step);
+	// txtr.x *= (txtr.img_data.bpp / 8);
+	// wall_x *= s->wdw.img_data.bpp / 8;
+	// // printf("%d\n", wall_x);
+	//
+	// double txtr_position = (wall_y - s->wdw.r_y / 2 + height / 2) * txtr.step;
+	// printf("%lf\n", txtr_position);
+
+
+	while (height-- > 0)
+	{
+		// txtr.y = (int)txtr_position & (txtr.img_data.height - 1);
+		// index_texture = txtr.y * txtr.img_data.size_line + txtr.x;
+		// index = wall_y * s->wdw.img_data.size_line + wall_x;
+		// if (index > 0 && index < s->wdw.img_data.size_line * s->wdw.r_y)
+		// 	put_pixel_img(s->wdw.img_data, txtr.img_data, index, index_texture);
+		// txtr_position += txtr.step;
+		// wall_y++;
+
+		if (wall_y < s->wdw.r_y)
+		{
+			pixel_put(s, wall_x, wall_y, 0x999999);
+			wall_y++;
+		}
+	}
+	draw_ceiling_floor(s, wall_x, wall_y, 0);
+
+	// (void)txtr_position;
+}
+
+double	correct_angle(double angle)
+{
+	if (angle < 0)
+	angle += 2 * M_PI;
+	else if (angle >= 2 * M_PI)
+	angle -= 2 * M_PI;
+	return (angle);
+}
+
+void	draw_column2(t_sets *s, int wall_x, double degree, double ray, int color)
+{
+	double	height;
+	double	wall_y;
+
+	// (void)degree;
+	ray *= cos(s->plr_d - correct_angle(degree));
+	height = (64 / ray) * ((double)s->plr_x / 2 / tan(FOV_HALF));
+	wall_y = ((double)s->wdw.r_y / 2 - (double)height / 2);
+	// draw_ceiling_floor(s, wall_x, wall_y, 1);
+	if (height >= s->wdw.r_y)
+		height = s->wdw.r_y;
+	if (wall_y < 0)
+		wall_y = 0;
+	while (height-- > 0)
 	{
 		if (wall_y < s->wdw.r_y)
 		{
 			pixel_put(s, wall_x, wall_y, color);
 			wall_y++;
 		}
-		height--;
 	}
-	draw_ceiling_floor(s, wall_x, wall_y, 0);
+	// draw_ceiling_floor(s, wall_x, wall_y, 0);
 }
 
 int		get_new_image(t_sets *s)
@@ -152,14 +153,6 @@ int		get_new_image(t_sets *s)
 	return (1);
 }
 
-double	correct_angle(double angle)
-{
-	if (angle < 0)
-		angle += 2 * M_PI;
-	else if (angle >= 2 * M_PI)
-		angle -= 2 * M_PI;
-	return (angle);
-}
 
 void	calc_map(t_sets *s)
 {
@@ -188,7 +181,6 @@ void	calc_map(t_sets *s)
 		// 	curr_xy[1] += step_xy[1];
 		// }
 		// draw_column(s, curr_xy, wall_x, start_end[0]);
-
 
 		double ray1 = distance_to_wall_h(s, correct_angle(start_end[0]));
 		double ray2 = distance_to_wall_v(s, correct_angle(start_end[0]));
