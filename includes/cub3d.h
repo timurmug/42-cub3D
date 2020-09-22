@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:12:49 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 15:23:28 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 10:47:59 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define S_BUTTON 1
 # define D_BUTTON 2
 
-# define SCALE 32
+# define SCALE 64
 # define CELL 64
 # define FOV (M_PI / 3)
 # define FOV_HALF (M_PI / 6)

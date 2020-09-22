@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 16:23:10 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/22 10:41:26 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int				cross_pressed(t_sets *sets);
 int				button_pressed(int key, t_sets *sets);
 void			draw_2dmap(t_sets *sets);
 void			calc_map(t_sets *s);
-int				distance_to_wall_h(t_sets *s, double angle);
-int				distance_to_wall_v(t_sets *s, double angle);
+double			distance_to_wall_h(t_sets *s, double angle);
+double			distance_to_wall_v(t_sets *s, double angle);
 void			create_window(t_sets sets);
 
 int				get_data(t_list **lines_list, t_sets *sets, \
