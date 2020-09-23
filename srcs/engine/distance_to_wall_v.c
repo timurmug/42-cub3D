@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:21:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:09:55 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:46:40 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-double		get_step_x_vertical(double angle)
+double	get_step_x_vertical(double angle)
 {
 	if ((angle <= M_PI / 2) || (angle >= 3 * M_PI / 2 && angle < 2 * M_PI))
 		return (CELL);
@@ -20,7 +20,7 @@ double		get_step_x_vertical(double angle)
 		return (-CELL);
 }
 
-double		get_x_vertical(double position, double angle)
+double	get_x_vertical(double position, double angle)
 {
 	float	x;
 
@@ -32,7 +32,7 @@ double		get_x_vertical(double position, double angle)
 	return ((double)x);
 }
 
-double		get_y_vertical(t_sets *s, double x, double angle)
+double	get_y_vertical(t_sets *s, double x, double angle)
 {
 	return (s->plr_y + (s->plr_x - x) * tanf(angle));
 }
@@ -41,25 +41,21 @@ double	distance_to_wall_v(t_sets *s, double angle)
 {
 	const double	step_x = get_step_x_vertical(angle);
 	const double	step_y = -step_x * tanf(angle);
-	double			current_x;
-	double			current_y;
-	int				map_x;
-	int				map_y;
-	int				max_y;
+	t_coords_double	current;
+	t_coords_int	map;
 
-	current_x = get_x_vertical(s->plr_x, angle);
-	current_y = get_y_vertical(s, current_x, angle);
-	map_x = (int)(current_x / SCALE);
-	map_y = (int)(current_y / SCALE);
-	max_y = ft_strstrlen(s->map);
-	while (map_y > 0 && map_y < max_y)
+	current.x = get_x_vertical(s->plr_x, angle);
+	current.y = get_y_vertical(s, current.x, angle);
+	map.x = (int)(current.x / SCALE);
+	map.y = (int)(current.y / SCALE);
+	while (map.y > 0 && map.y < s->map_size_y)
 	{
-		if (s->map[map_y][map_x] == '1' || s->map[map_y][map_x] == '2')
+		if (s->map[map.y][map.x] == '1' || s->map[map.y][map.x] == '2')
 			break ;
-		current_x += step_x;
-		current_y += step_y;
-		map_x = (int)(current_x / SCALE);
-		map_y = (int)(current_y / SCALE);
+		current.x += step_x;
+		current.y += step_y;
+		map.x = (int)(current.x / SCALE);
+		map.y = (int)(current.y / SCALE);
 	}
-	return (sqrt(pow(s->plr_x - current_x, 2) + pow(s->plr_y - current_y, 2)));
+	return (sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2)));
 }

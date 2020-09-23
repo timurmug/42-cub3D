@@ -5,6 +5,7 @@
 void	print_sets(t_sets sets)
 {
 	printf("%s\n", "-----------------------------");
+	printf("%map size: %d\n", sets.map_size_y);
 	printf("R: |%d| |%d|\n", sets.wdw.r_x, sets.wdw.r_y);
 
 	printf("NO: |%p| height: |%d| width: |%d| addr: |%p| size_line: |%d|\n", sets.n_txtr.img_data.img, \

@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 11:30:05 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:46:03 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct	s_wdw
 	int			r_y;
 }				t_wdw;
 
-
 typedef struct	s_sets
 {
 	t_wdw		wdw;
@@ -58,9 +57,23 @@ typedef struct	s_sets
 	int			floor_col;
 	int			ceiling_col;
 	char		**map;
+	int			map_size_y;
 	double		plr_x;
 	double		plr_y;
 	double		plr_d;
 }				t_sets;
+
+typedef struct	s_coords_int
+{
+	int			x;
+	int			y;
+}				t_coords_int;
+
+typedef struct	s_coords_double
+{
+	double		x;
+	double		y;
+}				t_coords_double;
+
 
 #endif

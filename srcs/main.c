@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 09:22:21 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:38:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ void		create_map(t_list **lines_list, int size)
 		return ;
 	}
 	print_strstr(map);
-	print_sets(sets);
 	sets.map = map;
+	sets.map_size_y = ft_strstrlen(sets.map);
 	sets.plr_x = sets.plr_x * SCALE + SCALE / 2;
 	sets.plr_y = sets.plr_y * SCALE + SCALE / 2;
+	print_sets(sets);
 	create_window(sets);
 	free(map);
 }

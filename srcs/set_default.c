@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 09:20:38 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 11:26:41 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:32:52 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_sets		sets_default(void)
 	sets.floor_col = -1;
 	sets.ceiling_col = -1;
 	sets.map = NULL;
+	sets.map_size_y = -1;
 	sets.plr_x = -1;
 	sets.plr_y = -1;
 	sets.plr_d = -400;
