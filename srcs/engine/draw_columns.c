@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:21:02 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:25:26 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 11:33:39 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	draw_ceiling_floor(t_sets *s, int x, double wall_y, int isceil)
 			pixel_put(s, x, wall_y++, s->floor_col);
 }
 
+#include <stdio.h>
 void	draw_column(t_sets *s, int wall_x, double degree, double ray, int color)
 {
 	double	height;
@@ -42,13 +43,37 @@ void	draw_column(t_sets *s, int wall_x, double degree, double ray, int color)
 		height = s->wdw.r_y;
 	if (wall_y < 0)
 		wall_y = 0;
+
+	(void)color;
+	// int	index;
+	// int	index_texture;
+	t_txtr txtr = s->curr_txtr;
+	txtr.step = 1.0f * (double)txtr.img_data.height / (double)height;
+	// ft_putnbr_fd(txtr.step, 1);
+	// printf("%lf\n", txtr.step);
+	txtr.x *= (txtr.img_data.bpp / 8);
+	wall_x *= (s->wdw.img_data.bpp / 8);
+	printf("step: |%f| x: |%d| y: |%d|\n", txtr.step, txtr.x, txtr.y);
+	// // printf("%d\n", wall_x);
+	//
+	// double txtr_position = (wall_y - s->wdw.r_y / 2 + height / 2) * txtr.step;
+	//printf("%lf\n", txtr_position);
+
 	while (height-- > 0)
 	{
-		if (wall_y < s->wdw.r_y)
-		{
-			pixel_put(s, wall_x, wall_y, color);
-			wall_y++;
-		}
+		// txtr.y = (int)txtr_position & (txtr.img_data.height - 1);
+		// index_texture = txtr.y * txtr.img_data.size_line + txtr.x;
+		// index = wall_y * s->wdw.img_data.size_line + wall_x;
+		// if (index > 0 && index < s->wdw.img_data.size_line * s->wdw.r_y)
+		// 	put_pixel_img(s->wdw.img_data, txtr.img_data, index, index_texture);
+		// txtr_position += txtr.step;
+		// wall_y++;
+
+		// if (wall_y < s->wdw.r_y)
+		// {
+		// 	pixel_put(s, wall_x, wall_y, color);
+		// 	wall_y++;
+		// }
 	}
 	draw_ceiling_floor(s, wall_x, wall_y, 0);
 }

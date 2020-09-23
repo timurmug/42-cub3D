@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:46:03 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 10:49:37 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_sets
 	// void		*west_texture;
 	// void		*east_texture;
 	// void		*sprite_texture;
+	t_txtr		curr_txtr;
 	t_txtr		n_txtr;
 	t_txtr		s_txtr;
 	t_txtr		w_txtr;
@@ -74,6 +75,18 @@ typedef struct	s_coords_double
 	double		x;
 	double		y;
 }				t_coords_double;
+
+typedef struct	s_view
+{
+	double		start;
+	double		end;
+}				t_view;
+
+typedef struct	s_dist
+{
+	double		dist;
+	double		x;
+}				t_dist;
 
 
 #endif

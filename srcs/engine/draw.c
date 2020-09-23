@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:25:58 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 11:16:14 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,19 +98,34 @@ int		get_new_image(t_sets *s)
 }
 
 
+t_dist	dist_to_wall_init(t_dist dist_to_wall, double pov, double angle)
+{
+	t_dist	dist;
+
+	dist.x = modf(dist_to_wall.x / CELL, &dist_to_wall.x);
+	dist.dist = dist_to_wall.dist * cosf(pov - angle);
+	return (dist);
+}
+
 void	calc_map(t_sets *s)
 {
 	// double	step_xy[2];
 	// double	curr_xy[2];
-	double	start_end[2];
+	// double	start_end[2];
+	t_view	view;
 	int		wall_x;
+	double	curr_angle;
 
 	if (!(get_new_image(s)))
 		return ;
 	wall_x = 0;
-	start_end[0] = s->plr_d + FOV_HALF;
-	start_end[1] = s->plr_d - FOV_HALF;
-	while (start_end[0] > start_end[1])
+	// start_end[0] = s->plr_d + FOV_HALF;
+	// start_end[1] = s->plr_d - FOV_HALF;
+
+	view.start = s->plr_d + FOV_HALF;
+	view.end = s->plr_d - FOV_HALF;
+	// while (start_end[0] > start_end[1])
+	while (view.start > view.end)
 	{
 		// step_xy[0] = cos(start_end[0]);
 		// step_xy[1] = -sin(start_end[0]);
@@ -126,16 +141,36 @@ void	calc_map(t_sets *s)
 		// }
 		// draw_column2(s, curr_xy, wall_x, start_end[0]);
 
-		double ray1 = distance_to_wall_h(s, correct_angle(start_end[0]));
-		double ray2 = distance_to_wall_v(s, correct_angle(start_end[0]));
-		if (ray1 < ray2)
-			draw_column(s, wall_x, start_end[0], ray1, 0x004DFF);
+		curr_angle = ft_correct_angle(view.start);
+		t_dist dist1 = distance_to_wall_h(s, curr_angle);
+		t_dist dist2 = distance_to_wall_v(s, curr_angle);
+		get_wall_texture(s, curr_angle, dist1.dist, dist2.dist);
+		t_dist dist;
+		if (dist1.dist < dist2.dist)
+			dist = dist_to_wall_init(dist1, s->plr_d, curr_angle);
 		else
-			draw_column(s, wall_x, start_end[0], ray2, 0x999999);
+			dist = dist_to_wall_init(dist2, s->plr_d, curr_angle);
+		s->curr_txtr.x = (int)(SCALE * dist.x);
+
+		if (dist1.dist < dist2.dist)
+		{
+			// draw_column(s, wall_x, start_end[0], ray1, 0x004DFF);
+			if (curr_angle < M_PI)
+				draw_column(s, wall_x, view.start, dist1.dist, 0x004DFF);
+			else
+				draw_column(s, wall_x, view.start, dist1.dist, 0x55c87e);
+		}
+		else
+		{
+			if (curr_angle > M_PI / 2 && curr_angle < M_PI * 3 / 2)
+				draw_column(s, wall_x, view.start, dist2.dist, 0x999999);
+			else
+				draw_column(s, wall_x, view.start, dist2.dist, 0xc88855);
+		}
 
 		wall_x++;
 		// wall_x *= (s->wdw.img_data.bpp / 8);
-		start_end[0] -= (FOV / s->wdw.r_x);
+		view.start -= (FOV / s->wdw.r_x);
 	}
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:22:09 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:46:44 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 10:55:00 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ double	get_y_horizontal(double position, double angle)
 	return ((double)y);
 }
 
-double	distance_to_wall_h(t_sets *s, double angle)
+t_dist	distance_to_wall_h(t_sets *s, double angle)
 {
 	const double	step_y = (angle <= M_PI && angle >= 0) ? -SCALE : SCALE;
 	const double	step_x = -step_y * (1 / tanf(angle));
 	t_coords_double	current;
 	t_coords_int	map;
+	t_dist			dist;
 
 	current.y = get_y_horizontal(s->plr_y, angle);
 	current.x = get_x_horizontal(s, current.y, angle);
@@ -46,5 +47,8 @@ double	distance_to_wall_h(t_sets *s, double angle)
 		map.x = (int)(current.x / SCALE);
 		map.y = (int)(current.y / SCALE);
 	}
-	return (sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2)));
+	dist.x = (current.x < 0) ? 0 : current.x; //get_texture_coordinate(current.x);
+	dist.dist = sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2));
+	// return (sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2)));
+	return (dist);
 }

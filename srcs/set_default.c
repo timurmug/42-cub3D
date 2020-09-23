@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 09:20:38 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:32:52 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 10:14:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_sets		sets_default(void)
 	t_sets	sets;
 
 	sets.wdw = wdw_default();
+	sets.curr_txtr = t_txtr_default();
 	sets.n_txtr = t_txtr_default();
 	sets.s_txtr= t_txtr_default();
 	sets.w_txtr= t_txtr_default();
