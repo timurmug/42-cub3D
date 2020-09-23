@@ -6,31 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:16:07 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:25:58 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	pixel_put(t_sets *s, int x, int y, int color)
-{
-    char    *dst;
-
-    dst = s->wdw.img_data.addr + (y * s->wdw.img_data.size_line + \
-		x * (s->wdw.img_data.bpp / 8));
-    *(unsigned int*)dst = color;
-}
-
-void	put_pixel_img(t_img img, t_img texture,
-		int index, int index_texture)
-{
-	img.addr[index] = texture.addr[index_texture];
-	img.addr[index + 1] = texture.addr[index_texture + 1];
-	img.addr[index + 2] = texture.addr[index_texture + 2];
-	img.addr[index + 3] = texture.addr[index_texture + 3];
-}
-
-void	draw_ceiling_floor(t_sets *s, int x, double wall_y, int isceil)
+void	draw_ceiling_floor2(t_sets *s, int x, double wall_y, int isceil)
 {
 	double temp_y;
 
@@ -46,23 +28,18 @@ void	draw_ceiling_floor(t_sets *s, int x, double wall_y, int isceil)
 			pixel_put(s, x, wall_y++, s->floor_col);
 }
 
-void	draw_column(t_sets *s, double curr_xy[2], int wall_x, double degree)
+void	draw_column2(t_sets *s, double curr_xy[2], int wall_x, double degree)
 {
 	double	ray;
 	double	height;
 	double	wall_y;
 
 	ray = sqrt(pow(s->plr_x - curr_xy[0], 2) + pow(s->plr_y - curr_xy[1], 2));
-	// ray *= cos(s->plr_d - degree);
+	ray *= cos(s->plr_d - degree);
 
-	if (degree > s->plr_d)
-		ray *= cos(degree - s->plr_d);
-	else
-		ray *= cos(s->plr_d - degree);
-
-	height = CELL / ray * ((double)s->plr_x / 2 / tanf(FOV_HALF));
+	height = CELL / ray * ((double)s->wdw.r_x / 2 / tanf(FOV_HALF));
 	wall_y = (s->wdw.r_y / 2 - height / 2);
-	draw_ceiling_floor(s, wall_x, wall_y, 1);
+	draw_ceiling_floor2(s, wall_x, wall_y, 1);
 	if (height >= s->wdw.r_y)
 		height = s->wdw.r_y;
 	if (wall_y < 0)
@@ -99,43 +76,9 @@ void	draw_column(t_sets *s, double curr_xy[2], int wall_x, double degree)
 			wall_y++;
 		}
 	}
-	draw_ceiling_floor(s, wall_x, wall_y, 0);
+	draw_ceiling_floor2(s, wall_x, wall_y, 0);
 
 	// (void)txtr_position;
-}
-
-double	correct_angle(double angle)
-{
-	if (angle < 0)
-	angle += 2 * M_PI;
-	else if (angle >= 2 * M_PI)
-	angle -= 2 * M_PI;
-	return (angle);
-}
-
-void	draw_column2(t_sets *s, int wall_x, double degree, double ray, int color)
-{
-	double	height;
-	double	wall_y;
-
-	ray *= cos(s->plr_d - degree);
-	height = (SCALE / ray) * ((double)s->wdw.r_x / 2 / tan(FOV_HALF));
-	wall_y = s->wdw.r_y / 2 - height / 2;
-
-	draw_ceiling_floor(s, wall_x, wall_y, 1);
-	if (height >= s->wdw.r_y)
-		height = s->wdw.r_y;
-	if (wall_y < 0)
-		wall_y = 0;
-	while (height-- > 0)
-	{
-		if (wall_y < s->wdw.r_y)
-		{
-			pixel_put(s, wall_x, wall_y, color);
-			wall_y++;
-		}
-	}
-	draw_ceiling_floor(s, wall_x, wall_y, 0);
 }
 
 int		get_new_image(t_sets *s)
@@ -181,14 +124,14 @@ void	calc_map(t_sets *s)
 		// 	curr_xy[0] += step_xy[0];
 		// 	curr_xy[1] += step_xy[1];
 		// }
-		// draw_column(s, curr_xy, wall_x, start_end[0]);
+		// draw_column2(s, curr_xy, wall_x, start_end[0]);
 
 		double ray1 = distance_to_wall_h(s, correct_angle(start_end[0]));
 		double ray2 = distance_to_wall_v(s, correct_angle(start_end[0]));
 		if (ray1 < ray2)
-			draw_column2(s, wall_x, start_end[0], ray1, 0x004DFF);
+			draw_column(s, wall_x, start_end[0], ray1, 0x004DFF);
 		else
-			draw_column2(s, wall_x, start_end[0], ray2, 0x999999);
+			draw_column(s, wall_x, start_end[0], ray2, 0x999999);
 
 		wall_x++;
 		// wall_x *= (s->wdw.img_data.bpp / 8);
