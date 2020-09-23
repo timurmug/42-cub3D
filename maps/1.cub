@@ -2,13 +2,10 @@
 
 C 177 , 201 , 255
 R 1920  1080
-NO                          textures/cat.xpm
-SO     textures/cat.xpm
-
-
-
-WE textures/cat.xpm
-EA           textures/cat.xpm
+NO  textures/wall1h.xpm
+SO  textures/wall1v.xpm
+WE  textures/wall2h.xpm
+EA  textures/wall2v.xpm
 
 
 S      textures/cat.xpm

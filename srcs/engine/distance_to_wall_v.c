@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:21:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 10:54:58 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 14:28:56 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 double	get_step_x_vertical(double angle)
 {
 	if ((angle <= M_PI / 2) || (angle >= 3 * M_PI / 2 && angle < 2 * M_PI))
-		return (CELL);
+		return (SCALE);
 	else
-		return (-CELL);
+		return (-SCALE);
 }
 
 double	get_x_vertical(double position, double angle)
@@ -58,8 +58,7 @@ t_dist	distance_to_wall_v(t_sets *s, double angle)
 		map.x = (int)(current.x / SCALE);
 		map.y = (int)(current.y / SCALE);
 	}
-	dist.x = (current.x < 0) ? 0 : current.y; //get_texture_coordinate(current.y);
+	dist.x = (current.y < 0) ? 0 : current.y;
 	dist.dist = sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2));
-	// return (sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2)));
 	return (dist);
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   funcs.h                                            :+:      :+:    :+:   */
+/*   funcs_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/14 11:46:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 15:53:20 by qtamaril         ###   ########.fr       */
+/*   Created: 2020/09/23 13:10:06 by qtamaril          #+#    #+#             */
+/*   Updated: 2020/09/23 13:10:48 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FUNCS_H
-# define FUNCS_H
+#ifndef FUNCS_UTILS_H
+# define FUNCS_UTILS_H
 
-int				get_data(t_list **lines_list, t_sets *sets, \
-	char **map, int count);
-t_sets			sets_default(void);
+int				type_repeated_err(void);
+int				color_error(void);
+int				param_type_err(void);
+void			mlx_err(void);
+void			ft_free_strstr(char **splitted);
+void			ft_list_clear(t_list **begin_list);
+char			**ft_strstrdup(char **s);
+size_t			ft_strstrlen(char **splitted);
 
-
-
-// удалить
-void			print_sets(t_sets sets);
-void			print_strstr(char **strstr);
 #endif
