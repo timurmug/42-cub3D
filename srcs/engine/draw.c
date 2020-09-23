@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/22 18:19:34 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/23 09:16:07 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	draw_column(t_sets *s, double curr_xy[2], int wall_x, double degree)
 
 		if (wall_y < s->wdw.r_y)
 		{
-			pixel_put(s, wall_x, wall_y, 0x999999);
+			pixel_put(s, curr_xy[0], wall_y, 0x999999);
+			curr_xy[0]++;
 			wall_y++;
 		}
 	}
@@ -117,11 +118,11 @@ void	draw_column2(t_sets *s, int wall_x, double degree, double ray, int color)
 	double	height;
 	double	wall_y;
 
-	// (void)degree;
-	ray *= cos(s->plr_d - correct_angle(degree));
-	height = (64 / ray) * ((double)s->plr_x / 2 / tan(FOV_HALF));
-	wall_y = ((double)s->wdw.r_y / 2 - (double)height / 2);
-	// draw_ceiling_floor(s, wall_x, wall_y, 1);
+	ray *= cos(s->plr_d - degree);
+	height = (SCALE / ray) * ((double)s->wdw.r_x / 2 / tan(FOV_HALF));
+	wall_y = s->wdw.r_y / 2 - height / 2;
+
+	draw_ceiling_floor(s, wall_x, wall_y, 1);
 	if (height >= s->wdw.r_y)
 		height = s->wdw.r_y;
 	if (wall_y < 0)
@@ -134,7 +135,7 @@ void	draw_column2(t_sets *s, int wall_x, double degree, double ray, int color)
 			wall_y++;
 		}
 	}
-	// draw_ceiling_floor(s, wall_x, wall_y, 0);
+	draw_ceiling_floor(s, wall_x, wall_y, 0);
 }
 
 int		get_new_image(t_sets *s)
@@ -188,6 +189,7 @@ void	calc_map(t_sets *s)
 			draw_column2(s, wall_x, start_end[0], ray1, 0x004DFF);
 		else
 			draw_column2(s, wall_x, start_end[0], ray2, 0x999999);
+
 		wall_x++;
 		// wall_x *= (s->wdw.img_data.bpp / 8);
 		start_end[0] -= (FOV / s->wdw.r_x);
