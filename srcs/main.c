@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 09:48:28 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 08:52:30 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int			main(int ac, char **av)
 		}
 		ft_lstadd_back(&lines_list, ft_lstnew(line));
 		create_map(&lines_list, ft_lstsize(lines_list));
+		close(fd);
 	}
 	ft_list_clear(&lines_list);
 	return (0);
