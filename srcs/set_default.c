@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 09:20:38 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 10:14:09 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:21:01 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ t_wdw		wdw_default(void)
 	win.mlx = mlx_init();
 	win.wdw = NULL;
 	win.img_data = img_default();
-	// win.addr = NULL;
-	// win.bpp = -1;
-	// win.size_line = -1;
-	// win.endian = -1;
 	win.r_x = -1;
 	win.r_y = -1;
 	return (win);
@@ -64,11 +60,7 @@ t_sets		sets_default(void)
 	sets.w_txtr= t_txtr_default();
 	sets.e_txtr= t_txtr_default();
 	sets.sprt_txtr = t_txtr_default();
-	// sets.noth_texture = NULL;
-	// sets.south_texture = NULL;
-	// sets.west_texture = NULL;
-	// sets.east_texture = NULL;
-	// sets.sprite_texture = NULL;
+	sets.count_sprts = 0;
 	sets.floor_col = -1;
 	sets.ceiling_col = -1;
 	sets.map = NULL;

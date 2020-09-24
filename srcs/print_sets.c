@@ -6,8 +6,17 @@ void	print_sets(t_sets sets)
 {
 	printf("%s\n", "-----------------------------");
 	printf("%map size: %d\n", sets.map_size_y);
-	printf("R: |%d| |%d|\n", sets.wdw.r_x, sets.wdw.r_y);
+	printf("count sprites: %d\n", sets.count_sprts);
 
+	int c = 0;
+	while (c < sets.count_sprts)
+	{
+		printf("sprite%d y: |%d| x: |%d|\n", c, (int)sets.sprites[c].y - SCALE, (int)sets.sprites[c].x - SCALE);
+		c++;
+	}
+	puts("");
+
+	printf("R: |%d| |%d|\n", sets.wdw.r_x, sets.wdw.r_y);
 	printf("NO: |%p| height: |%d| width: |%d| addr: |%p| size_line: |%d|\n", sets.n_txtr.img_data.img, \
 	sets.n_txtr.img_data.height, sets.n_txtr.img_data.width, sets.n_txtr.img_data.addr, sets.n_txtr.img_data.size_line);
 

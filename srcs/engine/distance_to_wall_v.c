@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:21:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 14:28:56 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 10:02:11 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_dist	distance_to_wall_v(t_sets *s, double angle)
 	map.y = (int)(current.y / SCALE);
 	while (map.y > 0 && map.y < s->map_size_y)
 	{
-		if (s->map[map.y][map.x] == '1' || s->map[map.y][map.x] == '2')
+		if (s->map[map.y][map.x] == '1')
 			break ;
 		current.x += step_x;
 		current.y += step_y;

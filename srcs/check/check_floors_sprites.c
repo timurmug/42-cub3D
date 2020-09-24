@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:49:03 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/14 12:37:03 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 11:16:06 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	check_f_s2(char **m, size_t i, size_t max_i, char fs)
+int		check_f_s2(char **m, size_t i, size_t max_i, char fs)
 {
 	size_t	j;
 	size_t	max_j;
@@ -41,7 +41,7 @@ int	check_f_s2(char **m, size_t i, size_t max_i, char fs)
 	return (1);
 }
 
-int	check_f_s(char **m, char fs)
+int		check_f_s(char **m, char fs)
 {
 	size_t	i;
 	size_t	max_i;

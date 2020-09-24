@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 09:28:33 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 11:35:25 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	check_wall(t_sets *sets, int dec_x, int dec_y)
 
 	map_x = (sets->plr_x + dec_x) / SCALE;
 	map_y = (sets->plr_y + dec_y) / SCALE;
-	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1' \
-	&& sets->map[map_y][map_x] != '2')
+	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1')
 	{
 		sets->plr_y += dec_y;
 		sets->plr_x += dec_x;
@@ -84,6 +83,8 @@ int		cross_pressed(t_sets *sets)
 	mlx_destroy_image(sets->wdw.mlx, sets->e_txtr.img_data.img);
 	mlx_destroy_image(sets->wdw.mlx, sets->sprt_txtr.img_data.img);
 	mlx_destroy_window(sets->wdw.mlx, sets->wdw.wdw);
+	free(sets->map);
+	free(sets->sprites);
 	exit(0);
 }
 
@@ -105,6 +106,6 @@ int		button_pressed(int key, t_sets *sets)
 		change_x(sets, 0);
 	else if (key == D_BUTTON)
 		change_x(sets, 1);
-	calc_map(sets);
+	draw_img(sets);
 	return (0);
 }

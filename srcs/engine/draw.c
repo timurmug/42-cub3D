@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 08:51:21 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/24 14:37:07 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,21 @@ int		get_new_image(t_sets *s)
 	return (1);
 }
 
-void	calc_map(t_sets *s)
+double	ray_casting(t_sets *s, double curr_angle, int wall_x)
+{
+	t_dist	dist;
+
+	dist = get_dist_and_texture(s, curr_angle);
+	s->curr_txtr.x = (int)(SCALE * dist.x);
+	draw_column(s, wall_x, dist.dist);
+	return (dist.dist);
+}
+
+void	draw_img(t_sets *s)
 {
 	t_view	view;
 	int		wall_x;
-	double	curr_angle;
-	t_dist	dist;
+	double	distances[s->wdw.r_x];
 
 	if (!(get_new_image(s)))
 		return ;
@@ -42,13 +51,11 @@ void	calc_map(t_sets *s)
 	view.end = s->plr_d - FOV_HALF;
 	while (view.start > view.end)
 	{
-		curr_angle = ft_correct_angle(view.start);
-		dist = get_dist_and_texture(s, curr_angle);
-		s->curr_txtr.x = (int)(SCALE * dist.x);
-		draw_column(s, wall_x, dist.dist);
+		distances[wall_x] = ray_casting(s, ft_correct_angle(view.start), wall_x);
 		wall_x++;
 		view.start -= (FOV / s->wdw.r_x);
 	}
+	draw_sprites(s, distances);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
 }
 
@@ -59,7 +66,7 @@ void	create_window(t_sets sets)
 	if (!(sets.wdw.wdw = mlx_new_window(sets.wdw.mlx, \
 		sets.wdw.r_x, sets.wdw.r_y, "cub3d")))
 		return mlx_err();
-	calc_map(&sets);
+	draw_img(&sets);
 	mlx_hook(sets.wdw.wdw, 2, 1L<<0, button_pressed, &sets);
 	mlx_hook(sets.wdw.wdw, 17, 1L<<0, cross_pressed, &sets);
 	mlx_loop(sets.wdw.mlx);
