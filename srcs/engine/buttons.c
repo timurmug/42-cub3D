@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 09:42:17 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 10:58:55 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,54 +24,68 @@ void	change_dir(t_sets *sets, int isleft)
 		sets->plr_d -= 2 * M_PI;
 }
 
-void	check_wall(t_sets *sets, int dec_x, int dec_y)
+// void	check_wall(t_sets *sets, t_coords_int dec, double left_right, double up_down)
+void	check_wall(t_sets *sets, t_coords_int dec)
 {
-	int map_x;
-	int map_y;
+	// int map_x;
+	// int map_y;
+	t_coords_int map;
 
-	map_x = (sets->plr_x + dec_x) / SCALE;
-	map_y = (sets->plr_y + dec_y) / SCALE;
-	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1' && sets->map[map_y][map_x] && sets->map[map_y][map_x] != '2')
+	map.x = (sets->plr_x + dec.x) / SCALE;
+	map.y = (sets->plr_y + dec.y) / SCALE;
+	if (sets->map[map.y][map.x] && \
+		sets->map[map.y][map.x] != '1' && sets->map[map.y][map.x] != '2')
+		// sets->map[map.y + up_down][map.x + left_right] && \
+		// sets->map[map.y + up_down][map.x + left_right] != '1' && \
+		// sets->map[map.y + up_down][map.x + left_right] != '2')
 	{
-		sets->plr_y += dec_y;
-		sets->plr_x += dec_x;
+		sets->plr_y += dec.y;
+		sets->plr_x += dec.x;
 	}
 }
 
 void	change_x(t_sets *sets, int isright)
 {
-	int dec_x;
-	int dec_y;
+	// int dec_x;
+	// int dec_y;
+	t_coords_int dec;
 
 	if (isright)
 	{
-		dec_y = -sin(sets->plr_d - M_PI / 2) * MOV_SPEED;
-		dec_x = cos(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		dec.y = -sin(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		dec.x = cos(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		// check_wall(sets, dec, 8, 0);
+		check_wall(sets, dec);
 	}
 	else
 	{
-		dec_y = sin(sets->plr_d - M_PI / 2) * MOV_SPEED;
-		dec_x = -cos(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		dec.y = sin(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		dec.x = -cos(sets->plr_d - M_PI / 2) * MOV_SPEED;
+		// check_wall(sets, dec, -8, 0);
+		check_wall(sets, dec);
 	}
-	check_wall(sets, dec_x, dec_y);
+	// check_wall(sets, dec);
 }
 
 void	change_y(t_sets *sets, int isdown)
 {
-	int dec_x;
-	int dec_y;
+	// int dec_x;
+	// int dec_y;
+	t_coords_int dec;
+
 
 	if (isdown)
 	{
-		dec_y = sin(sets->plr_d) * 10;
-		dec_x = -cos(sets->plr_d) * 10;
+		dec.y = sin(sets->plr_d) * (MOV_SPEED + 2);
+		dec.x = -cos(sets->plr_d) * (MOV_SPEED + 2);
 	}
 	else
 	{
-		dec_y = -sin(sets->plr_d) * 10;
-		dec_x = cos(sets->plr_d) * 10;
+		dec.y = -sin(sets->plr_d) * (MOV_SPEED + 2);
+		dec.x = cos(sets->plr_d) * (MOV_SPEED + 2);
 	}
-	check_wall(sets, dec_x, dec_y);
+	// check_wall(sets, dec, 0, 0);
+	check_wall(sets, dec);
 }
 
 int		cross_pressed(t_sets *sets)

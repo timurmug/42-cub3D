@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 11:33:26 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 12:49:13 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void		create_map(t_list **lines_list, int size)
+void		create_map(t_list **lines_list, int size, int is_save)
 {
 	char		**map;
 	t_sets		sets;
@@ -33,7 +33,7 @@ void		create_map(t_list **lines_list, int size)
 	sets.plr_x = sets.plr_x * SCALE + SCALE / 2;
 	sets.plr_y = sets.plr_y * SCALE + SCALE / 2;
 	print_sets(sets); //удалить
-	create_window(sets);
+	create_window(sets, is_save);
 	free(map);
 	free(sets.sprites);
 }
@@ -43,9 +43,10 @@ int			main(int ac, char **av)
 {
 	int			fd;
 	char		*line;
+	char		is_save;
 	t_list		*lines_list;
 
-	if (ac == 2)
+	if (ac == 2 || (ac == 3 && !ft_strcmp(av[2], "--save")))
 	{
 		if ((fd = check_file_format(av[1])) < 0)
 			return (0);
@@ -56,9 +57,12 @@ int			main(int ac, char **av)
 			ft_lstadd_back(&lines_list, ft_lstnew(line));
 		}
 		ft_lstadd_back(&lines_list, ft_lstnew(line));
-		create_map(&lines_list, ft_lstsize(lines_list));
+		is_save = (ac == 3) ? 1 : 0;
+		create_map(&lines_list, ft_lstsize(lines_list), is_save);
 		close(fd);
 	}
+	else if (ac == 3 && ft_strcmp(av[2], "--save"))
+		ft_putendl_fd(SAVE_PARAM_ERROR, 1);
 	ft_list_clear(&lines_list);
 	return (0);
 }

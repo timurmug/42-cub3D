@@ -6,15 +6,21 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 13:50:39 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 09:46:31 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 12:07:13 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+
+#include <stdio.h> //sasdaszdsadasd
 int		check_transparency(t_img texture, int index)
 {
+	// printf("1: |%d| 2: |%d| 3: |%d| 4 |%d|\n", texture.addr[index], texture.addr[index + 1], texture.addr[index + 2], texture.addr[index + 3]);
+
 	if (texture.addr[index] == 0 && texture.addr[index + 1] == 0 && texture.addr[index + 2] == 0 && texture.addr[index + 3] == 0)
+	// if (texture.addr[index] <= 0 && texture.addr[index + 1] == 0 && texture.addr[index + 2] == 0 && texture.addr[index + 3] <= 0)
+	// if (texture.addr[index] == 0 && texture.addr[index + 1] == 0 && texture.addr[index + 2] == 0)
 		return (0);
 	return (1);
 }

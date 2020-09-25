@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/13 16:51:22 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/16 12:42:54 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:01:42 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ double	plr_dir(char c)
 {
 	if (c == 'N')
 		return (M_PI / 2);
-		// return (90);
 	else if (c == 'S')
 		return (3 * M_PI / 2);
-		// return (270);
 	else if (c == 'E')
 		return (0);
 	else

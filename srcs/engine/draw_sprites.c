@@ -6,14 +6,14 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 09:51:34 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 10:05:28 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:15:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-#include <stdio.h>
-void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int i)
+#include <stdio.h> ///sfsdf
+void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int y)
 {
  	const t_img	texture = sprite.txtr.img_data;
 	int			index_texture;
@@ -25,13 +25,13 @@ void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int i)
 	{
 		if (sprite.v_offset + x > 0 && sprite.v_offset + x <= s->wdw.r_y)
 		{
-			printf("%do\n", img.size_line);
-			index = (sprite.v_offset + x) * img.size_line + (sprite.h_offset + i) * img.bpp / 8;
-			index_texture = x * texture.height / sprite.height * texture.size_line + i * texture.height / sprite.height * img.bpp / 8;
+			index = (sprite.v_offset + x) * img.size_line + (sprite.h_offset + y) * img.bpp / 8;
+			index_texture = x * texture.height / sprite.height * texture.size_line + y * texture.height / sprite.height * img.bpp / 8;
+			// printf("img.size_line: |%d| index: |%d| texture.size_line: |%d| index_texture |%d|\n", img.size_line, index, texture.size_line, index_texture);
 			if (check_transparency(texture, index_texture))
-			{
 				put_pixel_img(img, texture, index, index_texture);
-			}
+			// else
+			// 	puts("black color");
 		}
 		x++;
 	}
@@ -80,14 +80,6 @@ void	sorting_sprites(t_sprite *items, int number_items)
 	}
 }
 
-double	calculate_height(double distance_to_wall, t_sets *s)
-{
-	double			height;
-
-	height = (SCALE / distance_to_wall) * ((double)s->wdw.r_x / 2 / tan(FOV_HALF));
-	return (height);
-}
-
 void	sprites_init(t_sets *s)
 {
 	const double	pov = -(s->plr_d);
@@ -101,7 +93,7 @@ void	sprites_init(t_sets *s)
 		sprite = &s->sprites[count];
 		dir_sprite = get_dir_sprite(*sprite, s, pov);
 		sprite->dist = sqrt(pow(s->plr_x - sprite->x, 2) + pow(s->plr_y - sprite->y, 2));
-		sprite->height = (int)calculate_height(sprite->dist, s);
+		sprite->height = (int)((SCALE / sprite->dist) * ((double)s->wdw.r_x / 2 / tan(FOV_HALF)));
 		calculate_offset(sprite, s, dir_sprite - pov);
 		count++;
 	}

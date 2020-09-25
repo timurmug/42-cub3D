@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/24 13:55:54 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/25 11:36:05 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,10 @@ SRCS = srcs/engine/buttons.c \
 		srcs/engine/draw_sprites.c \
 		srcs/engine/draw_utils.c \
 		srcs/engine/draw.c \
-		srcs/main.c \
 		srcs/get_data.c \
 		srcs/get_sprites.c \
+		srcs/main.c \
+		srcs/save_bmp.c \
 		srcs/set_default.c \
 		srcs/print_sets.c \
 		srcs/save_color.c

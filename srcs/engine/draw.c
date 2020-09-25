@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 09:42:41 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:57:49 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	draw_img(t_sets *s)
 	}
 	draw_sprites(s, distances);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
-	mlx_do_sync(s->wdw.mlx); // че это
+	// mlx_do_sync(s->wdw.mlx); // че это
 }
 
-void	create_window(t_sets sets)
+void	create_window(t_sets sets, int is_save)
 {
 	if (!sets.wdw.mlx)
 		return mlx_err();
@@ -68,7 +68,12 @@ void	create_window(t_sets sets)
 		sets.wdw.r_x, sets.wdw.r_y, "cub3d")))
 		return mlx_err();
 	draw_img(&sets);
-	mlx_hook(sets.wdw.wdw, 2, 1L<<0, button_pressed, &sets);
-	mlx_hook(sets.wdw.wdw, 17, 1L<<0, cross_pressed, &sets);
-	mlx_loop(sets.wdw.mlx);
+	if (!is_save)
+	{
+		mlx_hook(sets.wdw.wdw, 2, 1L<<0, button_pressed, &sets);
+		mlx_hook(sets.wdw.wdw, 17, 1L<<0, cross_pressed, &sets);
+		mlx_loop(sets.wdw.mlx);
+	}
+	else
+		save_bmp(sets.wdw.r_x, sets.wdw.r_y, sets.wdw.img_data.addr);
 }

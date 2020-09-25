@@ -14,3 +14,4 @@ libmlx.dylib
 *.swiftmodule
 srcs/check.a
 cub.a
+Cub3D.bmp

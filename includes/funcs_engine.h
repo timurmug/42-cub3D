@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 13:13:38 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 14:42:34 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 11:33:31 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			put_pixel_img(t_img img, t_img texture,
 		int index, int index_texture);
 double			ft_correct_angle(double angle);
 t_dist			get_dist_and_texture(t_sets *s, double angle);
-void			create_window(t_sets sets);
+// void			create_window(t_sets sets);
+void			create_window(t_sets sets, int is_save);
 
 #endif
