@@ -6,62 +6,61 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:34:33 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 12:42:57 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 18:46:15 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_bitmap_file_header	file_header_init(int file_size)
+void	set_headers(char *bfh, char *bih, int width, int height)
 {
-	t_bitmap_file_header	bmp_file_header;
+	int	file_size;
 
-	bmp_file_header.bitmap_type[0] = 'B';
-	bmp_file_header.bitmap_type[1] = 'M';
-	bmp_file_header.file_size = file_size;
-	bmp_file_header.reserved1 = 0;
-	bmp_file_header.reserved2 = 0;
-	bmp_file_header.offset_bits = 0;
-	return (bmp_file_header);
+	file_size = 54 + 4 * width * height;
+	bfh[0] = (unsigned char)('B');
+	bfh[1] = (unsigned char)('M');
+	bfh[2] = (unsigned char)(file_size);
+	bfh[3] = (unsigned char)(file_size >> 8);
+	bfh[4] = (unsigned char)(file_size >> 16);
+	bfh[5] = (unsigned char)(file_size >> 24);
+	bfh[10] = (unsigned char)(54);
+	bih[0] = (unsigned char)(40);
+	bih[4] = (unsigned char)(width);
+	bih[5] = (unsigned char)(width >> 8);
+	bih[6] = (unsigned char)(width >> 16);
+	bih[7] = (unsigned char)(width >> 24);
+	bih[8] = (unsigned char)(-height);
+	bih[9] = (unsigned char)(-height >> 8);
+	bih[10] = (unsigned char)(-height >> 16);
+	bih[11] = (unsigned char)(-height >> 24);
+	bih[12] = (unsigned char)(1);
+	bih[14] = (unsigned char)(32);
 }
 
-t_bitmap_image_header	image_header_init(int width, int height, int file_size)
+void	save_bmp(t_sets *s, int i)
 {
-	t_bitmap_image_header bmp_image_header;
+	char	bfh[14];
+	char	bih[40];
+	int		len;
+	int		fd;
 
-	bmp_image_header.size_header = sizeof(bmp_image_header);
-	bmp_image_header.width = width;
-	bmp_image_header.height = -height;
-	bmp_image_header.planes = 1;
-	bmp_image_header.bit_count = 32;
-	bmp_image_header.compression = 0;
-	bmp_image_header.image_size = file_size;
-	// bmp_image_header.ppm_x = 96 * 39.375;
-	// bmp_image_header.ppm_y = 96 * 39.375;
-	bmp_image_header.ppm_x = 3780;
-	bmp_image_header.ppm_y = 3780;
-	bmp_image_header.clr_used = 0;
-	bmp_image_header.clr_important = 0;
-	return (bmp_image_header);
-}
-
-void	save_bmp(int width, int height, char *data)
-{
-	int						fd;
-	t_bitmap_file_header	bmp_file_header;
-	t_bitmap_image_header	bmp_image_header;
-	int						image_size;
-	int						file_size;
-
-	image_size = width * height;
-	file_size = 54 + 4 * image_size;
-	bmp_file_header = file_header_init(file_size);
-	bmp_image_header = image_header_init(width, height, file_size);
-	// fd = open("Cub3D.bmp", O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
-	fd = open("Cub3D.bmp", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND);
-	// fd = open("Cub3D.bmp", O_WRONLY | O_RDONLY);
-	write(fd, &bmp_file_header, 14);
-	write(fd, &bmp_image_header, sizeof(bmp_image_header));
-	write(fd, data, image_size * 4);
-	close(fd);
+	if ((fd = open("Cub3D.bmp", O_RDWR | O_CREAT, 0755)) < 0)
+	{
+		ft_putendl_fd(FILE_OPEN_ERR, 1);
+		return ;
+	}
+	ft_bzero(bfh, 14);
+	ft_bzero(bih, 40);
+	set_headers(bfh, bih, s->wdw.r_x, s->wdw.r_y);
+	write(fd, bfh, 14);
+	write(fd, bih, 40);
+	i = 0;
+    len = s->wdw.img_data.bpp / 8 * s->wdw.r_x;
+    while (i < s->wdw.r_y)
+    {
+        write(fd, s->wdw.img_data.addr + i *  s->wdw.img_data.size_line, len);
+        i++;
+    }
+	if (close(fd < 0))
+		ft_putendl_fd(FILE_CLOSE_ERROR, 1);
 }

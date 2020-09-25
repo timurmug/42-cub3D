@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 10:58:55 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 18:47:48 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	change_y(t_sets *sets, int isdown)
 	check_wall(sets, dec);
 }
 
-int		cross_pressed(t_sets *sets)
+int		close_mlx(t_sets *sets)
 {
 	mlx_destroy_image(sets->wdw.mlx, sets->wdw.img_data.img);
 	mlx_destroy_image(sets->wdw.mlx, sets->n_txtr.img_data.img);
@@ -107,7 +107,7 @@ int		button_pressed(int key, t_sets *sets)
 	mlx_clear_window(sets->wdw.mlx, sets->wdw.wdw);
 
 	if (key == ESC_BUTTON)
-		return (cross_pressed(sets));
+		return (close_mlx(sets));
 	else if (key == LEFT_BUTTON)
 		change_dir(sets, 1);
 	else if (key == RIGHT_BUTTON)
@@ -120,6 +120,6 @@ int		button_pressed(int key, t_sets *sets)
 		change_x(sets, 0);
 	else if (key == D_BUTTON)
 		change_x(sets, 1);
-	draw_img(sets);
+	draw_img(sets, 0);
 	return (0);
 }

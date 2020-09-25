@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:45:16 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 12:48:25 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:52:53 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SPRITE_ERROR "Error\nSmth is wrong with sprite position"
 # define MAP_NOT_CLOSED_ERROR "Error\nMap is not closed"
 # define MLX_ERROR "Error\nONE OF MLX FUNCS RETURNING NULL"
-# define SAVE_PARAM_ERROR "Error\nSECOND PARAM IS NOT (––save)"
+# define SAVE_PARAM_ERROR "Error\nSecond param is not \'––save\'"
+# define FILE_CLOSE_ERROR "Error\nError closing file"
 
 #endif

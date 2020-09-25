@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/25 11:36:05 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/25 14:43:14 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRCS = srcs/engine/buttons.c \
 		srcs/save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
-.PHONY: all clean fclean re valg norme run
+.PHONY: all clean fclean re valg norme run save
 
 all: $(NAME)
 
@@ -94,6 +94,9 @@ run:
 
 valg:
 	valgrind --leak-check=full ./$(NAME) ../maps/1.cub
+
+save:
+	./$(NAME) maps/1.cub --save
 
 norme:
 	@make fclean

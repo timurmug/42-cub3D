@@ -6,17 +6,18 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 13:13:38 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 11:33:31 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 18:48:07 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCS_ENGINE_H
 # define FUNCS_ENGINE_H
 
-int				cross_pressed(t_sets *sets);
+int				close_mlx(t_sets *sets);
 int				button_pressed(int key, t_sets *sets);
 void			draw_2dmap(t_sets *sets);
-void			draw_img(t_sets *s);
+// void			draw_img(t_sets *s);
+void			draw_img(t_sets *s, int is_save);
 t_dist			distance_to_wall_h(t_sets *s, double angle);
 t_dist			distance_to_wall_v(t_sets *s, double angle);
 void			draw_column(t_sets *s, int wall_x, double ray);

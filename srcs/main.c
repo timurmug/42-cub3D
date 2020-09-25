@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 12:49:13 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 14:28:08 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int			main(int ac, char **av)
 		{
 			ft_lstadd_back(&lines_list, ft_lstnew(line));
 		}
+		close(fd);
 		ft_lstadd_back(&lines_list, ft_lstnew(line));
 		is_save = (ac == 3) ? 1 : 0;
 		create_map(&lines_list, ft_lstsize(lines_list), is_save);
-		close(fd);
 	}
 	else if (ac == 3 && ft_strcmp(av[2], "--save"))
 		ft_putendl_fd(SAVE_PARAM_ERROR, 1);

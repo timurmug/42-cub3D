@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 11:50:12 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 18:35:50 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,30 +95,5 @@ typedef struct		s_dist
 	double			dist;
 	double			x;
 }					t_dist;
-
-typedef struct		s_bitmap_file_header
-{
-	char			bitmap_type[2];
-	int				file_size;
-	short			reserved1;
-	short			reserved2;
-	unsigned int	offset_bits;
-}					t_bitmap_file_header;
-
-typedef struct		s_bitmap_image_header
-{
-	unsigned int	size_header;
-	unsigned int	width;
-	unsigned int	height;
-	short int		planes;
-	short int		bit_count;
-	unsigned int	compression;
-	unsigned int	image_size;
-	unsigned int	ppm_x;
-	unsigned int	ppm_y;
-	unsigned int	clr_used;
-	unsigned int	clr_important;
-}					t_bitmap_image_header;
-
 
 #endif
