@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 11:35:25 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 09:42:17 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_wall(t_sets *sets, int dec_x, int dec_y)
 
 	map_x = (sets->plr_x + dec_x) / SCALE;
 	map_y = (sets->plr_y + dec_y) / SCALE;
-	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1')
+	if (sets->map[map_y][map_x] && sets->map[map_y][map_x] != '1' && sets->map[map_y][map_x] && sets->map[map_y][map_x] != '2')
 	{
 		sets->plr_y += dec_y;
 		sets->plr_x += dec_x;

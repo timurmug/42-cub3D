@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 11:15:59 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 11:50:57 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 09:41:07 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_sprite	init_sprite_coord(int x, int y, t_sets *sets)
 {
 	t_sprite	sprite;
 
-	sprite.x = (double)x + SCALE;
-	sprite.y = (double)y + SCALE;
+	sprite.x = (double)x * SCALE - SCALE / 2;
+	sprite.y = (double)y * SCALE + SCALE / 2;
 	sprite.txtr.img_data = sets->sprt_txtr.img_data;
 	return (sprite);
 }

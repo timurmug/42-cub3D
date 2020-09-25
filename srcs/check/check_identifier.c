@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 15:04:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/21 11:27:22 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 10:07:08 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,10 @@ int	check_r(char **s, t_sets *sets)
 	if (temp_x <= 0 || temp_y <= 0)
 		return (param_type_err());
 	mlx_get_screen_size(sets->wdw.mlx, &x, &y);
-	// mlx_get_screen_size(sets->mlx, &x, &y);
 	(temp_x < x) ? x = temp_x : 1 - 1;
 	(temp_y < y) ? y = temp_y : 1 - 1;
 	sets->wdw.r_x = x;
 	sets->wdw.r_y = y;
-	//
-	// sets->r_x = temp_x;
-	// sets->r_y = temp_y;
 	return (1);
 }
 
@@ -65,19 +61,14 @@ int	parse_identifier(char **s, t_sets *sets)
 	if (!ft_strcmp(s[0], "R"))
 		res = check_r(s, sets);
 	else if (!ft_strcmp(s[0], "NO"))
-		// res = get_texture(s, sets, sets->noth_texture);
 		res = get_texture(s, sets, &(sets->n_txtr));
 	else if (!ft_strcmp(s[0], "SO"))
-		// res = get_texture(s, sets, sets->south_texture);
 		res = get_texture(s, sets, &(sets->s_txtr));
 	else if (!ft_strcmp(s[0], "WE"))
-		// res = get_texture(s, sets, sets->west_texture);
 		res = get_texture(s, sets, &(sets->w_txtr));
 	else if (!ft_strcmp(s[0], "EA"))
-		// res = get_texture(s, sets, sets->east_texture);
 		res = get_texture(s, sets, &(sets->e_txtr));
 	else if (!ft_strcmp(s[0], "S"))
-		// res = get_texture(s, sets, sets->sprite_texture);
 		res = get_texture(s, sets, &(sets->sprt_txtr));
 	else if (!ft_strcmp(s[0], "F"))
 		res = check_color(s, sets, 1);

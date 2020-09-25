@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:25:18 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/23 15:51:55 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 09:03:00 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	put_pixel_img(t_img img, t_img texture,
 double	ft_correct_angle(double angle)
 {
 	if (angle < 0)
-	angle += 2 * M_PI;
+		angle += 2 * M_PI;
 	else if (angle >= 2 * M_PI)
-	angle -= 2 * M_PI;
+		angle -= 2 * M_PI;
 	return (angle);
 }
 

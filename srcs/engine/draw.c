@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 14:37:07 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/25 09:42:41 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	draw_img(t_sets *s)
 	}
 	draw_sprites(s, distances);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
+	mlx_do_sync(s->wdw.mlx); // че это
 }
 
 void	create_window(t_sets sets)
