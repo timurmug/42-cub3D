@@ -6,13 +6,12 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 09:51:34 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 11:15:34 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 11:56:29 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-#include <stdio.h> ///sfsdf
 void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int y)
 {
  	const t_img	texture = sprite.txtr.img_data;
@@ -25,13 +24,10 @@ void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int y)
 	{
 		if (sprite.v_offset + x > 0 && sprite.v_offset + x <= s->wdw.r_y)
 		{
-			index = (sprite.v_offset + x) * img.size_line + (sprite.h_offset + y) * img.bpp / 8;
 			index_texture = x * texture.height / sprite.height * texture.size_line + y * texture.height / sprite.height * img.bpp / 8;
-			// printf("img.size_line: |%d| index: |%d| texture.size_line: |%d| index_texture |%d|\n", img.size_line, index, texture.size_line, index_texture);
+			index = (sprite.v_offset + x) * img.size_line + (sprite.h_offset + y) * img.bpp / 8;
 			if (check_transparency(texture, index_texture))
 				put_pixel_img(img, texture, index, index_texture);
-			// else
-			// 	puts("black color");
 		}
 		x++;
 	}

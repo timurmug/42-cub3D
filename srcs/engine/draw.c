@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 18:47:36 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 11:51:43 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,31 @@ void	draw_img(t_sets *s, int is_save)
 	view.end = s->plr_d - FOV_HALF;
 	while (view.start > view.end)
 	{
+		// double	step_xy[2];
+		// double	curr_xy[2];
+		// step_xy[0] = cos(view.start);
+		// step_xy[1] = -sin(view.end);
+		// curr_xy[0] = s->plr_x;
+		// curr_xy[1] = s->plr_y;
+		// while (s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] &&\
+		// s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '1' && \
+		// s->map[(int)curr_xy[1] / SCALE][(int)curr_xy[0] / SCALE] != '2')
+		// {
+		// 	mlx_pixel_put(s->wdw.mlx, s->wdw.wdw, curr_xy[0], curr_xy[1], 0xC2171D);
+		// 	curr_xy[0] += step_xy[0];
+		// 	curr_xy[1] += step_xy[1];
+		// }
+
 		distances[wall_x] = ray_casting(s, ft_correct_angle(view.start), wall_x);
 		wall_x++;
 		view.start -= (FOV / s->wdw.r_x);
 	}
 	draw_sprites(s, distances);
+	draw_2dmap(s);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
-	if (!is_save)
-		mlx_do_sync(s->wdw.mlx);
+	(void)is_save;
+	// if (!is_save)
+	// 	mlx_do_sync(s->wdw.mlx);
 }
 
 void	create_window(t_sets sets, int is_save)

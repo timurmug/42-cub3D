@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:25:18 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 09:03:00 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 11:46:36 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	put_pixel_img(t_img img, t_img texture,
 {
 	img.addr[index] = texture.addr[index_texture];
 	img.addr[index + 1] = texture.addr[index_texture + 1];
-	img.addr[index + 2] = texture.addr[index_texture + 1];
-	img.addr[index + 3] = texture.addr[index_texture + 1];
+	img.addr[index + 2] = texture.addr[index_texture + 2];
+	img.addr[index + 3] = texture.addr[index_texture + 3];
 }
 
 double	ft_correct_angle(double angle)
