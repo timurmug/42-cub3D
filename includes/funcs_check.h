@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 13:08:17 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 13:19:20 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 16:54:55 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void			player_xy(t_list *tmp, t_sets *sets);
 int				check_player(t_list *tmp);
 int				check_line_map(char *s);
 int				check_map(t_sets *sets, t_list *map_list, char **map);
+int				is_map_last(char **map);
 
 #endif

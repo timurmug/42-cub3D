@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:45:16 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 15:08:39 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 17:00:20 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 # define MAP_NOT_CLOSED_ERROR "Error\nMap is not closed"
 # define MLX_ERROR "Error\nONE OF MLX FUNCS RETURNING NULL"
 # define SAVE_PARAM_ERROR "Error\nSecond param is not \'––save\'"
-# define NO_PARAM_ERROR "Error\nNo arguments specified"
+# define FILE_PARAM_ERROR "Error\nFile param error"
 # define FILE_CLOSE_ERROR "Error\nError closing file"
+# define MAP_NOT_LAST_PARAM "Error\nMap is not last param"
 
 #endif

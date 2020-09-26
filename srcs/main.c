@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 15:13:01 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 17:52:33 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void		create_map(t_list **lines_list, int size, int is_save)
 	sets = sets_default();
 	count = 0;
 	if (!get_data(lines_list, &sets, map, count))
+	{
+		free(map);
+		return ;
+	}
+	if (!is_map_last(map))
 	{
 		free(map);
 		return ;
@@ -53,6 +58,12 @@ void		main2(int ac, char **av)
 	}
 	close(fd);
 	ft_lstadd_back(&lines_list, ft_lstnew(line));
+	if (ft_lstsize(lines_list) <= 8)
+	{
+		ft_putendl_fd(FILE_ERR, 1);
+		ft_list_clear(&lines_list);
+		return ;
+	}
 	is_save = (ac == 3) ? 1 : 0;
 	create_map(&lines_list, ft_lstsize(lines_list), is_save);
 	ft_list_clear(&lines_list);
@@ -64,7 +75,7 @@ int			main(int ac, char **av)
 		main2(ac, av);
 	else if (ac == 3 && ft_strcmp(av[2], "--save"))
 		ft_putendl_fd(SAVE_PARAM_ERROR, 1);
-	else if (ac == 1)
-		ft_putendl_fd(NO_PARAM_ERROR, 1);
+	else if (ac == 1 || ac > 3)
+		ft_putendl_fd(FILE_PARAM_ERROR, 1);
 	return (0);
 }

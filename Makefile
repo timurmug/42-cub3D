@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/26 15:09:20 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/26 16:54:40 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ MLX_LIB = minilibx/libmlx.dylib
 
 INCLUDES = includes/cub3d.h \
 			includes/errors.h \
+			includes/funcs_check.h \
+			includes/funcs_engine.h \
+			includes/funcs_utils.h \
 			includes/funcs.h \
 			includes/structs.h
 
@@ -41,6 +44,7 @@ SRCS_CHECK = srcs/check/color/check_color.c \
 			srcs/check/check_identifier.c \
 			srcs/check/check_identifier_utils.c \
 			srcs/check/check_map.c \
+			srcs/check/is_map_last.c \
 			srcs/check/check_map_utils.c
 OBJS_CHECK = $(SRCS_CHECK:%.c=%.o)
 
