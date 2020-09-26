@@ -6,11 +6,25 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 13:16:22 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:24:12 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int		close_mlx(t_sets *sets)
+{
+	mlx_destroy_image(sets->wdw.mlx, sets->wdw.img_data.img);
+	mlx_destroy_image(sets->wdw.mlx, sets->n_txtr.img_data.img);
+	mlx_destroy_image(sets->wdw.mlx, sets->s_txtr.img_data.img);
+	mlx_destroy_image(sets->wdw.mlx, sets->w_txtr.img_data.img);
+	mlx_destroy_image(sets->wdw.mlx, sets->e_txtr.img_data.img);
+	mlx_destroy_image(sets->wdw.mlx, sets->sprt_txtr.img_data.img);
+	mlx_destroy_window(sets->wdw.mlx, sets->wdw.wdw);
+	free(sets->map);
+	free(sets->sprites);
+	exit(0);
+}
 
 int		get_new_image(t_sets *s)
 {
@@ -24,7 +38,8 @@ int		get_new_image(t_sets *s)
 		return (0);
 	}
 	s->wdw.img_data.addr = mlx_get_data_addr(s->wdw.img_data.img, \
-		&s->wdw.img_data.bpp, &s->wdw.img_data.size_line, &s->wdw.img_data.endian);
+		&s->wdw.img_data.bpp, &s->wdw.img_data.size_line, \
+		&s->wdw.img_data.endian);
 	return (1);
 }
 
@@ -51,7 +66,8 @@ void	draw_img(t_sets *s, int is_save)
 	view.end = s->plr_d - FOV_HALF;
 	while (view.start > view.end)
 	{
-		distances[wall_x] = ray_casting(s, ft_correct_angle(view.start), wall_x);
+		distances[wall_x] = ray_casting(s, ft_correct_angle(view.start), \
+		wall_x);
 		wall_x++;
 		view.start -= (FOV / s->wdw.r_x);
 	}
@@ -65,15 +81,15 @@ void	draw_img(t_sets *s, int is_save)
 void	create_window(t_sets sets, int is_save)
 {
 	if (!sets.wdw.mlx)
-		return mlx_err();
+		return (mlx_err());
 	if (!(sets.wdw.wdw = mlx_new_window(sets.wdw.mlx, \
 		sets.wdw.r_x, sets.wdw.r_y, "cub3d")))
-		return mlx_err();
+		return (mlx_err());
 	if (!is_save)
 	{
 		draw_img(&sets, 0);
-		mlx_hook(sets.wdw.wdw, 2, 1L<<0, button_pressed, &sets);
-		mlx_hook(sets.wdw.wdw, 17, 1L<<0, close_mlx, &sets);
+		mlx_hook(sets.wdw.wdw, 2, 1L << 0, button_pressed, &sets);
+		mlx_hook(sets.wdw.wdw, 17, 1L << 0, close_mlx, &sets);
 		mlx_loop(sets.wdw.mlx);
 	}
 	else

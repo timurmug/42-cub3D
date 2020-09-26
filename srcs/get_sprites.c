@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 11:15:59 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 11:05:20 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:38:21 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_sprite	init_sprite_coord(int x, int y, t_sets *sets)
 	return (sprite);
 }
 
-void	count_sprites(t_sets *sets)
+void		count_sprites(t_sets *sets)
 {
 	size_t	i;
 	size_t	j;
@@ -40,7 +40,7 @@ void	count_sprites(t_sets *sets)
 	}
 }
 
-void	get_sprites(t_sets *sets)
+void		get_sprites(t_sets *sets)
 {
 	size_t	i;
 	size_t	j;
@@ -49,7 +49,6 @@ void	get_sprites(t_sets *sets)
 	count_sprites(sets);
 	i = 0;
 	count = 0;
-
 	sets->sprites = ft_calloc(sets->count_sprts + 1, sizeof(t_sprite));
 	while (sets->map[i])
 	{

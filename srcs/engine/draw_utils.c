@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 09:25:18 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 11:46:36 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:10:25 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	pixel_put(t_sets *s, int x, int y, int color)
 {
-    char    *dst;
+	char	*dst;
 
-    dst = s->wdw.img_data.addr + (y * s->wdw.img_data.size_line + \
+	dst = s->wdw.img_data.addr + (y * s->wdw.img_data.size_line + \
 		x * (s->wdw.img_data.bpp / 8));
-    *(unsigned int*)dst = color;
+	*(unsigned int*)dst = color;
 }
 
-void	put_pixel_img(t_img img, t_img texture,
-		int index, int index_texture)
+void	put_pixel_img(t_img img, t_img texture, \
+	int index, int index_texture)
 {
 	img.addr[index] = texture.addr[index_texture];
 	img.addr[index + 1] = texture.addr[index_texture + 1];
@@ -50,8 +50,8 @@ t_dist	dist_to_wall_init(t_dist dist_to_wall, double pov, double angle)
 
 t_dist	get_dist_and_texture(t_sets *s, double angle)
 {
-	t_dist dist1;
-	t_dist dist2;
+	t_dist	dist1;
+	t_dist	dist2;
 
 	dist1 = distance_to_wall_h(s, angle);
 	dist2 = distance_to_wall_v(s, angle);

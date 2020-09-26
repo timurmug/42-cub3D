@@ -6,13 +6,13 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:16:08 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 13:14:09 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:34:14 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void	draw_square(t_sets *sets, int x, int y, int col)
+void			draw_square(t_sets *sets, int x, int y, int col)
 {
 	t_coords_int	temp;
 	int				scale_map;
@@ -28,7 +28,7 @@ void	draw_square(t_sets *sets, int x, int y, int col)
 	}
 }
 
-int		get_begin_map(t_sets *s)
+int				get_begin_map(t_sets *s)
 {
 	int		i;
 
@@ -38,17 +38,30 @@ int		get_begin_map(t_sets *s)
 		if (!ft_strstrlen(ft_split(s->map[i], ' ')))
 			i++;
 		else
-			break;
+			break ;
 	}
 	return (i);
 }
 
-void	draw_2dmap(t_sets *s, int scale_map)
+void			draw_plr(t_sets *s, int i_start)
 {
-	t_coords_int map_scale;
-	int		i;
-	int		j;
-	int		i_start;
+	t_coords_int	plr;
+	int				scale_map;
+
+	scale_map = s->wdw.r_x * s->wdw.r_y / 129600;
+	plr.y = (s->plr_y) / SCALE;
+	plr.x = (s->plr_x) / SCALE;
+	draw_square(s, (int)(scale_map + plr.x * scale_map), \
+	(int)(scale_map + plr.y * scale_map - i_start * scale_map), \
+	0xef614a);
+}
+
+void			draw_2dmap(t_sets *s, int scale_map)
+{
+	t_coords_int	map_scale;
+	int				i;
+	int				j;
+	int				i_start;
 
 	map_scale.y = scale_map;
 	i = get_begin_map(s);
@@ -59,13 +72,11 @@ void	draw_2dmap(t_sets *s, int scale_map)
 		map_scale.x = scale_map;
 		while (s->map[i][j])
 		{
-			int plr_y = (s->plr_y) / SCALE;
-			int plr_x = (s->plr_x) / SCALE;
 			if (s->map[i][j++] == '1')
 				draw_square(s, map_scale.x, map_scale.y, 0xFFFFFF);
 			else if (s->map[i][j - 1] == '2')
 				draw_square(s, map_scale.x, map_scale.y, 0x6AA84F);
-			draw_square(s, (int)(scale_map + plr_x * scale_map), (int)(scale_map + plr_y * scale_map - i_start * scale_map), 0xef614a);
+			draw_plr(s, i_start);
 			map_scale.x += scale_map;
 		}
 		i++;

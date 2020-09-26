@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/24 09:51:34 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 11:56:29 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:11:40 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int y)
 {
- 	const t_img	texture = sprite.txtr.img_data;
+	const t_img	texture = sprite.txtr.img_data;
 	int			index_texture;
 	int			index;
 	int			x;
@@ -24,8 +24,11 @@ void	put_sprite(t_sprite sprite, t_sets *s, t_img img, int y)
 	{
 		if (sprite.v_offset + x > 0 && sprite.v_offset + x <= s->wdw.r_y)
 		{
-			index_texture = x * texture.height / sprite.height * texture.size_line + y * texture.height / sprite.height * img.bpp / 8;
-			index = (sprite.v_offset + x) * img.size_line + (sprite.h_offset + y) * img.bpp / 8;
+			index_texture = x * texture.height / sprite.height * \
+			texture.size_line + y * texture.height / sprite.height * \
+			img.bpp / 8;
+			index = (sprite.v_offset + x) * img.size_line + \
+			(sprite.h_offset + y) * img.bpp / 8;
 			if (check_transparency(texture, index_texture))
 				put_pixel_img(img, texture, index, index_texture);
 		}
@@ -41,7 +44,8 @@ void	rendering_sprite(t_sprite item, t_sets *s, const double *distances)
 	y = 0;
 	while (y < item.height)
 	{
-		if ((item.h_offset + y > 0 && item.h_offset + y <= s->wdw.r_x) && (distances[item.h_offset + y] > item.dist * 0.9))
+		if ((item.h_offset + y > 0 && item.h_offset + y <= s->wdw.r_x) && \
+		(distances[item.h_offset + y] > item.dist * 0.9))
 			put_sprite(item, s, img, y);
 		y++;
 	}
@@ -71,7 +75,7 @@ void	sorting_sprites(t_sprite *items, int number_items)
 			i++;
 		}
 		if (flag == 0)
-		return ;
+			return ;
 		n++;
 	}
 }
@@ -88,8 +92,10 @@ void	sprites_init(t_sets *s)
 	{
 		sprite = &s->sprites[count];
 		dir_sprite = get_dir_sprite(*sprite, s, pov);
-		sprite->dist = sqrt(pow(s->plr_x - sprite->x, 2) + pow(s->plr_y - sprite->y, 2));
-		sprite->height = (int)((SCALE / sprite->dist) * ((double)s->wdw.r_x / 2 / tan(FOV_HALF)));
+		sprite->dist = sqrt(pow(s->plr_x - sprite->x, 2) + \
+		pow(s->plr_y - sprite->y, 2));
+		sprite->height = (int)((SCALE / sprite->dist) * \
+		((double)s->wdw.r_x / 2 / tan(FOV_HALF)));
 		calculate_offset(sprite, s, dir_sprite - pov);
 		count++;
 	}

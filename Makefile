@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/26 13:23:07 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/26 15:09:20 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCLUDES = includes/cub3d.h \
 			includes/structs.h
 
 FLAGS_W = -Wall -Wextra -Werror
-FLAGS_MLX = -Lmlx -lmlx -framework OpenGL -framework Appkit
+FLAGS_MLX = -lmlx -framework OpenGL -framework Appkit
 
 DIR_SRCS = srcs
 DIR_LIB = libft
@@ -80,9 +80,6 @@ $(NAME): $(INCLUDES) $(OBJS_CHECK) $(OBJS_UTILS) $(OBJS)
 	cp $(MLX_LIB) libmlx.dylib
 	ar rc $(CUB_A) $(OBJS) $(OBJS_CHECK)  $(OBJS_UTILS)
 	gcc $(FLAGS_W) $(FLAGS_MLX) $(CUB_A) $(GNL_A) $(LIB_A) $(MLX_LIB) -o $(NAME)
-	@echo ------------------------------------------------------
-	# ./$(NAME) ../maps/1.cub
-	./$(NAME) maps/1.cub | cat -e
 
 $(DIR_OBJS)/%.o: $(DIR_SRCS)/%.c
 	@mkdir -p objs
@@ -101,14 +98,20 @@ save:
 
 norme:
 	@make fclean
-	# @echo
-	# norminette includes/
-	# @echo
-	# norminette ./$(DIR_GNL)/
-	# @echo
-	# norminette ./$(DIR_LIB)/
 	@echo
-	norminette ./$(DIR_SRCS)/
+	norminette includes/
+	@echo
+	norminette ./$(DIR_GNL)/
+	@echo
+	norminette ./$(DIR_LIB)/
+	@echo
+	norminette ./$(DIR_SRCS)/check
+	@echo
+	norminette ./$(DIR_SRCS)/engine
+	@echo
+	norminette ./$(DIR_SRCS)/utils
+	@echo
+	norminette ./$(DIR_SRCS)
 
 %.o: %.c
 	gcc -c $(FLAGS_W) -Imlx -o $@ $<
@@ -121,6 +124,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f Cub3D.bmp
 	rm -f $(CUB_A)
 	@make -C $(DIR_GNL) fclean
 	@make -C $(DIR_LIB) fclean

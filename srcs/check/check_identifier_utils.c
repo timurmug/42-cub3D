@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/08 16:52:00 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 10:06:47 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:07:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	get_texture(char **str, t_sets *s, t_txtr *txtr)
 		ft_putendl_fd(PARAMS_NUM_ERR, 1);
 		return (-50);
 	}
-	if (!(txtr->img_data.img = mlx_xpm_file_to_image(s->wdw.mlx, str[1], &txtr->img_data.width, &txtr->img_data.height)))
+	if (!(txtr->img_data.img = mlx_xpm_file_to_image(s->wdw.mlx, str[1], \
+		&txtr->img_data.width, &txtr->img_data.height)))
 	{
 		ft_putendl_fd(TEXTURE_ERR, 1);
 		return (-50);

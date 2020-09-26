@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/25 11:34:33 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 18:46:15 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:42:09 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	save_bmp(t_sets *s, int i)
 	write(fd, bfh, 14);
 	write(fd, bih, 40);
 	i = 0;
-    len = s->wdw.img_data.bpp / 8 * s->wdw.r_x;
-    while (i < s->wdw.r_y)
-    {
-        write(fd, s->wdw.img_data.addr + i *  s->wdw.img_data.size_line, len);
-        i++;
-    }
+	len = s->wdw.img_data.bpp / 8 * s->wdw.r_x;
+	while (i < s->wdw.r_y)
+	{
+		write(fd, s->wdw.img_data.addr + i * s->wdw.img_data.size_line, len);
+		i++;
+	}
 	if (close(fd < 0))
 		ft_putendl_fd(FILE_CLOSE_ERROR, 1);
 }

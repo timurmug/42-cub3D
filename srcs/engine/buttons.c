@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:30:13 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 12:40:39 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:24:08 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,9 @@ void	change_y(t_sets *sets, int isdown)
 	check_wall(sets, dec);
 }
 
-int		close_mlx(t_sets *sets)
-{
-	mlx_destroy_image(sets->wdw.mlx, sets->wdw.img_data.img);
-	mlx_destroy_image(sets->wdw.mlx, sets->n_txtr.img_data.img);
-	mlx_destroy_image(sets->wdw.mlx, sets->s_txtr.img_data.img);
-	mlx_destroy_image(sets->wdw.mlx, sets->w_txtr.img_data.img);
-	mlx_destroy_image(sets->wdw.mlx, sets->e_txtr.img_data.img);
-	mlx_destroy_image(sets->wdw.mlx, sets->sprt_txtr.img_data.img);
-	mlx_destroy_window(sets->wdw.mlx, sets->wdw.wdw);
-	free(sets->map);
-	free(sets->sprites);
-	exit(0);
-}
-
 int		button_pressed(int key, t_sets *sets)
 {
 	mlx_clear_window(sets->wdw.mlx, sets->wdw.wdw);
-
 	if (key == ESC_BUTTON)
 		return (close_mlx(sets));
 	else if (key == LEFT_BUTTON)

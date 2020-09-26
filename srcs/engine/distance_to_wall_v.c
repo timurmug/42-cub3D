@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/21 16:21:28 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 10:02:11 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:11:57 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_dist	distance_to_wall_v(t_sets *s, double angle)
 		map.y = (int)(current.y / SCALE);
 	}
 	dist.x = (current.y < 0) ? 0 : current.y;
-	dist.dist = sqrt(pow(s->plr_x - current.x, 2) + pow(s->plr_y - current.y, 2));
+	dist.dist = sqrt(pow(s->plr_x - current.x, 2) + \
+	pow(s->plr_y - current.y, 2));
 	return (dist);
 }

@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/12 13:09:26 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 10:37:08 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 14:07:37 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	check_map(t_sets *sets, t_list *map_list, char **map)
 
 	i = 0;
 	tmp_list = map_list;
-	// sets->map = map_list;
 	if (!check_player(map_list))
 		return (0);
 	while (tmp_list)
