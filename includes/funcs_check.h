@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/23 13:08:17 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/24 11:17:09 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/26 13:19:20 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int				check_color3(char **s, t_sets *sets, int is_floor);
 int				check_color4(char **s, t_sets *sets, int is_floor);
 int				check_color5(char **s, t_sets *sets, int is_floor);
 int				check_color6(char **s, t_sets *sets, int is_floor);
-
 int				check_file_format(char *filename);
 int				check_f_s(char **m, char fs);
 int				get_texture(char **str, t_sets *s, t_txtr *txtr);

@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/26 11:55:07 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/26 13:23:07 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,6 @@ SRCS = srcs/engine/buttons.c \
 		srcs/main.c \
 		srcs/save_bmp.c \
 		srcs/set_default.c \
-		srcs/print_sets.c \
 		srcs/save_color.c
 OBJS = $(SRCS:%.c=%.o)
 
@@ -102,13 +101,14 @@ save:
 
 norme:
 	@make fclean
-	norminette ./$(DIR_GNL)/
-	@echo
-	norminette ./$(DIR_LIB)/
+	# @echo
+	# norminette includes/
+	# @echo
+	# norminette ./$(DIR_GNL)/
+	# @echo
+	# norminette ./$(DIR_LIB)/
 	@echo
 	norminette ./$(DIR_SRCS)/
-	@echo
-	norminette includes/
 
 %.o: %.c
 	gcc -c $(FLAGS_W) -Imlx -o $@ $<
