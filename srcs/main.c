@@ -6,11 +6,29 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/06 10:03:29 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 17:52:33 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/27 11:08:57 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+t_sets		get_sizes_map(t_sets sets)
+{
+	int y;
+	int max_x;
+	int temp_len;
+
+	sets.map_size_y = ft_strstrlen(sets.map);
+	y = 0;
+	while (sets.map[y])
+	{
+		temp_len = ft_strlen(sets.map[y++]);
+		if (temp_len > max_x)
+			max_x = temp_len;
+	}
+	sets.map_max_x = max_x;
+	return (sets);
+}
 
 void		create_map(t_list **lines_list, int size, int is_save)
 {
@@ -32,7 +50,7 @@ void		create_map(t_list **lines_list, int size, int is_save)
 		return ;
 	}
 	sets.map = map;
-	sets.map_size_y = ft_strstrlen(sets.map);
+	sets = get_sizes_map(sets);
 	get_sprites(&sets);
 	sets.plr_x = sets.plr_x * SCALE + SCALE / 2;
 	sets.plr_y = sets.plr_y * SCALE + SCALE / 2;

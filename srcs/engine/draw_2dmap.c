@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/17 12:16:08 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 17:30:21 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/27 11:30:20 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,13 @@ void			draw_square(t_sets *sets, int x, int y, int col)
 	int				scale_map;
 
 	temp.y = y;
-	// scale_map = sets->wdw.r_x * sets->wdw.r_y / 129600;
-	scale_map = sets->wdw.r_y / 120;
-
+	scale_map = sets->wdw.r_x * sets->wdw.r_y / 129600;
 	while (temp.y < y + scale_map)
 	{
 		temp.x = x;
-
-		scale_map = sets->wdw.r_x * sets->wdw.r_y / 129600;
 		while (temp.x < x + scale_map)
 			pixel_put(sets, temp.x++, temp.y, col);
 		temp.y++;
-
-		scale_map = sets->wdw.r_y / 120;
 	}
 }
 
@@ -82,7 +76,6 @@ void			draw_2dmap(t_sets *s, int scale_map)
 	int				i_start;
 
 	map_scale.y = scale_map;
-	map_scale.y = s->wdw.r_y / 120;
 	i = get_begin_map(s);
 	i_start = i;
 	while (s->map[i])

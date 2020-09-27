@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/14 11:53:37 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/25 18:35:50 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/27 11:02:34 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_sets
 	int				ceiling_col;
 	char			**map;
 	int				map_size_y;
+	int				map_max_x;
 	double			plr_x;
 	double			plr_y;
 	double			plr_d;

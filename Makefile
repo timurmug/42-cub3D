@@ -6,7 +6,7 @@
 #    By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 16:27:09 by qtamaril          #+#    #+#              #
-#    Updated: 2020/09/26 16:54:40 by qtamaril         ###   ########.fr        #
+#    Updated: 2020/09/27 10:43:05 by qtamaril         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,12 +108,6 @@ norme:
 	norminette ./$(DIR_GNL)/
 	@echo
 	norminette ./$(DIR_LIB)/
-	@echo
-	norminette ./$(DIR_SRCS)/check
-	@echo
-	norminette ./$(DIR_SRCS)/engine
-	@echo
-	norminette ./$(DIR_SRCS)/utils
 	@echo
 	norminette ./$(DIR_SRCS)
 

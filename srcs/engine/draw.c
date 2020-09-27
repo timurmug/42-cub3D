@@ -6,7 +6,7 @@
 /*   By: qtamaril <qtamaril@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/07 16:23:32 by qtamaril          #+#    #+#             */
-/*   Updated: 2020/09/26 15:41:32 by qtamaril         ###   ########.fr       */
+/*   Updated: 2020/09/27 11:25:31 by qtamaril         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	draw_img(t_sets *s, int is_save)
 		view.start -= (FOV / s->wdw.r_x);
 	}
 	draw_sprites(s, distances);
-	draw_2dmap(s, s->wdw.r_x * s->wdw.r_y / 129600);
 	mlx_put_image_to_window(s->wdw.mlx, s->wdw.wdw, s->wdw.img_data.img, 0, 0);
 	if (!is_save)
 		mlx_do_sync(s->wdw.mlx);
